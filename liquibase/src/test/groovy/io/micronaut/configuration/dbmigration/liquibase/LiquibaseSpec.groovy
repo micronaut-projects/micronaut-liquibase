@@ -21,7 +21,6 @@ import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.inject.qualifiers.Qualifiers
 import io.micronaut.runtime.server.EmbeddedServer
-import io.micronaut.testutils.YamlAsciidocTagCleaner
 import org.yaml.snakeyaml.Yaml
 import spock.lang.AutoCleanup
 import spock.lang.Shared
@@ -29,7 +28,7 @@ import spock.lang.Specification
 
 import javax.sql.DataSource
 
-class LiquibaseSpec  extends Specification implements YamlAsciidocTagCleaner {
+class LiquibaseSpec  extends Specification {
 
     String yamlConfig = '''\
 //tag::yamlconfig[]
@@ -121,5 +120,13 @@ liquibase:
 
         then:
         sql.rows('select count(*) from books').get(0)[0] == 2
+    }
+
+    private String cleanYamlAsciidocTag(String str, String tagName = 'yamlconfig') {
+        str.replaceAll('//tag::'+tagName+'\\[]', '').replaceAll('//end::'+tagName+'\\[]', '').trim()
+    }
+
+    private Map flatten(Map m, String separator = '.') {
+        m.collectEntries { k, v ->  v instanceof Map ? flatten(v, separator).collectEntries { q, r ->  [(k + separator + q): r] } : [(k):v] }
     }
 }

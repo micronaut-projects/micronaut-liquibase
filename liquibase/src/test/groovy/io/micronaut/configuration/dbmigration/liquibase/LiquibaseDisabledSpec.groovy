@@ -19,14 +19,13 @@ package io.micronaut.configuration.dbmigration.liquibase
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.context.exceptions.NoSuchBeanException
-import io.micronaut.testutils.YamlAsciidocTagCleaner
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
 import javax.sql.DataSource
 
-class LiquibaseDisabledSpec extends Specification implements YamlAsciidocTagCleaner {
+class LiquibaseDisabledSpec extends Specification {
 
     @Shared
     Map<String, Object> config = [

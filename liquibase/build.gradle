@@ -1,0 +1,16 @@
+dependencies {
+    compileOnly "io.micronaut:micronaut-inject-java:$micronautVersion"
+    compile ("org.liquibase:liquibase-core:$liquibaseVersion") {
+        exclude group: 'org.springframework'
+    }
+    compile "io.micronaut:micronaut-management:$micronautVersion"
+
+    testCompile "org.codehaus.groovy:groovy-sql:$groovyVersion"
+    testCompile "io.micronaut:micronaut-inject-java:$micronautVersion"
+    testCompile "io.micronaut:micronaut-http-client:$micronautVersion"
+    testCompile "io.micronaut:micronaut-http-server-netty:$micronautVersion"
+    testCompile "io.micronaut:micronaut-http-server-netty:$micronautVersion"
+    testCompile "io.micronaut.configuration:micronaut-jdbc-hikari:$micronautVersion"
+    testCompile "com.h2database:h2:1.4.196"
+    testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
+}
