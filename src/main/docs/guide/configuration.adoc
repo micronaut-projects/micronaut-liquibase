@@ -28,6 +28,8 @@ which imports changelogs which you keep generating as your app evolves:
 include::{liquibasetests}/resources/db/changelog/01-create-books-schema.xml[indent=0]
 ----
 
+////
 There are several options available for configuration:
 
 include::{includedir}configurationProperties/io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties.adoc[]
+////
