@@ -269,15 +269,27 @@ class LiquibaseStartupEventListener {
                 database.setLiquibaseCatalogName(liquibaseSchema);
             }
         }
-        if (StringUtils.trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
+        if (trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
             database.setLiquibaseTablespaceName(config.getLiquibaseTablespace());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogTable()) != null) {
             database.setDatabaseChangeLogTableName(config.getDatabaseChangeLogTable());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
             database.setDatabaseChangeLogLockTableName(config.getDatabaseChangeLogLockTable());
         }
         return database;
+    }
+
+    private static String trimToNull(String string) {
+        if (string == null) {
+            return null;
+        }
+        String returnString = string.trim();
+        if (returnString.isEmpty()) {
+            return null;
+        } else {
+            return returnString;
+        }
     }
 }
