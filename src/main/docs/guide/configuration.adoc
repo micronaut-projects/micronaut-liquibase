@@ -28,8 +28,93 @@ which imports changelogs which you keep generating as your app evolves:
 include::{liquibasetests}/resources/db/changelog/01-create-books-schema.xml[indent=0]
 ----
 
-////
 There are several options available for configuration:
 
-include::{includedir}configurationProperties/io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties.adoc[]
-////
+++++
+<a id="io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties" href="#io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties">&#128279;</a>
+++++
+.Configuration Properties for LiquibaseConfigurationProperties
+|===
+|Property |Type |Description
+
+| `+liquibase.datasources.*.async+`
+|boolean
+|Whether liquibase operations should be run asynchronously.
+
+
+| `+liquibase.datasources.*.enabled+`
+|boolean
+|Sets whether this liquibase configuration is enabled. Default value (true).
+
+
+| `+liquibase.datasources.*.change-log+`
+|java.lang.String
+|Change log configuration path.
+
+
+| `+liquibase.datasources.*.default-schema+`
+|java.lang.String
+|Default database schema.
+
+
+| `+liquibase.datasources.*.liquibase-schema+`
+|java.lang.String
+|Schema to use for Liquibase objects.
+
+
+| `+liquibase.datasources.*.drop-first+`
+|boolean
+|Whether to first drop the database schema. Default value (false).
+
+
+| `+liquibase.datasources.*.liquibase-tablespace+`
+|java.lang.String
+|Tablespace to use for Liquibase objects.
+
+
+| `+liquibase.datasources.*.database-change-log-table+`
+|java.lang.String
+|Name of table to use for tracking change history.
+
+
+| `+liquibase.datasources.*.database-change-log-lock-table+`
+|java.lang.String
+|Name of table to use for tracking concurrent Liquibase usage.
+
+
+| `+liquibase.datasources.*.tag+`
+|java.lang.String
+|a tag.
+
+
+| `+liquibase.datasources.*.contexts+`
+|java.lang.String
+|Comma-separated list of runtime contexts to use.
+
+
+| `+liquibase.datasources.*.labels+`
+|java.lang.String
+|Comma-separated list of runtime labels to use.
+
+
+| `+liquibase.datasources.*.test-rollback-on-update+`
+|boolean
+|Whether rollback should be tested before update is performed. Default value (false).
+
+
+| `+liquibase.datasources.*.ignore-classpath-prefix+`
+|boolean
+|Ignores classpath prefix during changeset comparison. Default value (true).
+
+
+| `+liquibase.datasources.*.rollback-file-path+`
+|java.lang.String
+|Path to file to which rollback SQL is written when an update is performed.
+
+
+| `+liquibase.datasources.*.parameters+`
+|java.util.Map
+|Change log parameters.
+
+
+|===
