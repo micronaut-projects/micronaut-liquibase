@@ -28,7 +28,7 @@ import spock.lang.Specification
 
 import javax.sql.DataSource
 
-class LiquibaseSpec  extends Specification {
+class LiquibaseSpec  extends Specification implements YamlAsciidocTagCleaner {
 
     String yamlConfig = '''\
 //tag::yamlconfig[]
@@ -120,13 +120,5 @@ liquibase:
 
         then:
         sql.rows('select count(*) from books').get(0)[0] == 2
-    }
-
-    private String cleanYamlAsciidocTag(String str, String tagName = 'yamlconfig') {
-        str.replaceAll('//tag::'+tagName+'\\[]', '').replaceAll('//end::'+tagName+'\\[]', '').trim()
-    }
-
-    private Map flatten(Map m, String separator = '.') {
-        m.collectEntries { k, v ->  v instanceof Map ? flatten(v, separator).collectEntries { q, r ->  [(k + separator + q): r] } : [(k):v] }
     }
 }
