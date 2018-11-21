@@ -1,5 +1,4 @@
-
-Micronaut also provides a built-in endpoint to expose all the applied migrations in `/liquibase`.
+This configuration provides a built-in endpoint to expose all the applied migrations in `/liquibase`.
 
 To enable the endpoint add the following to the configuration:
 
