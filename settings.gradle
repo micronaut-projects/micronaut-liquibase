@@ -1,4 +1,4 @@
-rootProject.name = 'liquibase'
+rootProject.name = 'micronaut-configuration-liquibase'
 
 include 'liquibase'
 
