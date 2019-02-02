@@ -91,7 +91,7 @@ function addJsClass() {
 <div class="listingblock">
 <div class="title">src/main/resources/application.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml" data-lang="yaml">datasources:
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">datasources:
     default: <i class="conum" data-value="3"></i><b>(3)</b>
         url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
         username: 'sa'
@@ -138,7 +138,7 @@ liquibase:
 <div class="listingblock">
 <div class="title">resources/db/liquibase-changelog.xml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -155,7 +155,7 @@ liquibase:
 <div class="listingblock">
 <div class="title">resources/db/changelog/01-create-books-schema.xml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
