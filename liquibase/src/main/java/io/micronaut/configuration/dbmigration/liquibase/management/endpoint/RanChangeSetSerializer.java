@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.time.Instant;
 
 /**
- * Jackson serializer for {@link RanChangeSet}
+ * Jackson serializer for {@link RanChangeSet}.
  *
  * @author Iván López
  * @since 1.1

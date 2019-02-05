@@ -43,12 +43,12 @@ import java.util.Collection;
 @Endpoint(id = LiquibaseEndpoint.NAME)
 public class LiquibaseEndpoint {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseEndpoint.class);
     /**
      * Endpoint name.
      */
     public static final String NAME = "liquibase";
 
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseEndpoint.class);
     private final Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties;
 
     /**

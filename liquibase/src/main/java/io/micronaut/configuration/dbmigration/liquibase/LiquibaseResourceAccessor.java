@@ -67,6 +67,10 @@ public class LiquibaseResourceAccessor extends CompositeResourceAccessor {
         return path;
     }
 
+    /**
+     * @param environment The environment
+     * @return A list of {@link ResourceAccessor} to look for migrations
+     */
     protected static List<ResourceAccessor> buildResourceAccessors(Environment environment) {
         List<ResourceAccessor> resourceAccessors = new ArrayList<>(2);
         resourceAccessors.add(new ClassLoaderResourceAccessor(environment.getClassLoader()));
