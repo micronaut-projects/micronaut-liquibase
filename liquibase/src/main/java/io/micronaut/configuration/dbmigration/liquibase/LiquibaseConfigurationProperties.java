@@ -29,7 +29,7 @@ import java.util.Map;
  * Create a Liquibase Configuration for each sub-property of liquibase.*.
  *
  * @author Sergio del Amo
- * @since 1.1
+ * @since 1.0.0
  */
 @EachProperty("liquibase.datasources")
 public class LiquibaseConfigurationProperties implements Toggleable {

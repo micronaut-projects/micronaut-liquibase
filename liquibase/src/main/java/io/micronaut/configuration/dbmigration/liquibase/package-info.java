@@ -19,7 +19,7 @@
  *
  * @author Sergio del Amo
  * @see <a href="http://www.liquibase.org">Liquibase</a>
- * @since 1.1
+ * @since 1.0.0
  */
 @Configuration
 @Requires(property = "liquibase.enabled", notEquals = "false")

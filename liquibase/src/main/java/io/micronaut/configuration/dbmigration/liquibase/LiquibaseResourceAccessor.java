@@ -33,7 +33,7 @@ import java.util.Set;
  * Micronaut bean implementing {@link liquibase.resource.ResourceAccessor}.
  *
  * @author Sergio del Amo
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Singleton
 public class LiquibaseResourceAccessor extends CompositeResourceAccessor {

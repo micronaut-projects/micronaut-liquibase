@@ -51,7 +51,7 @@ import java.util.Map;
  * Listener for  {@link io.micronaut.context.event.StartupEvent} to run liquibase operations.
  *
  * @author Sergio del Amo
- * @since 1.1
+ * @since 1.0.0
  */
 @Singleton
 class LiquibaseStartupEventListener {

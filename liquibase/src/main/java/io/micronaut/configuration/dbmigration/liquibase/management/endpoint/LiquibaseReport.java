@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author Iván López
  * @author Sergio del Amo
- * @since 1.1
+ * @since 1.0.0
  */
 public class LiquibaseReport {
 

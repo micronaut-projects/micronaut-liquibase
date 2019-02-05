@@ -30,7 +30,7 @@ import java.time.Instant;
  * Jackson serializer for {@link RanChangeSet}.
  *
  * @author Iván López
- * @since 1.1
+ * @since 1.0.0
  */
 @Singleton
 @Type(RanChangeSet.class)

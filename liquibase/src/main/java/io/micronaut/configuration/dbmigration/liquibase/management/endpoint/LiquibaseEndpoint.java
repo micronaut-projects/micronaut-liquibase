@@ -38,7 +38,7 @@ import java.util.Collection;
  * Provides a liquibase endpoint to get all the migrations applied.
  *
  * @author Iván López
- * @since 1.1
+ * @since 1.0.0
  */
 @Endpoint(id = LiquibaseEndpoint.NAME)
 public class LiquibaseEndpoint {
