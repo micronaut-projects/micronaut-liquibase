@@ -62,6 +62,13 @@
                 <li class="mobile">
                     <a title="Go to API documentation" href="../api/index.html" class="button">API</a>
                 </li>
+                <li class="desktop">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Configuration Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Conf</a>
+                </li>
+
             </ul>
 
         </div>
@@ -103,21 +110,21 @@
 <p>To use the Micronaut&#8217;s integration with <a href="http://www.liquibase.org">Liquibase</a> you must have the <code>micronaut-liquibase</code>
 dependency on your classpath:</p>
 </div>
-<div class="listingblock">
-<div class="title">build.gradle</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.configuration:micronaut-liquibase:1.0.0.BUILD-SNAPSHOT"</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-liquibase'</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">pom.xml</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
     &lt;groupId&gt;io.micronaut.configuration&lt;/groupId&gt;
     &lt;artifactId&gt;micronaut-liquibase&lt;/artifactId&gt;
-    &lt;version&gt;{version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
+</div>
+</p>
 </div>
 
 
