@@ -1,6 +1,6 @@
 # Micronaut Liquibase Configuration #
 
-[![Build Status](https://travis-ci.org/micronaut-projects/micronaut-configuration-liquibase.svg?branch=master)](https://travis-ci.org/micronaut-projects/micronaut-configuration-liquibase)
+[![Build Status](https://travis-ci.org/micronaut-projects/micronaut-liquibase.svg?branch=master)](https://travis-ci.org/micronaut-projects/micronaut-liquibase)
 [![Download](https://api.bintray.com/packages/micronaut/core-releases-local/liquibase/images/download.svg)](https://bintray.com/micronaut/core-releases-local/liquibase/_latestVersion)
 
 This is a configuration for using Liquibase in Micronaut applications.
