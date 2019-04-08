@@ -113,7 +113,7 @@ extends java.lang.Object</pre>
 <div class="block">Provides a liquibase endpoint to get all the migrations applied.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
-<dd>1.1</dd>
+<dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Iván López</dd>
 </dl>
@@ -156,7 +156,8 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/management/endpoint/LiquibaseEndpoint.html#LiquibaseEndpoint-java.util.Collection-">LiquibaseEndpoint</a></span>(java.util.Collection&lt;<a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.configuration.dbmigration.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/management/endpoint/LiquibaseEndpoint.html#LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-">LiquibaseEndpoint</a></span>(java.util.Collection&lt;<a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.configuration.dbmigration.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
+                 io.micronaut.context.ApplicationContext&nbsp;applicationContext)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -221,16 +222,18 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="LiquibaseEndpoint-java.util.Collection-">
+<a name="LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>LiquibaseEndpoint</h4>
-<pre>public&nbsp;LiquibaseEndpoint(java.util.Collection&lt;<a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.configuration.dbmigration.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties)</pre>
+<pre>public&nbsp;LiquibaseEndpoint(java.util.Collection&lt;<a href="../../../../../../../io/micronaut/configuration/dbmigration/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.configuration.dbmigration.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
+                         io.micronaut.context.ApplicationContext&nbsp;applicationContext)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>liquibaseConfigurationProperties</code> - Collection of Liquibase Configurations</dd>
+<dd><code>applicationContext</code> - The application context</dd>
 </dl>
 </li>
 </ul>
