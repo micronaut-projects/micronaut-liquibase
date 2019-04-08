@@ -17,6 +17,8 @@
 package io.micronaut.configuration.dbmigration.liquibase.management.endpoint;
 
 import io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties;
+import io.micronaut.context.ApplicationContext;
+import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
 import io.reactivex.BackpressureStrategy;
@@ -50,12 +52,15 @@ public class LiquibaseEndpoint {
 
     private static final Logger LOG = LoggerFactory.getLogger(LiquibaseEndpoint.class);
     private final Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties;
+    private final ApplicationContext applicationContext;
 
     /**
      * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
+     * @param applicationContext               The application context
      */
-    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties) {
+    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties, ApplicationContext applicationContext) {
         this.liquibaseConfigurationProperties = liquibaseConfigurationProperties;
+        this.applicationContext = applicationContext;
     }
 
     /**
@@ -67,19 +72,19 @@ public class LiquibaseEndpoint {
             DatabaseFactory factory = DatabaseFactory.getInstance();
 
             if (liquibaseConfigurationProperties != null) {
-                for (LiquibaseConfigurationProperties conf : liquibaseConfigurationProperties) {
-                    if (conf.isEnabled()) {
+                for (LiquibaseConfigurationProperties config : liquibaseConfigurationProperties) {
+                    if (config.isEnabled()) {
                         JdbcConnection jdbcConnection = null;
 
                         try {
-                            DataSource dataSource = conf.getDataSource();
+                            DataSource dataSource = applicationContext.getBean(DataSource.class, Qualifiers.byName(config.getNameQualifier()));
                             Connection connection = dataSource.getConnection();
                             jdbcConnection = new JdbcConnection(connection);
 
                             Database database = factory.findCorrectDatabaseImplementation(jdbcConnection);
                             StandardChangeLogHistoryService service = new StandardChangeLogHistoryService();
                             service.setDatabase(database);
-                            emitter.onNext(new LiquibaseReport(conf.getNameQualifier(), service.getRanChangeSets()));
+                            emitter.onNext(new LiquibaseReport(config.getNameQualifier(), service.getRanChangeSets()));
                         } catch (SQLException | DatabaseException ex) {
                             emitter.onError(ex);
                         } finally {

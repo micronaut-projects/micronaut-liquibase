@@ -19,7 +19,6 @@ package io.micronaut.configuration.dbmigration.liquibase
 import groovy.sql.Sql
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
-import io.micronaut.inject.qualifiers.Qualifiers
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
@@ -50,7 +49,6 @@ class LiquibaseAsyncSpec extends Specification {
     ApplicationContext applicationContext = ApplicationContext.run(config as Map<String, Object>, Environment.TEST)
 
     void "test liquibase changelog can be run asynchronously"() {
-
         when:
         applicationContext.getBean(DataSource)
 
@@ -58,7 +56,7 @@ class LiquibaseAsyncSpec extends Specification {
         noExceptionThrown()
 
         when:
-        LiquibaseConfigurationProperties config = applicationContext.getBean(LiquibaseConfigurationProperties, Qualifiers.byName('default'))
+        LiquibaseConfigurationProperties config = applicationContext.getBean(LiquibaseConfigurationProperties)
 
         then:
         noExceptionThrown()

@@ -20,13 +20,11 @@ import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.core.util.Toggleable;
 
-import javax.annotation.Nullable;
-import javax.sql.DataSource;
 import java.io.File;
 import java.util.Map;
 
 /**
- * Create a Liquibase Configuration for each sub-property of liquibase.*.
+ * Create a Liquibase Configuration for each sub-property of liquibase.datasources.*.
  *
  * @author Sergio del Amo
  * @since 1.0.0
@@ -116,17 +114,12 @@ public class LiquibaseConfigurationProperties implements Toggleable {
 
     private Map<String, String> parameters;
 
-    private final DataSource dataSource;
-
     private final String nameQualifier;
 
     /**
-     * @param dataSource DataSource with the same name qualifier.
-     * @param name       name qualifier.
+     * @param name name qualifier.
      */
-    public LiquibaseConfigurationProperties(@Nullable @Parameter DataSource dataSource,
-                                            @Parameter String name) {
-        this.dataSource = dataSource;
+    public LiquibaseConfigurationProperties(@Parameter String name) {
         this.nameQualifier = name;
     }
 
@@ -395,13 +388,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     public String getNameQualifier() {
         return nameQualifier;
-    }
-
-    /**
-     * @return The DataSource qualified with the same name.
-     */
-    public DataSource getDataSource() {
-        return dataSource;
     }
 
     /**
