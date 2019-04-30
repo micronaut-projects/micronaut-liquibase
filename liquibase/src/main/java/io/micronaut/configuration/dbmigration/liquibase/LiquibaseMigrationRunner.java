@@ -132,6 +132,7 @@ class LiquibaseMigrationRunner implements BeanCreatedEventListener<DataSource> {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
+            applicationContext.close();
             return;
         }
 
@@ -144,17 +145,21 @@ class LiquibaseMigrationRunner implements BeanCreatedEventListener<DataSource> {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
+            applicationContext.close();
         } finally {
-            Database database = null;
-            if (liquibase != null) {
-                database = liquibase.getDatabase();
-            }
-            if (database != null) {
-                try {
-                    database.close();
-                } catch (DatabaseException e) {
-                    if (LOG.isWarnEnabled()) {
-                        LOG.warn("Error closing the connection after the migration.", e);
+            if (applicationContext.isRunning()) {
+                Database database = null;
+                if (liquibase != null) {
+                    database = liquibase.getDatabase();
+                }
+                if (database != null) {
+                    try {
+                        database.close();
+                    } catch (DatabaseException e) {
+                        if (LOG.isWarnEnabled()) {
+                            LOG.warn("Error closing the connection after the migration.", e);
+                        }
+                        applicationContext.close();
                     }
                 }
             }
