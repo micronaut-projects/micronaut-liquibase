@@ -63,7 +63,7 @@ class StopApplicationWhenMigrationErrorSpec extends Specification {
         when:
         embeddedServer.applicationContext.getBean(LiquibaseConfigurationProperties)
 
-        then:
+        then: "The migration will try to add the table and fail because it already exists"
         PollingConditions conditions = new PollingConditions(timeout: 5)
         conditions.eventually {
             !embeddedServer.applicationContext.isRunning() &&
