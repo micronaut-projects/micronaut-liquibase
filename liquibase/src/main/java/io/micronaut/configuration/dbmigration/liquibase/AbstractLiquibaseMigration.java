@@ -101,6 +101,9 @@ public class AbstractLiquibaseMigration {
 
         Liquibase liquibase = null;
         try {
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Running migrations for database with qualifier [{}]", config.getNameQualifier());
+            }
             liquibase = createLiquibase(connection, config);
             generateRollbackFile(liquibase, config);
             performUpdate(liquibase, config);
