@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package io.micronaut.configuration.dbmigration.liquibase
+package io.micronaut.configuration.dbmigration.liquibase.docs
 
 import groovy.sql.Sql
+import io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties
+import io.micronaut.configuration.dbmigration.liquibase.YamlAsciidocTagCleaner
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.inject.qualifiers.Qualifiers
