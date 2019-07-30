@@ -21,6 +21,6 @@ dependencies {
     testCompile "io.micronaut:micronaut-http-client"
     testCompile "io.micronaut:micronaut-http-server-netty"
     testCompile "io.micronaut.configuration:micronaut-jdbc-hikari"
-    testCompile "com.h2database:h2:1.4.196"
+    testCompile "com.h2database:h2:1.4.199"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
 }
