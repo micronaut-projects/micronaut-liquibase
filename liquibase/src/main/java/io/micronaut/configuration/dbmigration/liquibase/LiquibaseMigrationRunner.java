@@ -22,6 +22,7 @@ import io.micronaut.context.event.BeanCreatedEventListener;
 import io.micronaut.core.naming.NameResolver;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import io.micronaut.runtime.exceptions.ApplicationStartupException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
 import liquibase.Contexts;
@@ -132,8 +133,7 @@ class LiquibaseMigrationRunner implements BeanCreatedEventListener<DataSource> {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
-            applicationContext.close();
-            return;
+            throw new ApplicationStartupException("Migration failed! Could not connect to the datasource.", e);
         }
 
         Liquibase liquibase = null;
@@ -145,7 +145,7 @@ class LiquibaseMigrationRunner implements BeanCreatedEventListener<DataSource> {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
-            applicationContext.close();
+            throw new ApplicationStartupException("Migration failed! Liquibase encountered an exception.", e);
         } finally {
             Database database = null;
             if (liquibase != null) {

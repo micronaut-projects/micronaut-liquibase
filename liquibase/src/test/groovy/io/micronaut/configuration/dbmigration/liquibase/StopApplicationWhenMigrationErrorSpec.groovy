@@ -16,22 +16,19 @@
 
 package io.micronaut.configuration.dbmigration.liquibase
 
-import groovy.sql.Sql
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
+import io.micronaut.context.exceptions.BeanInstantiationException
+import io.micronaut.runtime.exceptions.ApplicationStartupException
 import io.micronaut.runtime.server.EmbeddedServer
-import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.util.concurrent.PollingConditions
-
-import javax.sql.DataSource
 
 class StopApplicationWhenMigrationErrorSpec extends Specification {
 
     @Shared
     Map<String, Object> config = [
-        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseExistingDb',
+        'datasources.default.url'                      : 'jdbc:h2:mem:stopApplicationDb',
         'datasources.default.username'                 : 'sa',
         'datasources.default.password'                 : '',
         'datasources.default.driverClassName'          : 'org.h2.Driver',
@@ -41,33 +38,16 @@ class StopApplicationWhenMigrationErrorSpec extends Specification {
         'jpa.default.properties.hibernate.show_sql'    : true,
 
         'liquibase.datasources.default.async'          : false,
-        'liquibase.datasources.default.change-log'     : 'classpath:db/liquibase-changelog.xml',
+        'liquibase.datasources.default.change-log'     : 'classpath:db/liquibase-wrong-changelog.xml',
     ]
 
-    @Shared
-    @AutoCleanup
-    EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
-
     void "test application context stops if there is an error with the migrations"() {
-        given: 'an existing table in the database'
-        Map db = [url: 'jdbc:h2:mem:liquibaseExistingDb', user: 'sa', password: '', driver: 'org.h2.Driver']
-        Sql sql = Sql.newInstance(db.url, db.user, db.password, db.driver)
-        sql.execute('create table books(id int not null primary key, name varchar(255));')
-
         when:
-        embeddedServer.applicationContext.getBean(DataSource)
+        ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
 
         then:
-        noExceptionThrown()
-
-        when:
-        embeddedServer.applicationContext.getBean(LiquibaseConfigurationProperties)
-
-        then: "The migration will try to add the table and fail because it already exists"
-        PollingConditions conditions = new PollingConditions(timeout: 5)
-        conditions.eventually {
-            !embeddedServer.applicationContext.isRunning() &&
-                sql.rows('select count(*) from books').get(0)[0] == 0
-        }
+        def e = thrown(BeanInstantiationException)
+        e.cause instanceof ApplicationStartupException
+        e.cause.message == 'Migration failed! Liquibase encountered an exception.'
     }
 }
