@@ -1,28 +1,8 @@
-/*
- * Copyright 2017-2018 original authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package io.micronaut.configuration.dbmigration.liquibase;
 
 import io.micronaut.context.ApplicationContext;
-import io.micronaut.context.event.BeanCreatedEvent;
-import io.micronaut.context.event.BeanCreatedEventListener;
-import io.micronaut.core.naming.NameResolver;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
-import io.micronaut.runtime.exceptions.ApplicationStartupException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
 import liquibase.Contexts;
@@ -52,40 +32,26 @@ import java.sql.SQLException;
 import java.util.Map;
 
 /**
- * Run Liquibase migrations when there is a {@link DataSource} defined.
+ * Parent class that runs Liquibase database migrations.
  *
- * @author Sergio del Amo
  * @author Iván López
- * @since 1.0.0
+ * @since 1.1.0
  */
 @Singleton
-class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<DataSource> {
+public class AbstractLiquibaseMigration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseMigrationRunner.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractLiquibaseMigration.class);
+
+    final ApplicationContext applicationContext;
+    final ResourceAccessor resourceAccessor;
 
     /**
      * @param applicationContext The application context
      * @param resourceAccessor   An implementation of {@link liquibase.resource.ResourceAccessor}
      */
-    LiquibaseMigrationRunner(ApplicationContext applicationContext, ResourceAccessor resourceAccessor) {
-        super(applicationContext, resourceAccessor);
-    }
-
-    @Override
-    public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
-        DataSource dataSource = event.getBean();
-
-        if (event.getBeanDefinition() instanceof NameResolver) {
-            ((NameResolver) event.getBeanDefinition())
-                    .resolveName()
-                    .ifPresent(name -> {
-                        applicationContext
-                                .findBean(LiquibaseConfigurationProperties.class, Qualifiers.byName(name))
-                                .ifPresent(liquibaseConfig -> run(liquibaseConfig, dataSource));
-                    });
-        }
-
-        return dataSource;
+    AbstractLiquibaseMigration(ApplicationContext applicationContext, ResourceAccessor resourceAccessor) {
+        this.applicationContext = applicationContext;
+        this.resourceAccessor = resourceAccessor;
     }
 
     /**
@@ -129,11 +95,15 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
-            throw new ApplicationStartupException("Migration failed! Could not connect to the datasource.", e);
+            applicationContext.close();
+            return;
         }
 
         Liquibase liquibase = null;
         try {
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Running migrations for database with qualifier [{}]", config.getNameQualifier());
+            }
             liquibase = createLiquibase(connection, config);
             generateRollbackFile(liquibase, config);
             performUpdate(liquibase, config);
@@ -141,7 +111,7 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
-            throw new ApplicationStartupException("Migration failed! Liquibase encountered an exception.", e);
+            applicationContext.close();
         } finally {
             Database database = null;
             if (liquibase != null) {
@@ -277,27 +247,15 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
                 database.setLiquibaseCatalogName(liquibaseSchema);
             }
         }
-        if (trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
+        if (StringUtils.trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
             database.setLiquibaseTablespaceName(config.getLiquibaseTablespace());
         }
-        if (trimToNull(config.getDatabaseChangeLogTable()) != null) {
+        if (StringUtils.trimToNull(config.getDatabaseChangeLogTable()) != null) {
             database.setDatabaseChangeLogTableName(config.getDatabaseChangeLogTable());
         }
-        if (trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
+        if (StringUtils.trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
             database.setDatabaseChangeLogLockTableName(config.getDatabaseChangeLogLockTable());
         }
         return database;
-    }
-
-    private static String trimToNull(String string) {
-        if (string == null) {
-            return null;
-        }
-        String returnString = string.trim();
-        if (returnString.isEmpty()) {
-            return null;
-        } else {
-            return returnString;
-        }
     }
 }
