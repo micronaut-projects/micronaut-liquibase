@@ -1,8 +1,13 @@
 This section will outline any breaking changes between major or milestone releases as well as detail any new features that have been added.
 
-== 1.1.0
+== 1.2.0
 
 * Support for GORM data sources has been added. See the documentation for more information.
+
+== 1.1.0
+
+* Upgrade to Micronaut 1.1.4.
+* Stop the application when there is an error applying a migration.
 
 == 1.0.0
 

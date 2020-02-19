@@ -18,8 +18,9 @@ package io.micronaut.configuration.dbmigration.liquibase
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
+import io.micronaut.context.exceptions.BeanInstantiationException
+import io.micronaut.runtime.exceptions.ApplicationStartupException
 import io.micronaut.runtime.server.EmbeddedServer
-import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -27,7 +28,7 @@ class StopApplicationWhenMigrationErrorSpec extends Specification {
 
     @Shared
     Map<String, Object> config = [
-        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseExistingDb',
+        'datasources.default.url'                      : 'jdbc:h2:mem:stopApplicationDb',
         'datasources.default.username'                 : 'sa',
         'datasources.default.password'                 : '',
         'datasources.default.driverClassName'          : 'org.h2.Driver',
@@ -40,16 +41,13 @@ class StopApplicationWhenMigrationErrorSpec extends Specification {
         'liquibase.datasources.default.change-log'     : 'classpath:db/liquibase-wrong-changelog.xml',
     ]
 
-    @Shared
-    @AutoCleanup
-    EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
-
     void "test application context stops if there is an error with the migrations"() {
-        // The migration tries to create a duplicate table, so it fails
         when:
-        embeddedServer.applicationContext.getBean(LiquibaseConfigurationProperties)
+        ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
 
         then:
-        noExceptionThrown()
+        def e = thrown(BeanInstantiationException)
+        e.cause instanceof ApplicationStartupException
+        e.cause.message == 'Migration failed! Liquibase encountered an exception.'
     }
 }

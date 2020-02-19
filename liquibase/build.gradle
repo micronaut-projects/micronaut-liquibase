@@ -25,6 +25,6 @@ dependencies {
     testCompile "io.micronaut.configuration:micronaut-jdbc-hikari"
     testCompile "io.micronaut.configuration:micronaut-hibernate-gorm"
     testCompile "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
-    testCompile "com.h2database:h2:1.4.196"
+    testCompile "com.h2database:h2:1.4.199"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
 }
