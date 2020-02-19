@@ -37,7 +37,7 @@ import javax.sql.DataSource;
 @Singleton
 @Requires(classes = {HibernateDatastore.class})
 @Requires(property = "data-source")
-public class GormMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<HibernateDatastore> {
+class GormMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<HibernateDatastore> {
 
     /**
      * @param applicationContext The application context

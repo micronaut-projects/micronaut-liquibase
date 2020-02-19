@@ -1,5 +1,9 @@
 This section will outline any breaking changes between major or milestone releases as well as detail any new features that have been added.
 
+== 1.1.0
+
+* Support for GORM data sources has been added. See the documentation for more information.
+
 == 1.0.0
 
 * Underlying implementation has been changed to run the migrations as soon as possible. If you are not extending or overriding the API, there are no functional changes to note.

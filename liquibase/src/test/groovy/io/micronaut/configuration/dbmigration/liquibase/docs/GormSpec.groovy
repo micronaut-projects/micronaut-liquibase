@@ -16,11 +16,12 @@
 
 package io.micronaut.configuration.dbmigration.liquibase.docs
 
-
+import groovy.sql.Sql
 import io.micronaut.configuration.dbmigration.liquibase.YamlAsciidocTagCleaner
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.runtime.server.EmbeddedServer
+import org.yaml.snakeyaml.Yaml
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
@@ -42,7 +43,7 @@ dataSource: # <1>
 liquibase:
   datasources: # <3>
     default: # <4>
-      locations: classpath:db/liquibase-changelog.xml # <5>
+      change-log: classpath:db/liquibase-changelog.xml # <5>
 '''//end::yamlconfig[]
 
     @Shared
@@ -60,56 +61,30 @@ liquibase:
         liquibase  : [
             datasources: [
                 default: [
-                    locations: 'classpath:db/liquibase-changelog.xml'
+                    'change-log': 'classpath:db/liquibase-changelog.xml'
                 ]
             ]
         ]
     ]
 
-    @Shared
-    Map<String, Object> config = [:] << flatten(liquibaseMap)
-
-    @Shared
-    @AutoCleanup
-    EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
-
     void 'test liquibase migrations are executed with GORM'() {
-//        given:
-//        ApplicationContext applicationContext = ApplicationContext.run(flatten(liquibaseMap) as Map<String, Object>, Environment.TEST)
-//
-        expect:
-        true
+        given:
+        def ctx = ApplicationContext.run(flatten(liquibaseMap), Environment.TEST)
 
-//        when:
-//            embeddedServer.applicationContext.getBean(GormMigrationRunner)
-//
-//        then:
-//        noExceptionThrown()
-//
-//        when:
-//        applicationContext.getBean(Liquibase)
-//
-//        then:
-//        noExceptionThrown()
-//
-//        when:
-//            LiquibaseConfigurationProperties config = applicationContext.getBean(LiquibaseConfigurationProperties)
-//
-//        then:
-//        noExceptionThrown()
-//        !config.isAsync()
-//
-//        when:
-//        Map m = new Yaml().load(cleanYamlAsciidocTag(gormConfig))
-//
-//        then:
-//        m == liquibaseMap
-//
-//        when:
-//        Map db = [url: 'jdbc:h2:mem:GORMDb', user: 'sa', password: '', driver: 'org.h2.Driver']
-//        Sql sql = Sql.newInstance(db.url, db.user, db.password, db.driver)
-//
-//        then:
-//        sql.rows('select count(*) from books').get(0)[0] == 2
+        when:
+        Map m = new Yaml().load(cleanYamlAsciidocTag(gormConfig))
+
+        then:
+        m == liquibaseMap
+
+        when:
+        Map db = [url: 'jdbc:h2:mem:GORMDb', user: 'sa', password: '', driver: 'org.h2.Driver']
+        Sql sql = Sql.newInstance(db.url, db.user, db.password, db.driver)
+
+        then:
+        sql.rows('select count(*) from books').get(0)[0] == 2
+
+        cleanup:
+        ctx.close()
     }
 }

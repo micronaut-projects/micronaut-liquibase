@@ -15,21 +15,16 @@
  */
 
 package io.micronaut.configuration.dbmigration.liquibase.docs
-
+//tag::clazz[]
 import grails.gorm.annotation.Entity
-
-//tag::bookImport[]
 
 import io.micronaut.context.annotation.Requires
 
-//end::bookImport[]
-
-//tag::annotation[]
 @Entity
-//end::annotation[]
+//end::clazz[]
 @Requires(property = 'spec.name', value = 'GormDocSpec')
-//tag::domain[]
+//tag::clazz[]
 class Book {
     String name
 }
-//end::domain[]
+//end::clazz[]

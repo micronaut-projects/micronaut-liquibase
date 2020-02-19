@@ -22,7 +22,15 @@ trait YamlAsciidocTagCleaner {
         str.replaceAll('//tag::' + tagName + '\\[]', '').replaceAll('//end::' + tagName + '\\[]', '').trim()
     }
 
-    Map flatten(Map m, String separator = '.') {
-        m.collectEntries { k, v -> v instanceof Map ? flatten(v, separator).collectEntries { q, r -> [(k + separator + q): r] } : [(k): v] }
+    Map<String, Object> flatten(Map m, String prefix = "", Map<String, Object> newMap = [:]) {
+        m.forEach({key, value ->
+            if (value instanceof Map) {
+                flatten(value, prefix + key.toString() + ".", newMap)
+            } else {
+                newMap.put(prefix + key.toString(), value)
+            }
+        })
+
+        return newMap
     }
 }
