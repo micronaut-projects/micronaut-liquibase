@@ -18,7 +18,6 @@ plugins {
 }
 
 repositories {
-
     maven { url "https://repo.grails.org/grails/core" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
@@ -93,16 +92,22 @@ subprojects { Project subproject ->
         }
     }
     dependencies {
+        annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+        testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+        implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+
         documentation "org.codehaus.groovy:groovy-templates:$groovyVersion"
         documentation "org.codehaus.groovy:groovy-dateutil:$groovyVersion"
 
         testImplementation "cglib:cglib-nodep:3.3.0"
         testImplementation "org.objenesis:objenesis:3.1"
 
-        testCompile "io.micronaut:micronaut-inject-groovy:$micronautVersion"
-        testCompile "io.micronaut.test:micronaut-test-spock:$micronautTestVersion"
-        testRuntime "ch.qos.logback:logback-classic:1.2.3"
-        testCompile "org.codehaus.groovy:groovy-test:$groovyVersion"
+        testImplementation("org.spockframework:spock-core:${spockVersion}") {
+            exclude module:'groovy-all'
+        }
+        testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
+        testImplementation "org.codehaus.groovy:groovy-test:$groovyVersion"
+        testImplementation "io.micronaut.test:micronaut-test-spock:$micronautTestVersion"
     }
 
     groovydoc {
