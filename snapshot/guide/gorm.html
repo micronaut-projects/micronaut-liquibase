@@ -2,6 +2,15 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="/cdn-cgi/apps/head/3cOPSgo5Omz84ycX7CvigfX4cpw.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-82213539-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-82213539-2');
+    </script>
     <title>4 GORM Support 1.2.0.BUILD-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
@@ -81,8 +90,7 @@ function addJsClass() {
                 
 
                 
-
-<h1 id="gorm">4 GORM Support</h1>
+<h1 id="gorm"><a class="anchor" href="#gorm"></a>4 GORM Support</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/gorm.adoc"'>
@@ -99,8 +107,9 @@ function addJsClass() {
 </div>
 <div class="paragraph">
 <p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-hibernate-gorm'</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.configuration:micronaut-hibernate-gorm")</span></code></pre>
 </div>
 </div>
 <div class="listingblock multi-language-sample">
@@ -184,7 +193,31 @@ liquibase:
 <div class="listingblock">
 <div class="title">src/main/resources/application.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Unresolved directive in &lt;stdin&gt; - include::liquibase/src/test/groovy/io/micronaut/configuration/dbmigration/liquibasetests/docs/GormMultipleDataSourcesSpec.groovy[tag=yamlconfig,indent=0]</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataSource: <i class="conum" data-value="1"></i><b>(1)</b>
+  pooled: true
+  jmxExport: true
+  dbCreate: none
+  url: 'jdbc:h2:mem:liquibaseGORMDb'
+  driverClassName: org.h2.Driver
+  username: sa
+  password: ''
+
+dataSources:
+  books: <i class="conum" data-value="2"></i><b>(2)</b>
+    pooled: true
+    jmxExport: true
+    dbCreate: none
+    url: 'jdbc:h2:mem:liquibaseBooksDb'
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+
+liquibase:
+  datasources:
+    default: <i class="conum" data-value="3"></i><b>(3)</b>
+      change-log: classpath:db/liquibase-changelog.xml
+    books: <i class="conum" data-value="4"></i><b>(4)</b>
+      change-log: classpath:db/liquibase-changelog.xml</code></pre>
 </div>
 </div>
 <div class="colist arabic">
