@@ -36,7 +36,7 @@ It is also possible to configure Liquibase migrations with multiple data sources
 [source, yaml]
 .src/main/resources/application.yml
 ----
-include::{liquibasetests}/groovy/io/micronaut/configuration/dbmigration/liquibasetests/docs/GormMultipleDataSourcesSpec.groovy[tag=yamlconfig,indent=0]
+include::{liquibasetests}/groovy/io/micronaut/configuration/dbmigration/liquibase/docs/GormMultipleDataSourcesSpec.groovy[tag=yamlconfig,indent=0]
 ----
 
 <1> Definition of the first data source in GORM. The name it's `default` and it can't be changed.
