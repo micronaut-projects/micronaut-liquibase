@@ -22,6 +22,7 @@ import io.micronaut.context.event.BeanCreatedEventListener;
 import io.micronaut.core.naming.NameResolver;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.runtime.exceptions.ApplicationStartupException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
@@ -41,6 +42,7 @@ import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.io.FileOutputStream;
@@ -63,17 +65,23 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
 
     private static final Logger LOG = LoggerFactory.getLogger(LiquibaseMigrationRunner.class);
 
+    private final DataSourceResolver dataSourceResolver;
+
     /**
      * @param applicationContext The application context
-     * @param resourceAccessor   An implementation of {@link liquibase.resource.ResourceAccessor}
+     * @param resourceAccessor   An implementation of {@link ResourceAccessor}
+     * @param dataSourceResolver The data source resolver
      */
-    LiquibaseMigrationRunner(ApplicationContext applicationContext, ResourceAccessor resourceAccessor) {
+    LiquibaseMigrationRunner(ApplicationContext applicationContext,
+                             ResourceAccessor resourceAccessor,
+                             @Nullable DataSourceResolver dataSourceResolver) {
         super(applicationContext, resourceAccessor);
+        this.dataSourceResolver = dataSourceResolver != null ? dataSourceResolver : DataSourceResolver.DEFAULT;
     }
 
     @Override
     public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
-        DataSource dataSource = event.getBean();
+        DataSource dataSource = dataSourceResolver.resolve(event.getBean());
 
         if (event.getBeanDefinition() instanceof NameResolver) {
             ((NameResolver) event.getBeanDefinition())
