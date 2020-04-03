@@ -3,13 +3,13 @@ buildscript {
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails:grails-docs:$grailsVersion"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
         classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1'
         classpath "io.micronaut.docs:micronaut-docs-asciidoc-extensions:$micronautDocsVersion"
         classpath "io.micronaut.docs:micronaut-docs-gradle-plugins:$micronautDocsVersion"
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
     }
 }
 
@@ -46,7 +46,7 @@ subprojects { Project subproject ->
     }
 
     apply plugin:"groovy"
-    apply plugin:"java"
+    apply plugin:"java-library"
 
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
@@ -119,7 +119,7 @@ subprojects { Project subproject ->
     apply plugin: 'checkstyle'
 
     checkstyle {
-        toolVersion = 8.10
+        toolVersion = 8.16
         configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 
         // Per submodule
@@ -130,6 +130,14 @@ subprojects { Project subproject ->
     }
 
     checkstyleTest.enabled = false
+
+    tasks.withType(GroovyCompile) {
+        groovyOptions.forkOptions.jvmArgs.add('-Dgroovy.parameters=true')
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.compilerArgs.add('-parameters')
+    }
 }
 
 apply from:"https://raw.githubusercontent.com/micronaut-projects/micronaut-docs/v${micronautDocsVersion}/gradle/docs.gradle"
@@ -144,4 +152,14 @@ allprojects {
         }
     }
     apply from: rootProject.file('gradle/license.gradle')
+}
+
+project.afterEvaluate {
+    allprojects.repositories.each { handler ->
+        handler.each {
+            if (it.url.toString().startsWith("http://")) {
+                throw new GradleException("Build should not define insecure HTTP-based Maven repostories")
+            }
+        }
+    }
 }

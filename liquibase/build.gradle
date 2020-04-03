@@ -5,18 +5,20 @@ dependencies {
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
 
-    compile ("org.liquibase:liquibase-core:$liquibaseVersion") {
+    api ("org.liquibase:liquibase-core:$liquibaseVersion") {
         exclude group: 'org.springframework'
     }
-    compile "io.micronaut:micronaut-management"
+    api "io.micronaut:micronaut-management"
+    api "io.micronaut:micronaut-jdbc"
 
-    testCompile "org.codehaus.groovy:groovy-sql:$groovyVersion"
-    testCompile "io.micronaut:micronaut-inject-java"
-    testCompile "io.micronaut:micronaut-http-client"
-    testCompile "io.micronaut:micronaut-http-server-netty"
-    testCompile "io.micronaut.configuration:micronaut-jdbc-hikari"
-    testCompile "io.micronaut.configuration:micronaut-hibernate-gorm"
-    testCompile "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
-    testCompile "com.h2database:h2:1.4.199"
+    testAnnotationProcessor "org.codehaus.groovy:groovy-sql:$groovyVersion"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
+
+    testImplementation "io.micronaut:micronaut-inject-java"
+    testImplementation "io.micronaut:micronaut-http-client"
+    testImplementation "io.micronaut:micronaut-http-server-netty"
+    testImplementation "io.micronaut.configuration:micronaut-jdbc-hikari"
+    testImplementation "io.micronaut.configuration:micronaut-hibernate-gorm"
+    testImplementation "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
+    testImplementation "com.h2database:h2:1.4.199"
 }
