@@ -25,3 +25,9 @@ dependencies {
     testImplementation "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
     testImplementation "com.h2database:h2:1.4.199"
 }
+
+micronautBuild {
+    resolutionStrategy {
+        force "com.h2database:h2:1.4.199"
+    }
+}
