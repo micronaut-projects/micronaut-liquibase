@@ -1,11 +1,11 @@
-package io.micronaut.configuration.dbmigration.liquibase.docs
+package io.micronaut.liquibase.docs
 
 import groovy.sql.Sql
-import io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties
-import io.micronaut.configuration.dbmigration.liquibase.YamlAsciidocTagCleaner
+import io.micronaut.liquibase.LiquibaseConfigurationProperties
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.inject.qualifiers.Qualifiers
+import io.micronaut.liquibase.YamlAsciidocTagCleaner
 import io.micronaut.runtime.server.EmbeddedServer
 import org.yaml.snakeyaml.Yaml
 import spock.lang.AutoCleanup

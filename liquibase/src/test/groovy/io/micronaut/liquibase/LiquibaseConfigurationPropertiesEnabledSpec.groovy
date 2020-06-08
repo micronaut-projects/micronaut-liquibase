@@ -1,4 +1,4 @@
-package io.micronaut.configuration.dbmigration.liquibase
+package io.micronaut.liquibase
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment

@@ -1,4 +1,4 @@
-package io.micronaut.configuration.dbmigration.liquibase.docs
+package io.micronaut.liquibase.docs
 //tag::clazz[]
 import grails.gorm.annotation.Entity
 

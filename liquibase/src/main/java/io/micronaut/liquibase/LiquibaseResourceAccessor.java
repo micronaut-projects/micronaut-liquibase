@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.dbmigration.liquibase;
+package io.micronaut.liquibase;
 
 import io.micronaut.context.env.Environment;
 import liquibase.resource.ClassLoaderResourceAccessor;

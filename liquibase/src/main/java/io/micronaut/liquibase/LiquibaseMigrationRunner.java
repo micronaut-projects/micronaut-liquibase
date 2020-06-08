@@ -13,11 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.dbmigration.liquibase;
+package io.micronaut.liquibase;
 
 import io.micronaut.context.ApplicationContext;
+import io.micronaut.context.event.BeanCreatedEvent;
+import io.micronaut.context.event.BeanCreatedEventListener;
+import io.micronaut.core.naming.NameResolver;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import io.micronaut.jdbc.DataSourceResolver;
+import io.micronaut.runtime.exceptions.ApplicationStartupException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
 import liquibase.Contexts;
@@ -36,6 +41,7 @@ import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.io.FileOutputStream;
@@ -47,26 +53,46 @@ import java.sql.SQLException;
 import java.util.Map;
 
 /**
- * Parent class that runs Liquibase database migrations.
+ * Run Liquibase migrations when there is a {@link DataSource} defined.
  *
+ * @author Sergio del Amo
  * @author Iván López
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Singleton
-public class AbstractLiquibaseMigration {
+class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<DataSource> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractLiquibaseMigration.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseMigrationRunner.class);
 
-    final ApplicationContext applicationContext;
-    final ResourceAccessor resourceAccessor;
+    private final DataSourceResolver dataSourceResolver;
 
     /**
      * @param applicationContext The application context
-     * @param resourceAccessor   An implementation of {@link liquibase.resource.ResourceAccessor}
+     * @param resourceAccessor   An implementation of {@link ResourceAccessor}
+     * @param dataSourceResolver The data source resolver
      */
-    AbstractLiquibaseMigration(ApplicationContext applicationContext, ResourceAccessor resourceAccessor) {
-        this.applicationContext = applicationContext;
-        this.resourceAccessor = resourceAccessor;
+    LiquibaseMigrationRunner(ApplicationContext applicationContext,
+                             ResourceAccessor resourceAccessor,
+                             @Nullable DataSourceResolver dataSourceResolver) {
+        super(applicationContext, resourceAccessor);
+        this.dataSourceResolver = dataSourceResolver != null ? dataSourceResolver : DataSourceResolver.DEFAULT;
+    }
+
+    @Override
+    public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
+        DataSource dataSource = dataSourceResolver.resolve(event.getBean());
+
+        if (event.getBeanDefinition() instanceof NameResolver) {
+            ((NameResolver) event.getBeanDefinition())
+                    .resolveName()
+                    .ifPresent(name -> {
+                        applicationContext
+                                .findBean(LiquibaseConfigurationProperties.class, Qualifiers.byName(name))
+                                .ifPresent(liquibaseConfig -> run(liquibaseConfig, dataSource));
+                    });
+        }
+
+        return dataSource;
     }
 
     /**
@@ -110,15 +136,11 @@ public class AbstractLiquibaseMigration {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
-            applicationContext.close();
-            return;
+            throw new ApplicationStartupException("Migration failed! Could not connect to the datasource.", e);
         }
 
         Liquibase liquibase = null;
         try {
-            if (LOG.isInfoEnabled()) {
-                LOG.info("Running migrations for database with qualifier [{}]", config.getNameQualifier());
-            }
             liquibase = createLiquibase(connection, config);
             generateRollbackFile(liquibase, config);
             performUpdate(liquibase, config);
@@ -126,7 +148,7 @@ public class AbstractLiquibaseMigration {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
-            applicationContext.close();
+            throw new ApplicationStartupException("Migration failed! Liquibase encountered an exception.", e);
         } finally {
             Database database = null;
             if (liquibase != null) {
@@ -262,15 +284,27 @@ public class AbstractLiquibaseMigration {
                 database.setLiquibaseCatalogName(liquibaseSchema);
             }
         }
-        if (StringUtils.trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
+        if (trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
             database.setLiquibaseTablespaceName(config.getLiquibaseTablespace());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogTable()) != null) {
             database.setDatabaseChangeLogTableName(config.getDatabaseChangeLogTable());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
             database.setDatabaseChangeLogLockTableName(config.getDatabaseChangeLogLockTable());
         }
         return database;
+    }
+
+    private static String trimToNull(String string) {
+        if (string == null) {
+            return null;
+        }
+        String returnString = string.trim();
+        if (returnString.isEmpty()) {
+            return null;
+        } else {
+            return returnString;
+        }
     }
 }

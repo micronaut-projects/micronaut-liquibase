@@ -1,4 +1,4 @@
-package io.micronaut.configuration.dbmigration.liquibase.management.endpoint
+package io.micronaut.liquibase.endpoint
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
@@ -7,6 +7,8 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.RxHttpClient
+import io.micronaut.liquibase.endpoint.LiquibaseEndpoint
+import io.micronaut.liquibase.endpoint.LiquibaseReport
 import io.micronaut.runtime.server.EmbeddedServer
 import spock.lang.Specification
 

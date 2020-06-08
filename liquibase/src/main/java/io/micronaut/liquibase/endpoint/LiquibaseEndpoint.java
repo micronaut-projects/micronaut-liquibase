@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.dbmigration.liquibase.management.endpoint;
+package io.micronaut.liquibase.endpoint;
 
-import io.micronaut.configuration.dbmigration.liquibase.LiquibaseConfigurationProperties;
+import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.management.endpoint.annotation.Endpoint;

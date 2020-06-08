@@ -1,4 +1,4 @@
-package io.micronaut.configuration.dbmigration.liquibase
+package io.micronaut.liquibase
 
 trait YamlAsciidocTagCleaner {
 
