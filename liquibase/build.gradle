@@ -14,6 +14,9 @@ dependencies {
     testAnnotationProcessor "org.codehaus.groovy:groovy-sql:$groovyVersion"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
 
+    testImplementation("org.spockframework:spock-core:${spockVersion}") {
+        exclude module:'groovy-all'
+    }
     testImplementation "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-http-client"
     testImplementation "io.micronaut:micronaut-http-server-netty"
