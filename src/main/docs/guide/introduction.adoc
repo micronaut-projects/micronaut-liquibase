@@ -1,4 +1,4 @@
 To use the Micronaut's integration with http://www.liquibase.org[Liquibase] you must have the `micronaut-liquibase`
 dependency on your classpath:
 
-dependency:micronaut-liquibase[groupId="io.micronaut.configuration"]
+dependency:micronaut-liquibase[groupId="io.micronaut.liquibase"]
