@@ -41,7 +41,7 @@ liquibase:
 '''//end::yamlconfig[]
 
     @Shared
-    Map<String, Object> flywayMap = [
+    Map<String, Object> liquibaseMap = [
         'spec.name': 'GormDocSpec',
         dataSource : [
             pooled         : true,
@@ -75,15 +75,15 @@ liquibase:
         ]
     ]
 
-    void 'test flyway migrations are executed with GORM with multiple datasources'() {
+    void 'test liquibase migrations are executed with GORM with multiple datasources'() {
         given:
-        def ctx = ApplicationContext.run(flatten(flywayMap), Environment.TEST)
+        def ctx = ApplicationContext.run(flatten(liquibaseMap), Environment.TEST)
 
         when:
         Map m = new Yaml().load(cleanYamlAsciidocTag(gormConfig))
 
         then:
-        m == flywayMap
+        m == liquibaseMap
 
         when: 'connecting to the default datasource'
         Map db = [url: 'jdbc:h2:mem:liquibaseGORMDb', user: 'sa', password: '', driver: 'org.h2.Driver']
