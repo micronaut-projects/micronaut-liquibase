@@ -9,13 +9,13 @@ license {
         java   = 'SLASHSTAR_STYLE'
         groovy = 'SLASHSTAR_STYLE'
     }
-    ext.year = '2017-2018'
+    ext.year = '2017-2020'
 
+    exclude "**/transaction/**"
     exclude '**/*.txt'
     exclude '**/*.html'
     exclude '**/*.xml'
     exclude '**/*.json'
-    exclude '**/*.sql'
     exclude '**/build-info.properties'
     exclude '**/git.properties'
     exclude '**/othergit.properties'
