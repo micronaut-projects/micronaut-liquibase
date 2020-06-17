@@ -9,7 +9,7 @@ dependencies {
         exclude group: 'org.springframework'
     }
     api "io.micronaut:micronaut-management"
-    api "io.micronaut.sql:micronaut-jdbc:$micronautSqlVersion"
+    api "io.micronaut.sql:micronaut-jdbc"
 
     testAnnotationProcessor "org.codehaus.groovy:groovy-sql:$groovyVersion"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
@@ -20,7 +20,7 @@ dependencies {
     testImplementation "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-http-client"
     testImplementation "io.micronaut:micronaut-http-server-netty"
-    testImplementation "io.micronaut.sql:micronaut-jdbc-hikari:$micronautSqlVersion"
+    testImplementation "io.micronaut.sql:micronaut-jdbc-hikari"
     testImplementation "io.micronaut.groovy:micronaut-hibernate-gorm:2.0.0.RC1"
     testImplementation "org.codehaus.groovy:groovy-sql"
     testImplementation "org.grails:grails-datastore-gorm-hibernate5:$gormHibernateVersion"
