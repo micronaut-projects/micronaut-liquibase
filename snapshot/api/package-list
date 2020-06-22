@@ -1,2 +1,2 @@
-io.micronaut.liquibase
-io.micronaut.liquibase.endpoint
+io.micronaut.configuration.dbmigration.liquibase
+io.micronaut.configuration.dbmigration.liquibase.management.endpoint
