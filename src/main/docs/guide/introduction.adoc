@@ -1,3 +1,5 @@
+The Micronaut Liquibase integration runs Liquibase changelogs. It does not create changelogs.
+
 To use the Micronaut's integration with http://www.liquibase.org[Liquibase] you must have the `micronaut-liquibase`
 dependency on your classpath:
 
