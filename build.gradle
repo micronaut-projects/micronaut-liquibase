@@ -6,7 +6,7 @@ buildscript {
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
-        classpath "io.micronaut.build:micronaut-gradle-plugins:2.0.5"
+        classpath "io.micronaut.build:micronaut-gradle-plugins:2.0.6"
     }
 }
 
@@ -19,11 +19,7 @@ subprojects { Project subproject ->
     if (subproject.parent.name == "docs-examples" || subproject.name == "docs-examples") {
         return
     }
-    apply plugin: "io.micronaut.build.publishing"
-
-    project.tasks.withType(Test) {
-        useJUnitPlatform()
-    }      
+    apply plugin: "io.micronaut.build.publishing"  
 }
 
 apply plugin: "io.micronaut.build.docs"
