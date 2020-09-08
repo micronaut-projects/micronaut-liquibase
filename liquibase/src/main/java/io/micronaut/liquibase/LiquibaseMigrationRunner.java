@@ -80,18 +80,19 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
 
     @Override
     public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
-        DataSource dataSource = dataSourceResolver.resolve(event.getBean());
-
+        DataSource dataSource = event.getBean();
         if (event.getBeanDefinition() instanceof NameResolver) {
             ((NameResolver) event.getBeanDefinition())
                     .resolveName()
                     .ifPresent(name -> {
                         applicationContext
                                 .findBean(LiquibaseConfigurationProperties.class, Qualifiers.byName(name))
-                                .ifPresent(liquibaseConfig -> run(liquibaseConfig, dataSource));
+                                .ifPresent(liquibaseConfig -> {
+                                    DataSource unwrappedDataSource = dataSourceResolver.resolve(dataSource);
+                                    run(liquibaseConfig, unwrappedDataSource);
+                                });
                     });
         }
-
         return dataSource;
     }
 
