@@ -1,6 +1,6 @@
 introduction: Introduction
 releaseHistory: Release History
-whatsNew: What's New
 configuration: Configuration
 gorm: GORM Support
 endpoint: Endpoint
+repository: Repository
