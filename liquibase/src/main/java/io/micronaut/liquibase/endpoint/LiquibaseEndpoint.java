@@ -15,9 +15,10 @@
  */
 package io.micronaut.liquibase.endpoint;
 
-import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import io.micronaut.jdbc.DataSourceResolver;
+import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
 import io.reactivex.BackpressureStrategy;
@@ -31,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -52,14 +52,19 @@ public class LiquibaseEndpoint {
     private static final Logger LOG = LoggerFactory.getLogger(LiquibaseEndpoint.class);
     private final Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties;
     private final ApplicationContext applicationContext;
+    private final DataSourceResolver dataSourceResolver;
 
     /**
      * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
      * @param applicationContext               The application context
+     * @param dataSourceResolver               The data source resolver
      */
-    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties, ApplicationContext applicationContext) {
+    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
+                             ApplicationContext applicationContext,
+                             DataSourceResolver dataSourceResolver) {
         this.liquibaseConfigurationProperties = liquibaseConfigurationProperties;
         this.applicationContext = applicationContext;
+        this.dataSourceResolver = dataSourceResolver;
     }
 
     /**
@@ -77,8 +82,8 @@ public class LiquibaseEndpoint {
 
                         try {
                             DataSource dataSource = applicationContext.getBean(DataSource.class, Qualifiers.byName(config.getNameQualifier()));
-                            Connection connection = dataSource.getConnection();
-                            jdbcConnection = new JdbcConnection(connection);
+                            DataSource unwrappedDataSource = dataSourceResolver.resolve(dataSource);
+                            jdbcConnection = new JdbcConnection(unwrappedDataSource.getConnection());
 
                             Database database = factory.findCorrectDatabaseImplementation(jdbcConnection);
                             StandardChangeLogHistoryService service = new StandardChangeLogHistoryService();
