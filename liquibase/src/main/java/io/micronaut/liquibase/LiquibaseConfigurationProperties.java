@@ -50,12 +50,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     public static final boolean DEFAULT_TESTROLLBACKONUPDATE = false;
 
     /**
-     * The default ignoreClasspathPrefix value.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public static final boolean DEFAULT_IGNORECLASSPATHPREFIX = true;
-
-    /**
      * The default async value.
      */
     @SuppressWarnings("WeakerAccess")
@@ -87,28 +81,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
 
     private boolean testRollbackOnUpdate = DEFAULT_TESTROLLBACKONUPDATE;
 
-    /**
-     * Ignores classpath prefix during changeset comparison.
-     * This is particularly useful if Liquibase is run in different ways.
-     *
-     * For instance, if Maven plugin is used to run changesets, as in:
-     * <code>
-     *      &lt;configuration&gt;
-     *          ...
-     *          &lt;changeLogFile&gt;path/to/changelog&lt;/changeLogFile&gt;
-     *      &lt;/configuration&gt;
-     * </code>
-     *
-     * {@link liquibase.Liquibase.Liquibase#listUnrunChangeSets(liquibase.Liquibase.Contexts, )} will
-     * always, by default, return changesets, regardless of their
-     * execution by Maven.
-     * Maven-executed changeset path name are not be prepended by
-     * "classpath:" whereas the ones parsed via AbstractLiquibase are.
-     *
-     * To avoid this issue, just set ignoreClasspathPrefix to true.
-     */
-    private boolean ignoreClasspathPrefix = DEFAULT_IGNORECLASSPATHPREFIX;
-
     private String rollbackFilePath;
 
     private Map<String, String> parameters;
@@ -138,22 +110,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     public boolean isTestRollbackOnUpdate() {
         return testRollbackOnUpdate;
-    }
-
-    /**
-     * @return true if classpath prefix should be ignored during changeset comparison
-     */
-    public boolean isIgnoreClasspathPrefix() {
-        return ignoreClasspathPrefix;
-    }
-
-    /**
-     * Ignores classpath prefix during changeset comparison. Default value ({@value #DEFAULT_IGNORECLASSPATHPREFIX}).
-     *
-     * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
-     */
-    public void setIgnoreClasspathPrefix(boolean ignoreClasspathPrefix) {
-        this.ignoreClasspathPrefix = ignoreClasspathPrefix;
     }
 
     /**

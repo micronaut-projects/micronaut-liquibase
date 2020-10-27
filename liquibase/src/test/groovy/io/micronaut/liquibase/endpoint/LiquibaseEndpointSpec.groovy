@@ -95,8 +95,8 @@ class LiquibaseEndpointSpec extends Specification {
         result.size() == 1
         result[0].name == 'default'
         result[0].changeSets.size() == 2
-        result[0].changeSets[0].changeLog == 'classpath:db/changelog/01-create-books-schema.xml'
-        result[0].changeSets[1].changeLog == 'classpath:db/changelog/02-insert-data-books.xml'
+        result[0].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
+        result[0].changeSets[1].changeLog == 'db/changelog/02-insert-data-books.xml'
 
         cleanup:
         rxClient.close()
@@ -137,11 +137,11 @@ class LiquibaseEndpointSpec extends Specification {
         result.sort { it.name }
         result[0].name == 'default'
         result[0].changeSets.size() == 2
-        result[0].changeSets[0].changeLog == 'classpath:db/changelog/01-create-books-schema.xml'
-        result[0].changeSets[1].changeLog == 'classpath:db/changelog/02-insert-data-books.xml'
+        result[0].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
+        result[0].changeSets[1].changeLog == 'db/changelog/02-insert-data-books.xml'
         result[1].name == 'other'
         result[1].changeSets.size() == 1
-        result[1].changeSets[0].changeLog == 'classpath:db/changelog/01-create-books-schema.xml'
+        result[1].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
 
         cleanup:
         rxClient.close()

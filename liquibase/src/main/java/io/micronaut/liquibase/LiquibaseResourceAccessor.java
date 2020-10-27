@@ -23,10 +23,9 @@ import liquibase.resource.ResourceAccessor;
 
 import javax.inject.Singleton;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Micronaut bean implementing {@link liquibase.resource.ResourceAccessor}.
@@ -45,12 +44,7 @@ public class LiquibaseResourceAccessor extends CompositeResourceAccessor {
     }
 
     @Override
-    public Set<InputStream> getResourcesAsStream(String path) throws IOException {
-        return super.getResourcesAsStream(normalize(path));
-    }
-
-    @Override
-    public Set<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
+    public SortedSet<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
         return super.list(normalize(relativeTo), path, includeFiles, includeDirectories, recursive);
     }
 
