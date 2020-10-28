@@ -75,7 +75,6 @@ class LiquibaseEndpointSpec extends Specification {
              'jpa.default.properties.hibernate.hbm2ddl.auto': 'none',
              'jpa.default.properties.hibernate.show_sql'    : true,
              'liquibase.datasources.default.change-log'     : 'classpath:db/liquibase-changelog.xml',
-             'endpoints.liquibase.enabled'                  : true,
              'endpoints.liquibase.sensitive'                : false,
              'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseEndpointDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
              'datasources.default.username'                 : 'sa',
