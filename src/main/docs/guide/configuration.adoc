@@ -38,3 +38,29 @@ In this case it is enough to inject a `Datasource` in anyone of your singletons 
 There are several options available for configuration:
 
 include::{includedir}configurationProperties/io.micronaut.liquibase.LiquibaseConfigurationProperties.adoc[]
+
+
+== Logging
+
+Liquibase 4.0 has changed how logging is done and now it is based on `java.util.Logging`. Micronaut Liquibase includes
+automatically the configuration to bridge JUL and Logback but it is necessary to add the following `contextListener`
+to your `logback.xml`:
+
+[source, xml]
+.src/main/resources/logback.xml
+----
+<configuration>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender ...>
+        ...
+    </appender>
+
+    ...
+
+</configuration>
+
+----
