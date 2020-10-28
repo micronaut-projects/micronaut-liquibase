@@ -452,5 +452,11 @@
   {
     "name":"liquibase.sql.visitor.ReplaceSqlVisitor",
     "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name" : "liquibase.changelog.RanChangeSet",
+    "allDeclaredMethods" : true,
+    "allDeclaredFields" : true,
+    "allDeclaredConstructors" : true
   }
 ]

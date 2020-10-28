@@ -15,6 +15,8 @@
  */
 package io.micronaut.liquibase.endpoint;
 
+import io.micronaut.core.annotation.Creator;
+import io.micronaut.core.annotation.Introspected;
 import liquibase.changelog.RanChangeSet;
 
 import java.util.List;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Sergio del Amo
  * @since 1.0.0
  */
+@Introspected
 public class LiquibaseReport {
 
     private String name;
@@ -35,6 +38,7 @@ public class LiquibaseReport {
      * @param name       The name of the data source
      * @param changeSets The list of changes
      */
+    @Creator
     public LiquibaseReport(String name, List<RanChangeSet> changeSets) {
         this.name = name;
         this.changeSets = changeSets;
