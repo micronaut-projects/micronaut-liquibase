@@ -88,15 +88,17 @@ public class LiquibaseEndpoint {
         return Flowable.create(emitter -> {
             DatabaseFactory factory = DatabaseFactory.getInstance();
 
-            if (dataSourceResolver != null && liquibaseConfigurationProperties != null) {
+            if (liquibaseConfigurationProperties != null) {
                 for (LiquibaseConfigurationProperties config : liquibaseConfigurationProperties) {
                     if (config.isEnabled()) {
                         JdbcConnection jdbcConnection = null;
 
                         try {
                             DataSource dataSource = applicationContext.getBean(DataSource.class, Qualifiers.byName(config.getNameQualifier()));
-                            DataSource unwrappedDataSource = dataSourceResolver.resolve(dataSource);
-                            jdbcConnection = new JdbcConnection(unwrappedDataSource.getConnection());
+                            if (dataSourceResolver != null) {
+                                dataSource = dataSourceResolver.resolve(dataSource);
+                            }
+                            jdbcConnection = new JdbcConnection(dataSource.getConnection());
 
                             Database database = factory.findCorrectDatabaseImplementation(jdbcConnection);
                             StandardChangeLogHistoryService service = new StandardChangeLogHistoryService();
