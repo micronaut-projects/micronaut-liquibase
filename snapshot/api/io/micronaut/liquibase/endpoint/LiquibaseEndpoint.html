@@ -157,7 +157,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/micronaut/liquibase/endpoint/LiquibaseEndpoint.html#LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-">LiquibaseEndpoint</a></span>(java.util.Collection&lt;<a href="../../../../io/micronaut/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
-                 io.micronaut.context.ApplicationContext&nbsp;applicationContext)</code>&nbsp;</td>
+                 io.micronaut.context.ApplicationContext&nbsp;applicationContext)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/micronaut/liquibase/endpoint/LiquibaseEndpoint.html#LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-io.micronaut.jdbc.DataSourceResolver-">LiquibaseEndpoint</a></span>(java.util.Collection&lt;<a href="../../../../io/micronaut/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
+                 io.micronaut.context.ApplicationContext&nbsp;applicationContext,
+                 io.micronaut.jdbc.DataSourceResolver&nbsp;dataSourceResolver)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -225,15 +232,36 @@ extends java.lang.Object</pre>
 <a name="LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>LiquibaseEndpoint</h4>
-<pre>public&nbsp;LiquibaseEndpoint(java.util.Collection&lt;<a href="../../../../io/micronaut/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
-                         io.micronaut.context.ApplicationContext&nbsp;applicationContext)</pre>
+<pre>@Deprecated
+public&nbsp;LiquibaseEndpoint(java.util.Collection&lt;<a href="../../../../io/micronaut/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
+                                     io.micronaut.context.ApplicationContext&nbsp;applicationContext)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>liquibaseConfigurationProperties</code> - Collection of Liquibase Configurations</dd>
 <dd><code>applicationContext</code> - The application context</dd>
+</dl>
+</li>
+</ul>
+<a name="LiquibaseEndpoint-java.util.Collection-io.micronaut.context.ApplicationContext-io.micronaut.jdbc.DataSourceResolver-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>LiquibaseEndpoint</h4>
+<pre>@Creator
+public&nbsp;LiquibaseEndpoint(java.util.Collection&lt;<a href="../../../../io/micronaut/liquibase/LiquibaseConfigurationProperties.html" title="class in io.micronaut.liquibase">LiquibaseConfigurationProperties</a>&gt;&nbsp;liquibaseConfigurationProperties,
+                                  io.micronaut.context.ApplicationContext&nbsp;applicationContext,
+                                  @Nullable
+                                  io.micronaut.jdbc.DataSourceResolver&nbsp;dataSourceResolver)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>liquibaseConfigurationProperties</code> - Collection of Liquibase Configurations</dd>
+<dd><code>applicationContext</code> - The application context</dd>
+<dd><code>dataSourceResolver</code> - The data source resolver</dd>
 </dl>
 </li>
 </ul>
