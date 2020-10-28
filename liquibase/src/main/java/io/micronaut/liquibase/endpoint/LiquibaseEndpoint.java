@@ -15,7 +15,9 @@
  */
 package io.micronaut.liquibase.endpoint;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.context.ApplicationContext;
+import io.micronaut.core.annotation.Creator;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.liquibase.LiquibaseConfigurationProperties;
@@ -57,11 +59,22 @@ public class LiquibaseEndpoint {
     /**
      * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
      * @param applicationContext               The application context
+     */
+    @Deprecated
+    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
+                             ApplicationContext applicationContext) {
+        this(liquibaseConfigurationProperties, applicationContext, null);
+    }
+
+    /**
+     * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
+     * @param applicationContext               The application context
      * @param dataSourceResolver               The data source resolver
      */
+    @Creator
     public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
                              ApplicationContext applicationContext,
-                             DataSourceResolver dataSourceResolver) {
+                             @Nullable DataSourceResolver dataSourceResolver) {
         this.liquibaseConfigurationProperties = liquibaseConfigurationProperties;
         this.applicationContext = applicationContext;
         this.dataSourceResolver = dataSourceResolver;
@@ -75,7 +88,7 @@ public class LiquibaseEndpoint {
         return Flowable.create(emitter -> {
             DatabaseFactory factory = DatabaseFactory.getInstance();
 
-            if (liquibaseConfigurationProperties != null) {
+            if (dataSourceResolver != null && liquibaseConfigurationProperties != null) {
                 for (LiquibaseConfigurationProperties config : liquibaseConfigurationProperties) {
                     if (config.isEnabled()) {
                         JdbcConnection jdbcConnection = null;
