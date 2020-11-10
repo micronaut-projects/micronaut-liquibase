@@ -33,8 +33,6 @@ import java.util.Map;
 @EachProperty("liquibase.datasources")
 public class LiquibaseConfigurationProperties implements Toggleable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfigurationProperties.class);
-
     /**
      * The default enable value.
      */
@@ -58,6 +56,8 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     @SuppressWarnings("WeakerAccess")
     public static final boolean DEFAULT_ASYNC = false;
+
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfigurationProperties.class);
 
     private boolean async = DEFAULT_ASYNC;
 
