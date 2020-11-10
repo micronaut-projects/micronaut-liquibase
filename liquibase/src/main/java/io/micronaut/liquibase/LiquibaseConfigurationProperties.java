@@ -18,6 +18,8 @@ package io.micronaut.liquibase;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.core.util.Toggleable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -30,6 +32,8 @@ import java.util.Map;
  */
 @EachProperty("liquibase.datasources")
 public class LiquibaseConfigurationProperties implements Toggleable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfigurationProperties.class);
 
     /**
      * The default enable value.
@@ -110,6 +114,29 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     public boolean isTestRollbackOnUpdate() {
         return testRollbackOnUpdate;
+    }
+
+    /**
+     * @return true if classpath prefix should be ignored during changeset comparison
+     */
+    @Deprecated
+    public boolean isIgnoreClasspathPrefix() {
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
+        }
+        return false;
+    }
+
+    /**
+     * Ignores classpath prefix during changeset comparison.
+     *
+     * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
+     */
+    @Deprecated
+    public void setIgnoreClasspathPrefix(boolean ignoreClasspathPrefix) {
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
+        }
     }
 
     /**
