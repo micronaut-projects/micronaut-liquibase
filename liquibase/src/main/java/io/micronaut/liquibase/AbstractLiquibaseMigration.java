@@ -35,7 +35,6 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import javax.inject.Singleton;
 import javax.sql.DataSource;
@@ -68,10 +67,6 @@ public class AbstractLiquibaseMigration {
     AbstractLiquibaseMigration(ApplicationContext applicationContext, ResourceAccessor resourceAccessor) {
         this.applicationContext = applicationContext;
         this.resourceAccessor = resourceAccessor;
-
-        // Bridge JUL to Slf4j
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
     }
 
     /**
