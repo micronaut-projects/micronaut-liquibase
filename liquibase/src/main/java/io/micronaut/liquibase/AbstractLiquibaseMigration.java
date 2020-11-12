@@ -204,7 +204,6 @@ public class AbstractLiquibaseMigration {
         String changeLog = config.getChangeLog();
         Database database = createDatabase(connection, resourceAccessor, config);
         Liquibase liquibase = new Liquibase(changeLog, resourceAccessor, database);
-        liquibase.setIgnoreClasspathPrefix(config.isIgnoreClasspathPrefix());
         if (config.getParameters() != null) {
             for (Map.Entry<String, String> entry : config.getParameters().entrySet()) {
                 liquibase.setChangeLogParameter(entry.getKey(), entry.getValue());

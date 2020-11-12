@@ -38,3 +38,93 @@ In this case it is enough to inject a `Datasource` in anyone of your singletons 
 There are several options available for configuration:
 
 include::{includedir}configurationProperties/io.micronaut.liquibase.LiquibaseConfigurationProperties.adoc[]
+
+
+== Logging
+
+Liquibase 4.0 has changed how logging is done and now it is based on Java Util Logging (JUL). This means that without doing
+anything the log format won't be the usual in Micronaut:
+
+[source, bash]
+----
+16:39:58.744 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:39:58.945 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+Nov 10, 2020 4:39:59 PM liquibase.lockservice
+INFO: Successfully acquired change log lock
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Creating database history table with name: PUBLIC.DATABASECHANGELOG
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Reading from PUBLIC.DATABASECHANGELOG
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Table users created
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 10ms
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: New row inserted into users
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: New row inserted into users
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 4ms
+Nov 10, 2020 4:39:59 PM liquibase.lockservice
+INFO: Successfully released change log lock
+16:40:00.277 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2392ms. Server Running: http://localhost:8080
+----
+
+If you want to integrate JUL and Logback you need to do the following in your application:
+
+- Add the dependency:
+
+dependency:jul-to-slf4j[groupId="org.slf4j", version="1.7.30"]
+
+- Add the following `contextListener` to your `logback.xml`:
+
+[source, xml]
+.src/main/resources/logback.xml
+----
+<configuration>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender ...>
+        ...
+    </appender>
+
+    ...
+
+</configuration>
+
+----
+
+- Initialize the JUL to Slf4j bridge. You can add the following to your `Application` class:
+
+[source,java]
+.src/main/java/my/package/Application.java
+----
+public static void main(String[] args) {
+    // Bridge JUL to Slf4j
+    SLF4JBridgeHandler.removeHandlersForRootLogger();
+    SLF4JBridgeHandler.install();
+
+    Micronaut.run(Application.class, args);
+}
+----
+
+With the previous configuration, starting your application again will show the logs properly:
+
+[source, bash]
+----
+16:47:10.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:47:11.042 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+16:47:11.344 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+16:47:11.744 [main] INFO  liquibase.changelog - Creating database history table with name: PUBLIC.DATABASECHANGELOG
+16:47:11.747 [main] INFO  liquibase.changelog - Reading from PUBLIC.DATABASECHANGELOG
+16:47:11.844 [main] INFO  liquibase.changelog - Table users created
+16:47:11.844 [main] INFO  liquibase.changelog - ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 20ms
+16:47:11.857 [main] INFO  liquibase.changelog - New row inserted into users
+16:47:11.858 [main] INFO  liquibase.changelog - New row inserted into users
+16:47:11.859 [main] INFO  liquibase.changelog - ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 3ms
+16:47:11.861 [main] INFO  liquibase.lockservice - Successfully released change log lock
+16:47:12.288 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2213ms. Server Running: http://localhost:8080
+----

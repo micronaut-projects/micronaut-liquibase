@@ -18,6 +18,8 @@ package io.micronaut.liquibase;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.core.util.Toggleable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -50,16 +52,12 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     public static final boolean DEFAULT_TESTROLLBACKONUPDATE = false;
 
     /**
-     * The default ignoreClasspathPrefix value.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public static final boolean DEFAULT_IGNORECLASSPATHPREFIX = true;
-
-    /**
      * The default async value.
      */
     @SuppressWarnings("WeakerAccess")
     public static final boolean DEFAULT_ASYNC = false;
+
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfigurationProperties.class);
 
     private boolean async = DEFAULT_ASYNC;
 
@@ -86,28 +84,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     private String labels;
 
     private boolean testRollbackOnUpdate = DEFAULT_TESTROLLBACKONUPDATE;
-
-    /**
-     * Ignores classpath prefix during changeset comparison.
-     * This is particularly useful if Liquibase is run in different ways.
-     *
-     * For instance, if Maven plugin is used to run changesets, as in:
-     * <code>
-     *      &lt;configuration&gt;
-     *          ...
-     *          &lt;changeLogFile&gt;path/to/changelog&lt;/changeLogFile&gt;
-     *      &lt;/configuration&gt;
-     * </code>
-     *
-     * {@link liquibase.Liquibase.Liquibase#listUnrunChangeSets(liquibase.Liquibase.Contexts, )} will
-     * always, by default, return changesets, regardless of their
-     * execution by Maven.
-     * Maven-executed changeset path name are not be prepended by
-     * "classpath:" whereas the ones parsed via AbstractLiquibase are.
-     *
-     * To avoid this issue, just set ignoreClasspathPrefix to true.
-     */
-    private boolean ignoreClasspathPrefix = DEFAULT_IGNORECLASSPATHPREFIX;
 
     private String rollbackFilePath;
 
@@ -143,17 +119,24 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return true if classpath prefix should be ignored during changeset comparison
      */
+    @Deprecated
     public boolean isIgnoreClasspathPrefix() {
-        return ignoreClasspathPrefix;
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
+        }
+        return false;
     }
 
     /**
-     * Ignores classpath prefix during changeset comparison. Default value ({@value #DEFAULT_IGNORECLASSPATHPREFIX}).
+     * Ignores classpath prefix during changeset comparison.
      *
      * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
      */
+    @Deprecated
     public void setIgnoreClasspathPrefix(boolean ignoreClasspathPrefix) {
-        this.ignoreClasspathPrefix = ignoreClasspathPrefix;
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
+        }
     }
 
     /**
