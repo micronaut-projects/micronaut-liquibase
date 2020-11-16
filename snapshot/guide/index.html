@@ -51,9 +51,11 @@
                                 
                                 <div class="toc-item" style="margin-left:0"><a href="#gorm"><strong>4</strong><span>GORM Support</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>5</strong><span>Endpoint</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>6</strong><span>Repository</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
                                 
                             </div>
                         </div>
@@ -92,9 +94,11 @@
         
         <div class="toc-item" style="margin-left:0px" id="toc-item-gorm"><a href="#gorm"><strong>4</strong><span>GORM Support</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>5</strong><span>Endpoint</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>6</strong><span>Repository</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
         
         </div>
     </div>
@@ -664,7 +668,37 @@ For more information about how to configure GORM, take a look at the <a href="ht
 </div>
 </div>
 
-<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>5 Endpoint</h1>
+<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM support</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/graalvm.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>Micronaut Liquibase is compatible with <a href="https://www.graalvm.org/">GraalVM</a> so it is possible
+to create native images and run the migrations during application startup.</p>
+</div>
+<div class="paragraph">
+<p>Everything is handled automatically by the library so users don&#8217;t need any special configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#graal">GraalVM</a> in the user guide for more
+information.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>6 Endpoint</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/endpoint.adoc"'>
@@ -751,7 +785,7 @@ See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#pr
 </table>
 </div>
 
-<h1 id="repository"><a class="anchor" href="#repository"></a>6 Repository</h1>
+<h1 id="repository"><a class="anchor" href="#repository"></a>7 Repository</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/repository.adoc"'>
