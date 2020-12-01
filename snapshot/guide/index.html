@@ -51,11 +51,9 @@
                                 
                                 <div class="toc-item" style="margin-left:0"><a href="#gorm"><strong>4</strong><span>GORM Support</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>5</strong><span>Endpoint</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
-                                
-                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>6</strong><span>Repository</span></a></div>
                                 
                             </div>
                         </div>
@@ -94,11 +92,9 @@
         
         <div class="toc-item" style="margin-left:0px" id="toc-item-gorm"><a href="#gorm"><strong>4</strong><span>GORM Support</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>5</strong><span>Endpoint</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
-        
-        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>6</strong><span>Repository</span></a></div>
         
         </div>
     </div>
@@ -114,7 +110,7 @@
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/introduction.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/introduction.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -148,7 +144,7 @@ dependency on your classpath:</p>
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/releaseHistory.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/releaseHistory.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -164,7 +160,7 @@ dependency on your classpath:</p>
 <h1 id="configuration"><a class="anchor" href="#configuration"></a>3 Configuration</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/configuration.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/configuration.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -362,6 +358,11 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether rollback should be tested before update is performed. Default value (false).</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.ignore-classpath-prefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignores classpath prefix during changeset comparison. Default value (true).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.rollback-file-path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Path to file to which rollback SQL is written when an update is performed.</p></td>
@@ -371,143 +372,13 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.util.Map</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Change log parameters.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.ignore-classpath-prefix</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ignores classpath prefix during changeset comparison.</p></td>
-</tr>
 </tbody>
 </table>
-<div class="sect1">
-<h2 id="_logging">Logging</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Liquibase 4.0 has changed how logging is done and now it is based on Java Util Logging (JUL). This means that without doing
-anything the log format won&#8217;t be the usual in Micronaut:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">16:39:58.744 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-16:39:58.945 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-Nov 10, 2020 4:39:59 PM liquibase.lockservice
-INFO: Successfully acquired change log lock
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: Creating database history table with name: PUBLIC.DATABASECHANGELOG
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: Reading from PUBLIC.DATABASECHANGELOG
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: Table users created
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 10ms
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: New row inserted into users
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: New row inserted into users
-Nov 10, 2020 4:39:59 PM liquibase.changelog
-INFO: ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 4ms
-Nov 10, 2020 4:39:59 PM liquibase.lockservice
-INFO: Successfully released change log lock
-16:40:00.277 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2392ms. Server Running: http://localhost:8080</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to integrate JUL and Logback you need to do the following in your application:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the dependency:</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>        <div class="listingblock multi-language-sample">
-<div class="title"></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.slf4j:jul-to-slf4j:1.7.30")</span></code></pre>
-</div>
-</div>
-<div class="listingblock multi-language-sample">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
-    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-    &lt;artifactId&gt;jul-to-slf4j&lt;/artifactId&gt;
-    &lt;version&gt;1.7.30&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the following <code>contextListener</code> to your <code>logback.xml</code>:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/logback.xml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;configuration&gt;
-
-    &lt;contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"&gt;
-        &lt;resetJUL&gt;true&lt;/resetJUL&gt;
-    &lt;/contextListener&gt;
-
-    &lt;appender ...&gt;
-        ...
-    &lt;/appender&gt;
-
-    ...
-
-&lt;/configuration&gt;</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Initialize the JUL to Slf4j bridge. You can add the following to your <code>Application</code> class:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">src/main/java/my/package/Application.java</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static void main(String[] args) {
-    // Bridge JUL to Slf4j
-    SLF4JBridgeHandler.removeHandlersForRootLogger();
-    SLF4JBridgeHandler.install();
-
-    Micronaut.run(Application.class, args);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With the previous configuration, starting your application again will show the logs properly:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">16:47:10.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-16:47:11.042 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-16:47:11.344 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
-16:47:11.744 [main] INFO  liquibase.changelog - Creating database history table with name: PUBLIC.DATABASECHANGELOG
-16:47:11.747 [main] INFO  liquibase.changelog - Reading from PUBLIC.DATABASECHANGELOG
-16:47:11.844 [main] INFO  liquibase.changelog - Table users created
-16:47:11.844 [main] INFO  liquibase.changelog - ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 20ms
-16:47:11.857 [main] INFO  liquibase.changelog - New row inserted into users
-16:47:11.858 [main] INFO  liquibase.changelog - New row inserted into users
-16:47:11.859 [main] INFO  liquibase.changelog - ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 3ms
-16:47:11.861 [main] INFO  liquibase.lockservice - Successfully released change log lock
-16:47:12.288 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2213ms. Server Running: http://localhost:8080</code></pre>
-</div>
-</div>
-</div>
-</div>
 
 <h1 id="gorm"><a class="anchor" href="#gorm"></a>4 GORM Support</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/gorm.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/gorm.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -668,40 +539,10 @@ For more information about how to configure GORM, take a look at the <a href="ht
 </div>
 </div>
 
-<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM support</h1>
+<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>5 Endpoint</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/graalvm.adoc"'>
-        <i class='fa fa-pencil-square-o'></i> Improve this doc
-    </button>
-</div>
-
-
-<div class="paragraph">
-<p>Micronaut Liquibase is compatible with <a href="https://www.graalvm.org/">GraalVM</a> so it is possible
-to create native images and run the migrations during application startup.</p>
-</div>
-<div class="paragraph">
-<p>Everything is handled automatically by the library so users don&#8217;t need any special configuration.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#graal">GraalVM</a> in the user guide for more
-information.
-</td>
-</tr>
-</table>
-</div>
-
-<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>6 Endpoint</h1>
-
-<div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/endpoint.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/endpoint.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -785,10 +626,10 @@ See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#pr
 </table>
 </div>
 
-<h1 id="repository"><a class="anchor" href="#repository"></a>7 Repository</h1>
+<h1 id="repository"><a class="anchor" href="#repository"></a>6 Repository</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/repository.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/2.1.x/src/main/docs/guide/repository.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
