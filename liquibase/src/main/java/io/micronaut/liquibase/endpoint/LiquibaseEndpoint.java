@@ -15,9 +15,9 @@
  */
 package io.micronaut.liquibase.endpoint;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.core.annotation.Creator;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.liquibase.LiquibaseConfigurationProperties;

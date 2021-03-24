@@ -18,6 +18,7 @@ package io.micronaut.liquibase;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.context.event.BeanCreatedEventListener;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.core.naming.NameResolver;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
@@ -41,7 +42,6 @@ import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nullable;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.io.FileOutputStream;
