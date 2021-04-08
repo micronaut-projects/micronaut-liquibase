@@ -38,35 +38,35 @@ import javax.sql.DataSource;
 @Singleton
 public class LiquibaseMigrator extends LiquibaseMigrationRunner {
 
-	/**
-	 * @param applicationContext The application context
-	 * @param resourceAccessor   An implementation of {@link ResourceAccessor}
-	 * @param dataSourceResolver The data source resolver
-	 */
-	public LiquibaseMigrator(ApplicationContext applicationContext, ResourceAccessor resourceAccessor, @Nullable DataSourceResolver dataSourceResolver) {
-		super(applicationContext, resourceAccessor, dataSourceResolver);
-	}
+    /**
+     * @param applicationContext The application context
+     * @param resourceAccessor   An implementation of {@link ResourceAccessor}
+     * @param dataSourceResolver The data source resolver
+     */
+    public LiquibaseMigrator(ApplicationContext applicationContext, ResourceAccessor resourceAccessor, @Nullable DataSourceResolver dataSourceResolver) {
+        super(applicationContext, resourceAccessor, dataSourceResolver);
+    }
 
-	/**
-	 * Safe run Liquibase migration for a specific config and a DataSource.
-	 *
-	 * @param config     The {@link LiquibaseConfigurationProperties}
-	 * @param dataSource The {@link DataSource}
-	 */
-	public void safeRun(LiquibaseConfigurationProperties config, DataSource dataSource){
-		super.run(config, dataSource);
-	}
+    /**
+     * Safe run Liquibase migration for a specific config and a DataSource.
+     *
+     * @param config     The {@link LiquibaseConfigurationProperties}
+     * @param dataSource The {@link DataSource}
+     */
+    public void safeRun(LiquibaseConfigurationProperties config, DataSource dataSource){
+        super.run(config, dataSource);
+    }
 
-	/**
-	 * Force run Liquibase migration for a specific config and a DataSource.
-	 *
-	 * @param config     The {@link LiquibaseConfigurationProperties}
-	 * @param dataSource The {@link DataSource}
-	 */
-	public void forceRun(LiquibaseConfigurationProperties config, DataSource dataSource){
-		if(!config.isEnabled())
-			config.setEnabled(true);
-		super.run(config, dataSource);
-	}
+    /**
+     * Force run Liquibase migration for a specific config and a DataSource.
+     *
+     * @param config     The {@link LiquibaseConfigurationProperties}
+     * @param dataSource The {@link DataSource}
+     */
+    public void forceRun(LiquibaseConfigurationProperties config, DataSource dataSource){
+        if(!config.isEnabled())
+            config.setEnabled(true);
+        super.run(config, dataSource);
+    }
 
 }
