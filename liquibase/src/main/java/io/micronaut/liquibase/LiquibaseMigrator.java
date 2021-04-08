@@ -33,7 +33,7 @@ import javax.sql.DataSource;
  * and either forceRun or safeRun a migration based on a given {@link LiquibaseConfigurationProperties}.
  *
  * @author Kevin Jouper
- * @since 2.4.0
+ * @since 3.2.0
  */
 @Singleton
 public class LiquibaseMigrator extends LiquibaseMigrationRunner {
