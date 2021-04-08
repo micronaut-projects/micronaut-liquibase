@@ -40,6 +40,24 @@ There are several options available for configuration:
 include::{includedir}configurationProperties/io.micronaut.liquibase.LiquibaseConfigurationProperties.adoc[]
 
 
+== Run migrations manually
+
+If you need more control to decide when the migrations are executed it is possible to configure the application like this:
+
+[source,yaml]
+----
+liquibase:
+  enabled: true # <1>
+  datasources:
+    default:
+      enabled: false # <2>
+----
+<1> Liquibase needs to be enabled
+<2> Disable liquibase migrations for your specific datasource
+
+Now you can inject the `LiquibaseMigrator` bean call manually the existing methods to run the migrations when you want.
+
+
 == Logging
 
 Liquibase 4.0 has changed how logging is done and now it is based on Java Util Logging (JUL). This means that without doing
