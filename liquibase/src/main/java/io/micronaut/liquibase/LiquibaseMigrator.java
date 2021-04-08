@@ -26,7 +26,8 @@ import javax.sql.DataSource;
 /**
  * Public access to invoke Liquibase migrations when DataSource onCreate behaviour is not desired.
  * <p>
- * The following Liquibase property should be disabled:
+ * The Liquibase configuration should be:
+ *      liquibase.enabled = true
  *      liquibase.datasources.*.enabled = false
  * <p>
  * This ensures that Liquibase won't run automatically the migrations. The following service can then be injected later
