@@ -108,7 +108,7 @@
         <h1>Micronaut Liquibase</h1>
         <p></p>
         <p>Integration between Micronaut and Liquibase</p>
-        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option selected='selected' value='https://micronaut-projects.github.io/micronaut-liquibase/snapshot/guide/index.html'>SNAPSHOT</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.1.0/guide/index.html'>3.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.2/guide/index.html'>3.0.2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.1/guide/index.html'>3.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.0/guide/index.html'>3.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.1/guide/index.html'>2.1.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.0/guide/index.html'>2.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.1/guide/index.html'>2.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0/guide/index.html'>2.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.RC1/guide/index.html'>2.0.0.RC1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.M2/guide/index.html'>2.0.0.M2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.M1/guide/index.html'>2.0.0.M1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.3.0/guide/index.html'>1.3.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.2.0/guide/index.html'>1.2.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.1/guide/index.html'>1.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.0/guide/index.html'>1.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.0.RC1/guide/index.html'>1.0.0.RC1</option></select></p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option selected='selected' value='https://micronaut-projects.github.io/micronaut-liquibase/snapshot/guide/index.html'>SNAPSHOT</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.2.0/guide/index.html'>3.2.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.1.0/guide/index.html'>3.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.2/guide/index.html'>3.0.2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.1/guide/index.html'>3.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.0/guide/index.html'>3.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.1/guide/index.html'>2.1.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.0/guide/index.html'>2.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.1/guide/index.html'>2.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0/guide/index.html'>2.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.RC1/guide/index.html'>2.0.0.RC1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.M2/guide/index.html'>2.0.0.M2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.M1/guide/index.html'>2.0.0.M1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.3.0/guide/index.html'>1.3.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.2.0/guide/index.html'>1.2.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.1/guide/index.html'>1.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.0/guide/index.html'>1.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/1.0.0.RC1/guide/index.html'>1.0.0.RC1</option></select></p>
     </div>
     
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
@@ -381,6 +381,38 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 </tr>
 </tbody>
 </table>
+<div class="sect1">
+<h2 id="_run_migrations_manually">Run migrations manually</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
+  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+  datasources:
+    default:
+      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Liquibase needs to be enabled</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Disable liquibase migrations for your specific datasource</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can inject the <code>LiquibaseMigrator</code> bean call manually the existing methods to run the migrations when you want.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_logging">Logging</h2>
 <div class="sectionbody">
