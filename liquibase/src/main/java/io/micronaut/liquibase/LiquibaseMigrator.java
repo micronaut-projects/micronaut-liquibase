@@ -25,12 +25,12 @@ import javax.sql.DataSource;
 
 /**
  * Public access to invoke Liquibase migrations when DataSource onCreate behaviour is not desired.
- *
- * The following Liquibase property should be disabled
- *    liquibase.datasources.*.enabled = false
- *
- * This ensures that Liquibase wont automatically migrate. The following service can then be injected later
- * and either forceRun or safeRun a migration based on a given LiquibaseConfigurationProperties
+ * <p>
+ * The following Liquibase property should be disabled:
+ *      liquibase.datasources.*.enabled = false
+ * <p>
+ * This ensures that Liquibase won't run automatically the migrations. The following service can then be injected later
+ * and either forceRun or safeRun a migration based on a given {@link LiquibaseConfigurationProperties}.
  *
  * @author Kevin Jouper
  * @since 2.4.0
@@ -43,7 +43,9 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
      * @param resourceAccessor   An implementation of {@link ResourceAccessor}
      * @param dataSourceResolver The data source resolver
      */
-    public LiquibaseMigrator(ApplicationContext applicationContext, ResourceAccessor resourceAccessor, @Nullable DataSourceResolver dataSourceResolver) {
+    public LiquibaseMigrator(ApplicationContext applicationContext,
+                             ResourceAccessor resourceAccessor,
+                             @Nullable DataSourceResolver dataSourceResolver) {
         super(applicationContext, resourceAccessor, dataSourceResolver);
     }
 
@@ -53,7 +55,8 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
      * @param config     The {@link LiquibaseConfigurationProperties}
      * @param dataSource The {@link DataSource}
      */
-    public void safeRun(LiquibaseConfigurationProperties config, DataSource dataSource){
+    public void safeRun(LiquibaseConfigurationProperties config,
+                        DataSource dataSource) {
         super.run(config, dataSource);
     }
 
@@ -63,9 +66,11 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
      * @param config     The {@link LiquibaseConfigurationProperties}
      * @param dataSource The {@link DataSource}
      */
-    public void forceRun(LiquibaseConfigurationProperties config, DataSource dataSource){
-        if(!config.isEnabled())
+    public void forceRun(LiquibaseConfigurationProperties config,
+                         DataSource dataSource) {
+        if (!config.isEnabled()) {
             config.setEnabled(true);
+        }
         super.run(config, dataSource);
     }
 
