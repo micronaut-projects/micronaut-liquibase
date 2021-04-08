@@ -48,7 +48,7 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
 	}
 
 	/**
-	 * Safe run Liquibase migration for a specific config and a dataSource.
+	 * Safe run Liquibase migration for a specific config and a DataSource.
 	 *
 	 * @param config     The {@link LiquibaseConfigurationProperties}
 	 * @param dataSource The {@link DataSource}
@@ -58,7 +58,7 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
 	}
 
 	/**
-	 * Force run Liquibase migration for a specific config and a dataSource.
+	 * Force run Liquibase migration for a specific config and a DataSource.
 	 *
 	 * @param config     The {@link LiquibaseConfigurationProperties}
 	 * @param dataSource The {@link DataSource}
