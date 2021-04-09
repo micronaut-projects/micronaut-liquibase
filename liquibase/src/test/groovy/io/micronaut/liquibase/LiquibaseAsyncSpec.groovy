@@ -4,6 +4,7 @@ import groovy.sql.Sql
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import spock.lang.AutoCleanup
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
@@ -32,6 +33,7 @@ class LiquibaseAsyncSpec extends Specification {
     @AutoCleanup
     ApplicationContext applicationContext = ApplicationContext.run(config as Map<String, Object>, Environment.TEST)
 
+    @Ignore("https://github.com/micronaut-projects/micronaut-liquibase/issues/155")
     void "test liquibase changelog can be run asynchronously"() {
         when:
         applicationContext.getBean(DataSource)
