@@ -34,6 +34,7 @@ import javax.sql.DataSource;
  * and either forceRun or safeRun a migration based on a given {@link LiquibaseConfigurationProperties}.
  *
  * @author Kevin Jouper
+ * @author Iván López
  * @since 3.2.0
  */
 @Singleton
@@ -51,28 +52,14 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
     }
 
     /**
-     * Safe run Liquibase migration for a specific config and a DataSource.
+     * Run the Liquibase migrations for a specific config and a DataSource.
      *
      * @param config     The {@link LiquibaseConfigurationProperties}
      * @param dataSource The {@link DataSource}
      */
-    public void safeRun(LiquibaseConfigurationProperties config,
-                        DataSource dataSource) {
-        super.run(config, dataSource);
-    }
-
-    /**
-     * Force run Liquibase migration for a specific config and a DataSource.
-     *
-     * @param config     The {@link LiquibaseConfigurationProperties}
-     * @param dataSource The {@link DataSource}
-     */
-    public void forceRun(LiquibaseConfigurationProperties config,
-                         DataSource dataSource) {
-        if (!config.isEnabled()) {
-            config.setEnabled(true);
-        }
-        super.run(config, dataSource);
+    public void run(LiquibaseConfigurationProperties config,
+                    DataSource dataSource) {
+        super.forceRun(config, dataSource);
     }
 
 }

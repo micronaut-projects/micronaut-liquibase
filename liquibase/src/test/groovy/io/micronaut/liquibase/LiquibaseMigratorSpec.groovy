@@ -42,7 +42,7 @@ class LiquibaseMigratorSpec extends Specification {
         noExceptionThrown()
 
         when:
-        liquibaseMigrator.forceRun(liquibaseConfigurationProperties, dataSource)
+        liquibaseMigrator.run(liquibaseConfigurationProperties, dataSource)
 
         then:
         noExceptionThrown()

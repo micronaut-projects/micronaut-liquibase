@@ -34,12 +34,6 @@ This may be the case when you create a command in a separate module just to run 
 for https://docs.micronaut.io/latest/guide/index.html#commandLineApps[picocli].
 In this case it is enough to inject a `Datasource` in anyone of your singletons and migrations will be executed.
 
-
-There are several options available for configuration:
-
-include::{includedir}configurationProperties/io.micronaut.liquibase.LiquibaseConfigurationProperties.adoc[]
-
-
 == Run migrations manually
 
 If you need more control to decide when the migrations are executed it is possible to configure the application like this:
@@ -55,7 +49,12 @@ liquibase:
 <1> Liquibase needs to be enabled
 <2> Disable liquibase migrations for your specific datasource
 
-Now you can inject the `LiquibaseMigrator` bean call manually the existing methods to run the migrations when you want.
+Now you can inject the `LiquibaseMigrator` bean and call manually the method `run` to execute the migrations when you want.
+
+
+There are several options available for configuration:
+
+include::{includedir}configurationProperties/io.micronaut.liquibase.LiquibaseConfigurationProperties.adoc[]
 
 
 == Logging

@@ -113,6 +113,20 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
     }
 
     /**
+     * Run the Liquibase migrations whether they are enabled or not for the specific datasource.
+     *
+     * @param config     The {@link LiquibaseConfigurationProperties}
+     * @param dataSource The {@link DataSource}
+     */
+    void forceRun(LiquibaseConfigurationProperties config, DataSource dataSource) {
+        if (config.isAsync()) {
+            migrateAsync(config, dataSource);
+        } else {
+            migrate(config, dataSource);
+        }
+    }
+
+    /**
      * Run a migration asynchronously.
      *
      * @param config     The {@link LiquibaseConfigurationProperties}
