@@ -280,6 +280,36 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 </tr>
 </table>
 </div>
+<div class="sect1">
+<h2 id="_run_migrations_manually">Run migrations manually</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
+  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+  datasources:
+    default:
+      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Liquibase needs to be enabled</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Disable liquibase migrations for your specific datasource</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can inject the <code>LiquibaseMigrator</code> bean and call manually the method <code>run</code> to execute the migrations when you want.</p>
+</div>
 <div class="paragraph">
 <p>There are several options available for configuration:</p>
 </div>
@@ -381,36 +411,6 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 </tr>
 </tbody>
 </table>
-<div class="sect1">
-<h2 id="_run_migrations_manually">Run migrations manually</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
-  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
-  datasources:
-    default:
-      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Liquibase needs to be enabled</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Disable liquibase migrations for your specific datasource</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Now you can inject the <code>LiquibaseMigrator</code> bean call manually the existing methods to run the migrations when you want.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
