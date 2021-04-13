@@ -114,7 +114,7 @@
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/introduction.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -149,7 +149,7 @@ dependency on your classpath:</p>
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/releaseHistory.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -166,7 +166,7 @@ dependency on your classpath:</p>
 <h1 id="configuration"><a class="anchor" href="#configuration"></a>3 Configuration</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/configuration.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -280,36 +280,6 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 </tr>
 </table>
 </div>
-<div class="sect1">
-<h2 id="_run_migrations_manually">Run migrations manually</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
-  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
-  datasources:
-    default:
-      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Liquibase needs to be enabled</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Disable liquibase migrations for your specific datasource</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Now you can inject the <code>LiquibaseMigrator</code> bean and call manually the method <code>run</code> to execute the migrations when you want.</p>
-</div>
 <div class="paragraph">
 <p>There are several options available for configuration:</p>
 </div>
@@ -411,6 +381,36 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 </tr>
 </tbody>
 </table>
+<div class="sect1">
+<h2 id="_run_migrations_manually">Run migrations manually</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
+  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+  datasources:
+    default:
+      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Liquibase needs to be enabled</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Disable liquibase migrations for your specific datasource</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can inject the <code>LiquibaseMigrator</code> bean call manually the existing methods to run the migrations when you want.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -542,7 +542,7 @@ INFO: Successfully released change log lock
 <h1 id="gorm"><a class="anchor" href="#gorm"></a>4 GORM Support</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/gorm.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -707,7 +707,7 @@ For more information about how to configure GORM, take a look at the <a href="ht
 <h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM support</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/graalvm.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -738,7 +738,7 @@ information.
 <h1 id="endpoint"><a class="anchor" href="#endpoint"></a>6 Endpoint</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/endpoint.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
@@ -826,7 +826,7 @@ See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#pr
 <h1 id="repository"><a class="anchor" href="#repository"></a>7 Repository</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/3.2.x
 /src/main/docs/guide/repository.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
