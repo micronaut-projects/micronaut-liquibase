@@ -18,9 +18,9 @@ package io.micronaut.liquibase;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.jdbc.DataSourceResolver;
+import jakarta.inject.Singleton;
 import liquibase.resource.ResourceAccessor;
 
-import javax.inject.Singleton;
 import javax.sql.DataSource;
 
 /**

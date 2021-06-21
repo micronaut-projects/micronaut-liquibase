@@ -19,9 +19,9 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import io.micronaut.context.annotation.Type;
+import jakarta.inject.Singleton;
 import liquibase.changelog.RanChangeSet;
 
-import javax.inject.Singleton;
 import java.io.IOException;
 import java.time.Instant;
 

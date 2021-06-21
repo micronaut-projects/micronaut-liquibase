@@ -20,6 +20,7 @@ import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
+import jakarta.inject.Singleton;
 import liquibase.Contexts;
 import liquibase.LabelExpression;
 import liquibase.Liquibase;
@@ -36,7 +37,6 @@ import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.io.FileOutputStream;
 import java.io.IOException;
