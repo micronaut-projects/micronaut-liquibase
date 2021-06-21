@@ -23,8 +23,6 @@ import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
 import liquibase.changelog.StandardChangeLogHistoryService;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
@@ -32,6 +30,8 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.FluxSink;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -84,8 +84,8 @@ public class LiquibaseEndpoint {
      * @return A flowable with liquibase changes per active configuration
      */
     @Read
-    public Flowable<LiquibaseReport> liquibaseMigrations() {
-        return Flowable.create(emitter -> {
+    public Flux<LiquibaseReport> liquibaseMigrations() {
+        return Flux.create(emitter -> {
             DatabaseFactory factory = DatabaseFactory.getInstance();
 
             if (liquibaseConfigurationProperties != null) {
@@ -103,9 +103,9 @@ public class LiquibaseEndpoint {
                             Database database = factory.findCorrectDatabaseImplementation(jdbcConnection);
                             StandardChangeLogHistoryService service = new StandardChangeLogHistoryService();
                             service.setDatabase(database);
-                            emitter.onNext(new LiquibaseReport(config.getNameQualifier(), service.getRanChangeSets()));
+                            emitter.next(new LiquibaseReport(config.getNameQualifier(), service.getRanChangeSets()));
                         } catch (SQLException | DatabaseException ex) {
-                            emitter.onError(ex);
+                            emitter.error(ex);
                         } finally {
                             if (jdbcConnection != null) {
                                 try {
@@ -121,7 +121,7 @@ public class LiquibaseEndpoint {
                 }
             }
 
-            emitter.onComplete();
-        }, BackpressureStrategy.BUFFER);
+            emitter.complete();
+        }, FluxSink.OverflowStrategy.BUFFER);
     }
 }
