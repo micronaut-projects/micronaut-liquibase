@@ -20,11 +20,11 @@ import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.context.event.BeanCreatedEventListener;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import jakarta.inject.Singleton;
 import liquibase.resource.ResourceAccessor;
 import org.grails.orm.hibernate.HibernateDatastore;
 import org.grails.orm.hibernate.connections.HibernateConnectionSource;
 
-import javax.inject.Singleton;
 import javax.sql.DataSource;
 
 /**

@@ -3,7 +3,8 @@ package io.micronaut.liquibase
 import io.micronaut.context.annotation.Primary
 import io.micronaut.context.annotation.Requires
 import io.micronaut.jdbc.DataSourceResolver
-import javax.inject.Singleton
+import jakarta.inject.Singleton
+
 import javax.sql.DataSource
 
 class LiquibaseMigrationRunnerSpec extends ApplicationContextSpecification {
