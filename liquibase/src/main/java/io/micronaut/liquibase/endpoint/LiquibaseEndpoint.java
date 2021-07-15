@@ -28,6 +28,7 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
+import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
@@ -84,7 +85,7 @@ public class LiquibaseEndpoint {
      * @return A flowable with liquibase changes per active configuration
      */
     @Read
-    public Flux<LiquibaseReport> liquibaseMigrations() {
+    public Publisher<LiquibaseReport> liquibaseMigrations() {
         return Flux.create(emitter -> {
             DatabaseFactory factory = DatabaseFactory.getInstance();
 
