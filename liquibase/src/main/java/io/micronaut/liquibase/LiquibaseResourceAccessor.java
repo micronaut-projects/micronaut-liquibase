@@ -16,12 +16,12 @@
 package io.micronaut.liquibase;
 
 import io.micronaut.context.env.Environment;
+import jakarta.inject.Singleton;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.CompositeResourceAccessor;
 import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 
-import javax.inject.Singleton;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

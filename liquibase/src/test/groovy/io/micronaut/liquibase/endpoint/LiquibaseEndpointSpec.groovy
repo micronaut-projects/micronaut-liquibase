@@ -6,9 +6,7 @@ import io.micronaut.core.type.Argument
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
-import io.micronaut.http.client.RxHttpClient
-import io.micronaut.liquibase.endpoint.LiquibaseEndpoint
-import io.micronaut.liquibase.endpoint.LiquibaseReport
+import io.micronaut.http.client.HttpClient
 import io.micronaut.runtime.server.EmbeddedServer
 import spock.lang.Specification
 
@@ -83,10 +81,10 @@ class LiquibaseEndpointSpec extends Specification {
             Environment.TEST
         )
         URL server = embeddedServer.getURL()
-        RxHttpClient rxClient = embeddedServer.applicationContext.createBean(RxHttpClient, server)
+        HttpClient client = embeddedServer.applicationContext.createBean(HttpClient, server)
 
         when:
-        HttpResponse<List> response = rxClient.toBlocking()
+        HttpResponse<List> response = client.toBlocking()
             .exchange(HttpRequest.GET("/liquibase"), Argument.of(List, Map))
 
         then:
@@ -99,7 +97,7 @@ class LiquibaseEndpointSpec extends Specification {
         result[0].changeSets[1].changeLog == 'db/changelog/02-insert-data-books.xml'
 
         cleanup:
-        rxClient.close()
+        client.close()
         embeddedServer.stop()
         embeddedServer.close()
     }
@@ -125,10 +123,10 @@ class LiquibaseEndpointSpec extends Specification {
             Environment.TEST
         )
         URL server = embeddedServer.getURL()
-        RxHttpClient rxClient = embeddedServer.applicationContext.createBean(RxHttpClient, server)
+        HttpClient client = embeddedServer.applicationContext.createBean(HttpClient, server)
 
         when:
-        HttpResponse<List> response = rxClient.toBlocking()
+        HttpResponse<List> response = client.toBlocking()
             .exchange(HttpRequest.GET("/liquibase"), Argument.of(List, Map))
 
         then:
@@ -144,7 +142,7 @@ class LiquibaseEndpointSpec extends Specification {
         result[1].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
 
         cleanup:
-        rxClient.close()
+        client.close()
         embeddedServer.stop()
         embeddedServer.close()
     }
@@ -164,10 +162,10 @@ class LiquibaseEndpointSpec extends Specification {
             Environment.TEST
         )
         URL server = embeddedServer.getURL()
-        RxHttpClient rxClient = embeddedServer.applicationContext.createBean(RxHttpClient, server)
+        HttpClient client = embeddedServer.applicationContext.createBean(HttpClient, server)
 
         when:
-        HttpResponse<List> response = rxClient.toBlocking()
+        HttpResponse<List> response = client.toBlocking()
             .exchange(HttpRequest.GET("/liquibase"), Argument.of(List, LiquibaseReport))
 
         then:
@@ -176,7 +174,7 @@ class LiquibaseEndpointSpec extends Specification {
         result.size() == 0
 
         cleanup:
-        rxClient.close()
+        client.close()
         embeddedServer.stop()
         embeddedServer.close()
     }
