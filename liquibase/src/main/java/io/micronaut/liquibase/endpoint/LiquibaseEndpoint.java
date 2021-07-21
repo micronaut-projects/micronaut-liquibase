@@ -82,7 +82,7 @@ public class LiquibaseEndpoint {
     }
 
     /**
-     * @return A flowable with liquibase changes per active configuration
+     * @return A publisher with liquibase changes per active configuration
      */
     @Read
     public Publisher<LiquibaseReport> liquibaseMigrations() {
