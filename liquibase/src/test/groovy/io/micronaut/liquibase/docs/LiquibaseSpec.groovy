@@ -20,7 +20,7 @@ class LiquibaseSpec  extends Specification implements YamlAsciidocTagCleaner {
 //tag::yamlconfig[]
 datasources:
     default: # <3>
-        url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+        url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE'
         username: 'sa'
         password: ''
         driverClassName: 'org.h2.Driver'
@@ -64,7 +64,7 @@ liquibase:
             ],
             datasources: [
                     default: [
-                            url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
+                            url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE',
                             username: 'sa',
                             password: '',
                             driverClassName: 'org.h2.Driver',

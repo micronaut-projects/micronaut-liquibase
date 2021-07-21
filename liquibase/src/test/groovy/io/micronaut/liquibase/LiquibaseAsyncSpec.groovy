@@ -15,7 +15,7 @@ class LiquibaseAsyncSpec extends Specification {
 
     @Shared
     Map<String, Object> config = [
-        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
+        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseAsyncDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE',
         'datasources.default.username'                 : 'sa',
         'datasources.default.password'                 : '',
         'datasources.default.driverClassName'          : 'org.h2.Driver',
@@ -51,7 +51,7 @@ class LiquibaseAsyncSpec extends Specification {
         when:
         PollingConditions conditions = new PollingConditions(timeout: 5)
 
-        Map db = [url:'jdbc:h2:mem:liquibaseDisabledDb', user:'sa', password:'', driver:'org.h2.Driver']
+        Map db = [url:'jdbc:h2:mem:liquibaseAsyncDb', user:'sa', password:'', driver:'org.h2.Driver']
         Sql sql = Sql.newInstance(db.url, db.user, db.password, db.driver)
 
         then:

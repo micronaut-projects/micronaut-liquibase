@@ -32,7 +32,7 @@ trait ConfigurationFixture {
     }
 
     String h2JdbcUrl(String dbName) {
-        'jdbc:h2:mem:' + dbName + ';DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+        'jdbc:h2:mem:' + dbName + ';DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE'
     }
 
     String getSpecName() {
