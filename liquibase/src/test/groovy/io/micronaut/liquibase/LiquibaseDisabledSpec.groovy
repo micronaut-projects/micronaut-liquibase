@@ -17,7 +17,7 @@ class LiquibaseDisabledSpec extends Specification {
         'jpa.default.properties.hibernate.hbm2ddl.auto': 'none',
         'jpa.default.properties.hibernate.show_sql'    : true,
 
-        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
+        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE',
         'datasources.default.username'                 : 'sa',
         'datasources.default.password'                 : '',
         'datasources.default.driverClassName'          : 'org.h2.Driver',

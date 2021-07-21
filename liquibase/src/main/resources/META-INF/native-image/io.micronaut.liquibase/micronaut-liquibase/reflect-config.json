@@ -28,6 +28,10 @@
     "allPublicMethods":true
   },
   {
+    "name":"liquibase.change.AbstractTableChange",
+    "allPublicMethods":true
+  },
+  {
     "name":"liquibase.change.ChangeFactory",
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
@@ -91,8 +95,7 @@
   },
   {
     "name":"liquibase.change.core.CreateSequenceChange",
-    "allPublicMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
+    "allPublicMethods":true
   },
   {
     "name":"liquibase.change.core.CreateTableChange",
@@ -241,11 +244,7 @@
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"liquibase.configuration.GlobalConfiguration",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"liquibase.configuration.HubConfiguration",
+    "name":"liquibase.configuration.LiquibaseConfiguration",
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
@@ -426,10 +425,6 @@
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"liquibase.parser.ChangeLogParserCofiguration",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
     "name":"liquibase.plugin.AbstractPlugin",
     "allPublicMethods":true
   },
@@ -452,11 +447,5 @@
   {
     "name":"liquibase.sql.visitor.ReplaceSqlVisitor",
     "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name" : "liquibase.changelog.RanChangeSet",
-    "allDeclaredMethods" : true,
-    "allDeclaredFields" : true,
-    "allDeclaredConstructors" : true
   }
 ]
