@@ -15,7 +15,7 @@ class LiquibaseAsyncSpec extends Specification {
 
     @Shared
     Map<String, Object> config = [
-        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
+        'datasources.default.url'                      : 'jdbc:h2:mem:liquibaseAsyncSpec;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE',
         'datasources.default.username'                 : 'sa',
         'datasources.default.password'                 : '',
         'datasources.default.driverClassName'          : 'org.h2.Driver',
