@@ -9,6 +9,7 @@ import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 import javax.sql.DataSource
+import java.sql.SQLException
 
 class LiquibaseMigratorSpec extends Specification {
 
@@ -37,24 +38,26 @@ class LiquibaseMigratorSpec extends Specification {
         LiquibaseMigrator liquibaseMigrator = applicationContext.getBean(LiquibaseMigrator)
         DataSource dataSource = applicationContext.getBean(DataSource)
         LiquibaseConfigurationProperties liquibaseConfigurationProperties = applicationContext.getBean(LiquibaseConfigurationProperties)
+        PollingConditions conditions = new PollingConditions(timeout: 5)
+        Sql sql = Sql.newInstance(config.get('datasources.default.url'),
+                config.get('datasources.default.username'),
+                config.get('datasources.default.password'),
+                config.get('datasources.default.driverClassName'))
 
         then:
         noExceptionThrown()
+
+        when:
+        sql.rows('select count(*) from books')
+
+        then: // the migration was not already run
+        thrown(SQLException)
 
         when:
         liquibaseMigrator.run(liquibaseConfigurationProperties, dataSource)
 
         then:
         noExceptionThrown()
-
-        when:
-        PollingConditions conditions = new PollingConditions(timeout: 5)
-        Sql sql = Sql.newInstance(config.get('datasources.default.url'),
-                                  config.get('datasources.default.username'),
-                                  config.get('datasources.default.password'),
-                                  config.get('datasources.default.driverClassName'))
-
-        then:
         conditions.eventually {
             sql.rows('select count(*) from books').get(0)[0] == 2
         }
