@@ -37,7 +37,7 @@ class LiquibaseDisabledSpec extends Specification {
 
         then:
         noExceptionThrown()
-        
+
         when:
         applicationContext.getBean(LiquibaseConfigurationProperties)
 

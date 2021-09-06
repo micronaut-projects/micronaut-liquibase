@@ -16,6 +16,7 @@
 package io.micronaut.liquibase;
 
 import io.micronaut.context.ApplicationContext;
+import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.jdbc.DataSourceResolver;
 import jakarta.inject.Singleton;
@@ -49,6 +50,12 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
                              ResourceAccessor resourceAccessor,
                              @Nullable DataSourceResolver dataSourceResolver) {
         super(applicationContext, resourceAccessor, dataSourceResolver);
+    }
+
+    @Override
+    public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
+        //Do not run on startup. This class is designed for manual execution
+        return event.getBean();
     }
 
     /**

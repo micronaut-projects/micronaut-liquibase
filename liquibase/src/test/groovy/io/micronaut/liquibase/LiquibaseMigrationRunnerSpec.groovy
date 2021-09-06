@@ -16,7 +16,7 @@ class LiquibaseMigrationRunnerSpec extends ApplicationContextSpecification {
     @Override
     Map<String, Object> getConfiguration() {
         super.configuration +
-                getDataSourceConfiguration('liquibaseDisabledDb') +
+                getDataSourceConfiguration('liquibaseMigrationRunnerSpec') +
                 getJpaConfiguration(['example.micronaut'])
     }
     void "LiquibaseMigrationRunner::onCreated returns wrapped Datasource"() {
