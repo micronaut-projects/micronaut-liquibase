@@ -11,7 +11,7 @@ dependencies {
     api "io.micronaut:micronaut-management"
     api "io.micronaut.sql:micronaut-jdbc"
     implementation "io.projectreactor:reactor-core"
-    implementation 'jakarta.inject:jakarta.inject-api:2.0.0'
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
     testAnnotationProcessor "org.codehaus.groovy:groovy-sql:$groovyVersion"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
