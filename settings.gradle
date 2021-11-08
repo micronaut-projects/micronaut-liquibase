@@ -1,4 +1,13 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+plugins {
+    id 'io.micronaut.build.shared.settings' version '4.2.4'
+}
+
 rootProject.name = 'micronaut-liquibase'
 
 include 'liquibase'
-
