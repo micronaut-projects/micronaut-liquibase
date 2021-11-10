@@ -8,6 +8,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
 import io.micronaut.runtime.server.EmbeddedServer
+import spock.lang.Retry
 import spock.lang.Specification
 
 class LiquibaseEndpointSpec extends Specification {
@@ -65,6 +66,7 @@ class LiquibaseEndpointSpec extends Specification {
         applicationContext.close()
     }
 
+    @Retry
     void 'test liquibase endpoint'() {
         given:
         EmbeddedServer embeddedServer = ApplicationContext.run(
