@@ -3,6 +3,7 @@ package io.micronaut.liquibase
 import groovy.sql.Sql
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
+import io.micronaut.inject.qualifiers.Qualifiers
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
@@ -33,10 +34,10 @@ class LiquibaseMigratorSpec extends Specification {
     @AutoCleanup
     ApplicationContext applicationContext = ApplicationContext.run(config as Map<String, Object>, Environment.TEST)
 
-    void 'when migrations are disable it is possible to run the using the LiquibaseMigrator'() {
+    void 'when migrations are disabled it is possible to run the using the LiquibaseMigrator'() {
         when:
         LiquibaseMigrator liquibaseMigrator = applicationContext.getBean(LiquibaseMigrator)
-        DataSource dataSource = applicationContext.getBean(DataSource)
+        DataSource dataSource = applicationContext.getBean(DataSource, Qualifiers.byName("default"))
         LiquibaseConfigurationProperties liquibaseConfigurationProperties = applicationContext.getBean(LiquibaseConfigurationProperties)
         PollingConditions conditions = new PollingConditions(timeout: 5)
         Sql sql = Sql.newInstance(config.get('datasources.default.url'),
@@ -50,7 +51,7 @@ class LiquibaseMigratorSpec extends Specification {
         when:
         sql.rows('select count(*) from books')
 
-        then: // the migration was not already run
+        then: 'the migration was not already run'
         thrown(SQLException)
 
         when:
