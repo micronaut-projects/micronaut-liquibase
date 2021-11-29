@@ -15,11 +15,15 @@
  */
 package io.micronaut.liquibase.endpoint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Creator;
+import io.micronaut.core.annotation.Internal;
 import io.micronaut.core.annotation.Introspected;
 import liquibase.changelog.RanChangeSet;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Liquibase report for one datasource.
@@ -54,7 +58,19 @@ public class LiquibaseReport {
     /**
      * @return The list of change sets
      */
+    @JsonIgnore
     public List<RanChangeSet> getChangeSets() {
         return changeSets;
+    }
+
+    /**
+     * For serialization only.
+     *
+     * @return The list of change sets
+     */
+    @JsonProperty("changeSets")
+    @Internal
+    public List<RanChangeSetWrapper> getChangeSetWrappers() {
+        return changeSets.stream().map(RanChangeSetWrapper::new).collect(Collectors.toList());
     }
 }

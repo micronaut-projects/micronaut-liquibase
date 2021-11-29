@@ -97,6 +97,7 @@ class LiquibaseEndpointSpec extends Specification {
         result[0].changeSets.size() == 2
         result[0].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
         result[0].changeSets[1].changeLog == 'db/changelog/02-insert-data-books.xml'
+        result[0].changeSets[0].lastCheckSum instanceof String
 
         cleanup:
         client.close()
