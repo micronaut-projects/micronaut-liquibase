@@ -30,7 +30,7 @@ import java.util.Set;
  * Serialization wrapper around {@link RanChangeSet}.
  *
  * @author Jonas Konrad
- * @since 5.0.1
+ * @since 5.1.0
  */
 @Internal
 @Introspected
