@@ -16,6 +16,7 @@
 package io.micronaut.liquibase.endpoint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.micronaut.core.annotation.Internal;
 import io.micronaut.core.annotation.Introspected;
 import liquibase.change.CheckSum;
 import liquibase.changelog.ChangeSet;
@@ -24,6 +25,13 @@ import liquibase.changelog.RanChangeSet;
 import java.time.Instant;
 import java.util.Set;
 
+/**
+ * Serialization wrapper around {@link RanChangeSet}.
+ *
+ * @author Jonas Konrad
+ * @since 5.0.1
+ */
+@Internal
 @Introspected
 final class RanChangeSetWrapper {
     private final RanChangeSet delegate;
