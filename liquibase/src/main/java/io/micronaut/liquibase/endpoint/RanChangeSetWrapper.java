@@ -16,6 +16,7 @@
 package io.micronaut.liquibase.endpoint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.core.annotation.Introspected;
 import liquibase.change.CheckSum;
@@ -33,6 +34,7 @@ import java.util.Set;
  */
 @Internal
 @Introspected
+@JsonInclude(JsonInclude.Include.ALWAYS)
 final class RanChangeSetWrapper {
     private final RanChangeSet delegate;
 
@@ -86,7 +88,7 @@ final class RanChangeSetWrapper {
         return delegate.getStoredChangeLog();
     }
 
-    public String getLastCheckSum() {
+    public String getChecksum() {
         CheckSum cs = delegate.getLastCheckSum();
         return cs == null ? null : cs.toString();
     }

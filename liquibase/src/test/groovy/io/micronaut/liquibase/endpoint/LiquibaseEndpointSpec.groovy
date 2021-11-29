@@ -97,7 +97,10 @@ class LiquibaseEndpointSpec extends Specification {
         result[0].changeSets.size() == 2
         result[0].changeSets[0].changeLog == 'db/changelog/01-create-books-schema.xml'
         result[0].changeSets[1].changeLog == 'db/changelog/02-insert-data-books.xml'
-        result[0].changeSets[0].lastCheckSum instanceof String
+        result[0].changeSets[0].checksum instanceof String
+
+        // have to include all fields for compat
+        result[0].changeSets[0].keySet().containsAll(['author', 'changeLog', 'comments', 'contexts', 'dateExecuted', 'deploymentId', 'description', 'execType', 'id', 'labels', 'checksum', 'orderExecuted', 'tag'])
 
         cleanup:
         client.close()
