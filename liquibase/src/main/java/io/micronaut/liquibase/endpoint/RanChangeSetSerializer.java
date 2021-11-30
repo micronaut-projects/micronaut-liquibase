@@ -18,8 +18,6 @@ package io.micronaut.liquibase.endpoint;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import io.micronaut.context.annotation.Type;
-import jakarta.inject.Singleton;
 import liquibase.changelog.RanChangeSet;
 
 import java.io.IOException;
@@ -30,9 +28,9 @@ import java.time.Instant;
  *
  * @author Iván López
  * @since 1.0.0
+ * @deprecated Unused, replaced by wrapper type.
  */
-@Singleton
-@Type(RanChangeSet.class)
+@Deprecated
 public class RanChangeSetSerializer extends JsonSerializer<RanChangeSet> {
 
     @Override
