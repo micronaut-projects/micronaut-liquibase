@@ -32,6 +32,17 @@
     "allPublicMethods":true
   },
   {
+    "name": "liquibase.change.AddColumnConfig",
+    "allDeclaredFields": true,
+    "allPublicMethods":true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
     "name":"liquibase.change.ChangeFactory",
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
