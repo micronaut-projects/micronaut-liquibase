@@ -141,8 +141,7 @@ dependency on your classpath:</p>
     &lt;artifactId&gt;micronaut-liquibase&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-</p>
+</div></p>
 </div>
 
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
@@ -194,7 +193,7 @@ jpa:
 liquibase:
     datasources: <i class="conum" data-value="2"></i><b>(2)</b>
         default: <i class="conum" data-value="3"></i><b>(3)</b>
-            change-log: 'classpath:db/liquibase-changelog.xml' <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+            change-log: 'classpath:db/liquibase-changelog.xml' # &lt;4&gt; </code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -311,7 +310,7 @@ In this case it is enough to inject a <code>Datasource</code> in anyone of your 
 <p>There are several options available for configuration:</p>
 </div>
 <a id="io.micronaut.liquibase.LiquibaseConfigurationProperties" href="#io.micronaut.liquibase.LiquibaseConfigurationProperties">&#128279;</a>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Configuration Properties for <a href="../api/io/micronaut/liquibase/LiquibaseConfigurationProperties.html">LiquibaseConfigurationProperties</a></caption>
 <colgroup>
 <col style="width: 33.3333%;">
@@ -467,8 +466,7 @@ INFO: Successfully released change log lock
     &lt;version&gt;1.7.30&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-</p>
+</div></p>
 </div>
 <div class="ulist">
 <ul>
@@ -565,8 +563,7 @@ INFO: Successfully released change log lock
     &lt;artifactId&gt;micronaut-hibernate-gorm&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-</p>
+</div></p>
 </div>
 <div class="paragraph">
 <p>2.- You also need at least one class annotated with <code>@grails.gorm.annotation.Entity</code> to trigger the migrations.</p>
@@ -602,7 +599,7 @@ class Book {
   driverClassName: org.h2.Driver
   username: sa
   password: ''
-
+        
 liquibase:
   datasources: <i class="conum" data-value="3"></i><b>(3)</b>
     default: <i class="conum" data-value="4"></i><b>(4)</b>
@@ -649,7 +646,7 @@ liquibase:
   driverClassName: org.h2.Driver
   username: sa
   password: ''
-
+  
 dataSources:
   books: <i class="conum" data-value="2"></i><b>(2)</b>
     pooled: true
@@ -659,7 +656,7 @@ dataSources:
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-
+        
 liquibase:
   datasources:
     default: <i class="conum" data-value="3"></i><b>(3)</b>
