@@ -11,3 +11,4 @@ plugins {
 rootProject.name = 'liquibase-parent'
 
 include 'liquibase'
+include 'bom'
