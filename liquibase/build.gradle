@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     annotationProcessor libs.micronaut.inject.java
-    annotationProcessor libs.micronaut.docs
 
     compileOnly libs.micronaut.inject.java
     compileOnly libs.grails.datastore.gorm.hibernate5
