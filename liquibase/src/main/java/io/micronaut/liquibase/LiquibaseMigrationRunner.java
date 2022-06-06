@@ -60,7 +60,7 @@ import java.util.Map;
  * @since 1.0.0
  */
 @Singleton
-class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<DataSource> {
+public class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements BeanCreatedEventListener<DataSource> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LiquibaseMigrationRunner.class);
 
