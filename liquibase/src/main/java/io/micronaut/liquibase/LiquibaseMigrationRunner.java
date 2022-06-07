@@ -30,6 +30,8 @@ import jakarta.inject.Singleton;
 import liquibase.Contexts;
 import liquibase.LabelExpression;
 import liquibase.Liquibase;
+import liquibase.changelog.ChangeLogHistoryServiceFactory;
+import liquibase.changelog.ChangeSet;
 import liquibase.configuration.GlobalConfiguration;
 import liquibase.configuration.LiquibaseConfiguration;
 import liquibase.database.Database;
@@ -50,6 +52,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -154,7 +157,7 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
         try {
             liquibase = createLiquibase(connection, config);
             generateRollbackFile(liquibase, config);
-            performUpdate(liquibase, config);
+            performUpdateIfNeeded(liquibase, config);
         } catch (LiquibaseException e) {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
@@ -176,7 +179,35 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
             }
         }
     }
+          /**
+          * Performs update only when there are unrun changesets. Drastically improves app startup time when there are no 
+          * changes to be performed on database.
+          * @param liquibase Primary facade class for interacting with Liquibase.
+          * @param config    Liquibase configuration
+          * @throws LiquibaseException Liquibase exception.
+          */
+          private void performUpdateIfNeeded(
+    	      final Liquibase liquibase, LiquibaseConfigurationProperties config)
+    	      throws LiquibaseException {
+    	    if (updateNeeded(
+    	        liquibase, new Contexts(config.getContexts()), new LabelExpression(config.getLabels()))) {
+    	      ChangeLogHistoryServiceFactory.getInstance()
+    	          .getChangeLogService(liquibase.getDatabase())
+    	          .reset();
+    	      performUpdate(liquibase, config);
+    	    }
+    	  }
 
+    	  private static boolean updateNeeded(
+    	      final Liquibase liquibase, final Contexts contexts, final LabelExpression labelExpression)
+    	      throws LiquibaseException {
+    	    LOG.info("Checking if update required...");
+    	    final List<ChangeSet> unrunChangeSets =
+    	        liquibase.listUnrunChangeSets(contexts, labelExpression, false);
+    	    LOG.info("Size of unrunchangeset : " + unrunChangeSets.size());
+    	    return !unrunChangeSets.isEmpty();
+    	  }
+    	  
     /**
      * Performs Liquibase update.
      *
