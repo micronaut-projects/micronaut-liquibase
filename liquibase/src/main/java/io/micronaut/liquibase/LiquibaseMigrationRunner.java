@@ -202,10 +202,10 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
     private static boolean updateNeeded(
         final Liquibase liquibase, final Contexts contexts, final LabelExpression labelExpression)
             throws LiquibaseException {
-      LOG.info("Checking if update required...");
+      LOG.debug("Checking if update required...");
       final List<ChangeSet> unrunChangeSets =
           liquibase.listUnrunChangeSets(contexts, labelExpression, false);
-      LOG.info("Size of unrunchangeset : " + unrunChangeSets.size());
+      LOG.debug("Size of unrunchangeset : {}", unrunChangeSets.size());
       return !unrunChangeSets.isEmpty();
     }
 
