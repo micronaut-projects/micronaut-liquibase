@@ -179,6 +179,7 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
             }
         }
     }
+    
           /**
           * Performs update only when there are unrun changesets. Drastically improves app startup time when there are no 
           * changes to be performed on database.
@@ -186,28 +187,28 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
           * @param config    Liquibase configuration
           * @throws LiquibaseException Liquibase exception.
           */
-          private void performUpdateIfNeeded(
-    	      final Liquibase liquibase, LiquibaseConfigurationProperties config)
-    	      throws LiquibaseException {
-    	    if (updateNeeded(
-    	        liquibase, new Contexts(config.getContexts()), new LabelExpression(config.getLabels()))) {
-    	      ChangeLogHistoryServiceFactory.getInstance()
-    	          .getChangeLogService(liquibase.getDatabase())
-    	          .reset();
-    	      performUpdate(liquibase, config);
-    	    }
-    	  }
+    private void performUpdateIfNeeded(
+        final Liquibase liquibase, LiquibaseConfigurationProperties config)
+            throws LiquibaseException {
+      if (updateNeeded(
+          liquibase, new Contexts(config.getContexts()), new LabelExpression(config.getLabels()))) {
+        ChangeLogHistoryServiceFactory.getInstance()
+        .getChangeLogService(liquibase.getDatabase())
+        .reset();
+        performUpdate(liquibase, config);
+      }
+    }
 
-    	  private static boolean updateNeeded(
-    	      final Liquibase liquibase, final Contexts contexts, final LabelExpression labelExpression)
-    	      throws LiquibaseException {
-    	    LOG.info("Checking if update required...");
-    	    final List<ChangeSet> unrunChangeSets =
-    	        liquibase.listUnrunChangeSets(contexts, labelExpression, false);
-    	    LOG.info("Size of unrunchangeset : " + unrunChangeSets.size());
-    	    return !unrunChangeSets.isEmpty();
-    	  }
-    	  
+    private static boolean updateNeeded(
+        final Liquibase liquibase, final Contexts contexts, final LabelExpression labelExpression)
+            throws LiquibaseException {
+      LOG.info("Checking if update required...");
+      final List<ChangeSet> unrunChangeSets =
+          liquibase.listUnrunChangeSets(contexts, labelExpression, false);
+      LOG.info("Size of unrunchangeset : " + unrunChangeSets.size());
+      return !unrunChangeSets.isEmpty();
+    }
+
     /**
      * Performs Liquibase update.
      *
