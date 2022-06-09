@@ -24,6 +24,8 @@ import jakarta.inject.Singleton;
 import liquibase.Contexts;
 import liquibase.LabelExpression;
 import liquibase.Liquibase;
+import liquibase.changelog.ChangeLogHistoryServiceFactory;
+import liquibase.changelog.ChangeSet;
 import liquibase.configuration.GlobalConfiguration;
 import liquibase.configuration.LiquibaseConfiguration;
 import liquibase.database.Database;
@@ -44,7 +46,10 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+
+import static io.micronaut.core.util.StringUtils.trimToNull;
 
 /**
  * Parent class that runs Liquibase database migrations.
@@ -77,11 +82,21 @@ public class AbstractLiquibaseMigration {
      */
     void run(LiquibaseConfigurationProperties config, DataSource dataSource) {
         if (config.isEnabled()) {
-            if (config.isAsync()) {
-                migrateAsync(config, dataSource);
-            } else {
-                migrate(config, dataSource);
-            }
+            forceRun(config, dataSource);
+        }
+    }
+
+    /**
+     * Run the Liquibase migrations whether they are enabled or not for the specific datasource.
+     *
+     * @param config     The {@link LiquibaseConfigurationProperties}
+     * @param dataSource The {@link DataSource}
+     */
+    void forceRun(LiquibaseConfigurationProperties config, DataSource dataSource) {
+        if (config.isAsync()) {
+            migrateAsync(config, dataSource);
+        } else {
+            migrate(config, dataSource);
         }
     }
 
@@ -102,7 +117,7 @@ public class AbstractLiquibaseMigration {
      * @param config     The {@link LiquibaseConfigurationProperties}
      * @param dataSource The {@link DataSource}
      */
-    private void migrate(LiquibaseConfigurationProperties config, DataSource dataSource) {
+    void migrate(LiquibaseConfigurationProperties config, DataSource dataSource) {
         Connection connection;
         try {
             connection = dataSource.getConnection();
@@ -121,51 +136,48 @@ public class AbstractLiquibaseMigration {
             }
             liquibase = createLiquibase(connection, config);
             generateRollbackFile(liquibase, config);
-            performUpdate(liquibase, config);
+            performUpdateIfNeeded(liquibase, config);
         } catch (LiquibaseException e) {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
             applicationContext.close();
         } finally {
-            Database database = null;
-            if (liquibase != null) {
-                database = liquibase.getDatabase();
-            }
-            if (database != null) {
-                try {
-                    database.close();
-                } catch (DatabaseException e) {
-                    if (LOG.isWarnEnabled()) {
-                        LOG.warn("Error closing the connection after the migration.", e);
-                    }
+            closeDatabase(liquibase);
+        }
+    }
+
+    void closeDatabase(Liquibase liquibase) {
+        Database database = null;
+        if (liquibase != null) {
+            database = liquibase.getDatabase();
+        }
+        if (database != null) {
+            try {
+                database.close();
+            } catch (DatabaseException e) {
+                if (LOG.isWarnEnabled()) {
+                    LOG.warn("Error closing the connection after the migration.", e);
                 }
             }
         }
     }
 
     /**
-     * Performs Liquibase update.
+     * Performs update only when there are unrun changesets. Drastically improves app startup time when there are no
+     * changes to be performed on database.
      *
      * @param liquibase Primary facade class for interacting with Liquibase.
      * @param config    Liquibase configuration
      * @throws LiquibaseException Liquibase exception.
      */
-    private void performUpdate(Liquibase liquibase, LiquibaseConfigurationProperties config) throws LiquibaseException {
-        LabelExpression labelExpression = new LabelExpression(config.getLabels());
-        Contexts contexts = new Contexts(config.getContexts());
-        if (config.isTestRollbackOnUpdate()) {
-            if (config.getTag() != null) {
-                liquibase.updateTestingRollback(config.getTag(), contexts, labelExpression);
-            } else {
-                liquibase.updateTestingRollback(contexts, labelExpression);
-            }
-        } else {
-            if (config.getTag() != null) {
-                liquibase.update(config.getTag(), contexts, labelExpression);
-            } else {
-                liquibase.update(contexts, labelExpression);
-            }
+    void performUpdateIfNeeded(final Liquibase liquibase, final LiquibaseConfigurationProperties config)
+            throws LiquibaseException {
+        if (isUpdateNeeded(liquibase, new Contexts(config.getContexts()), new LabelExpression(config.getLabels()))) {
+            ChangeLogHistoryServiceFactory.getInstance()
+                    .getChangeLogService(liquibase.getDatabase())
+                    .reset();
+            performUpdate(liquibase, config);
         }
     }
 
@@ -176,7 +188,7 @@ public class AbstractLiquibaseMigration {
      * @param config    Liquibase configuration
      * @throws LiquibaseException Liquibase exception.
      */
-    private void generateRollbackFile(Liquibase liquibase, LiquibaseConfigurationProperties config) throws LiquibaseException {
+    void generateRollbackFile(Liquibase liquibase, LiquibaseConfigurationProperties config) throws LiquibaseException {
         if (config.getRollbackFile() != null) {
             String outputEncoding = LiquibaseConfiguration.getInstance().getConfiguration(GlobalConfiguration.class).getOutputEncoding();
             try (FileOutputStream fileOutputStream = new FileOutputStream(config.getRollbackFile());
@@ -200,7 +212,7 @@ public class AbstractLiquibaseMigration {
      * @return A Liquibase object
      * @throws LiquibaseException A liquibase exception.
      */
-    private Liquibase createLiquibase(Connection connection, LiquibaseConfigurationProperties config) throws LiquibaseException {
+    Liquibase createLiquibase(Connection connection, LiquibaseConfigurationProperties config) throws LiquibaseException {
         String changeLog = config.getChangeLog();
         Database database = createDatabase(connection, resourceAccessor, config);
         Liquibase liquibase = new Liquibase(changeLog, resourceAccessor, database);
@@ -229,7 +241,7 @@ public class AbstractLiquibaseMigration {
      * @return a Database implementation retrieved from the {@link DatabaseFactory}.
      * @throws DatabaseException A Liquibase Database exception.
      */
-    private Database createDatabase(Connection connection,
+    Database createDatabase(Connection connection,
                                     ResourceAccessor resourceAccessor,
                                     LiquibaseConfigurationProperties config) throws DatabaseException {
 
@@ -261,15 +273,53 @@ public class AbstractLiquibaseMigration {
                 database.setLiquibaseCatalogName(liquibaseSchema);
             }
         }
-        if (StringUtils.trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
+        if (trimToNull(config.getLiquibaseTablespace()) != null && database.supportsTablespaces()) {
             database.setLiquibaseTablespaceName(config.getLiquibaseTablespace());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogTable()) != null) {
             database.setDatabaseChangeLogTableName(config.getDatabaseChangeLogTable());
         }
-        if (StringUtils.trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
+        if (trimToNull(config.getDatabaseChangeLogLockTable()) != null) {
             database.setDatabaseChangeLogLockTableName(config.getDatabaseChangeLogLockTable());
         }
         return database;
     }
+
+    /**
+     * Performs Liquibase update.
+     *
+     * @param liquibase Primary facade class for interacting with Liquibase.
+     * @param config    Liquibase configuration
+     * @throws LiquibaseException Liquibase exception.
+     */
+    private void performUpdate(Liquibase liquibase, LiquibaseConfigurationProperties config) throws LiquibaseException {
+        LabelExpression labelExpression = new LabelExpression(config.getLabels());
+        Contexts contexts = new Contexts(config.getContexts());
+        if (config.isTestRollbackOnUpdate()) {
+            if (config.getTag() != null) {
+                liquibase.updateTestingRollback(config.getTag(), contexts, labelExpression);
+            } else {
+                liquibase.updateTestingRollback(contexts, labelExpression);
+            }
+        } else {
+            if (config.getTag() != null) {
+                liquibase.update(config.getTag(), contexts, labelExpression);
+            } else {
+                liquibase.update(contexts, labelExpression);
+            }
+        }
+    }
+
+    private boolean isUpdateNeeded(final Liquibase liquibase, final Contexts contexts,
+                                   final LabelExpression labelExpression) throws LiquibaseException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Checking if update required...");
+        }
+        final List<ChangeSet> unrunChangeSets = liquibase.listUnrunChangeSets(contexts, labelExpression, false);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Size of un-run change sets: {}", unrunChangeSets.size());
+        }
+        return !unrunChangeSets.isEmpty();
+    }
+
 }
