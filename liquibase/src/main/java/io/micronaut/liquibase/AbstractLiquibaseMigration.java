@@ -151,6 +151,8 @@ public class AbstractLiquibaseMigration {
 
     /**
      * Close the database if it exists.
+     *
+     * @param liquibase Primary facade class for interacting with Liquibase.
      */
     void closeDatabase(Liquibase liquibase) {
         Database database = null;
