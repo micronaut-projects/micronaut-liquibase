@@ -18,6 +18,7 @@ package io.micronaut.liquibase;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
+import io.micronaut.runtime.exceptions.ApplicationStartupException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.Async;
 import jakarta.inject.Singleton;
@@ -126,7 +127,7 @@ public class AbstractLiquibaseMigration {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
             applicationContext.close();
-            return;
+            throw new ApplicationStartupException("Migration failed! Could not connect to the datasource.", e);
         }
 
         Liquibase liquibase = null;
@@ -142,11 +143,15 @@ public class AbstractLiquibaseMigration {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
             applicationContext.close();
+            throw new ApplicationStartupException("Migration failed! Liquibase encountered an exception.", e);
         } finally {
             closeDatabase(liquibase);
         }
     }
 
+    /**
+     * Close the database if it exists.
+     */
     void closeDatabase(Liquibase liquibase) {
         Database database = null;
         if (liquibase != null) {
