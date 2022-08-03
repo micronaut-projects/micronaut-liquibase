@@ -16,6 +16,16 @@
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
+    "name":"liquibase.Scope",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"liquibase.configuration.ConfiguredValueModifierFactory",
+    "allDeclaredFields":true,
+    "allPublicMethods":true,
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
     "name":"liquibase.AbstractExtensibleObject",
     "allPublicMethods":true
   },
