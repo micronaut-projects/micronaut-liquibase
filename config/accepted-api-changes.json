@@ -1,0 +1,12 @@
+[
+  {
+    "type": "io.micronaut.liquibase.endpoint.LiquibaseEndpoint",
+    "member": "Constructor io.micronaut.liquibase.endpoint.LiquibaseEndpoint(java.util.Collection,io.micronaut.context.ApplicationContext)",
+    "reason": "Removed deprecated constructor for Micronaut 4.0.x"
+  },
+  {
+    "type": "io.micronaut.liquibase.endpoint.RanChangeSetSerializer",
+    "member": "Constructor io.micronaut.liquibase.endpoint.RanChangeSetSerializer()",
+    "reason": "Removed deprecated constructor for Micronaut 4.0.x"
+  }
+]

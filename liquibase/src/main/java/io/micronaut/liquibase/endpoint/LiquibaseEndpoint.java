@@ -60,19 +60,8 @@ public class LiquibaseEndpoint {
     /**
      * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
      * @param applicationContext               The application context
-     */
-    @Deprecated
-    public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
-                             ApplicationContext applicationContext) {
-        this(liquibaseConfigurationProperties, applicationContext, null);
-    }
-
-    /**
-     * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
-     * @param applicationContext               The application context
      * @param dataSourceResolver               The data source resolver
      */
-    @Creator
     public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
                              ApplicationContext applicationContext,
                              @Nullable DataSourceResolver dataSourceResolver) {

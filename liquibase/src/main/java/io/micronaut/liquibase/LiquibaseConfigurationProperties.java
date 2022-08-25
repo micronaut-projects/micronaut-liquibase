@@ -117,29 +117,6 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     }
 
     /**
-     * @return true if classpath prefix should be ignored during changeset comparison
-     */
-    @Deprecated
-    public boolean isIgnoreClasspathPrefix() {
-        if (LOG.isWarnEnabled()) {
-            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
-        }
-        return false;
-    }
-
-    /**
-     * Ignores classpath prefix during changeset comparison.
-     *
-     * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
-     */
-    @Deprecated
-    public void setIgnoreClasspathPrefix(boolean ignoreClasspathPrefix) {
-        if (LOG.isWarnEnabled()) {
-            LOG.warn("This configuration option is not available anymore in Liquibase Opensource edition.");
-        }
-    }
-
-    /**
      * Name of table to use for tracking concurrent Liquibase usage.
      *
      * @return the name of table to use for tracking concurrent Liquibase usage.
