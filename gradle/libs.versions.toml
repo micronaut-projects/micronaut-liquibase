@@ -1,5 +1,5 @@
 [versions]
-managed-liquibase = "4.14.0"
+managed-liquibase = "4.17.0"
 
 gorm-hibernate = "7.3.0"
 persistence-api = '2.2'
