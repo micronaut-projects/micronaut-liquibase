@@ -8,5 +8,80 @@
     "type": "io.micronaut.liquibase.endpoint.RanChangeSetSerializer",
     "member": "Constructor io.micronaut.liquibase.endpoint.RanChangeSetSerializer()",
     "reason": "Removed deprecated constructor for Micronaut 4.0.x"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Field $ANNOTATION_METADATA",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Constructor io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference()",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationSource",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanContextConditional",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationMetadataProvider",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.AdvisedBeanType",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanType",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanDefinitionReference",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Field $ANNOTATION_METADATA",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Constructor io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference()",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationSource",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanContextConditional",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationMetadataProvider",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanType",
+    "reason": "GORM 7 does not support Apache Groovy 4"
+  },
+  {
+    "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanDefinitionReference",
+    "reason": "GORM 7 does not support Apache Groovy 4"
   }
 ]

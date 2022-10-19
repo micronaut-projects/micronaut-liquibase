@@ -1,7 +1,7 @@
 introduction: Introduction
 releaseHistory: Release History
+breaks: Breaking Changes
 configuration: Configuration
-gorm: GORM Support
 graalvm: GraalVM support
 endpoint: Endpoint
 repository: Repository

@@ -1,0 +1,1 @@
+WARNING: Micronaut Framework 4 uses Groovy 4 and **it does not support GORM 7**. Micronaut Liquibase will support GORM once there is a GORM version built with Groovy 4.

@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     compileOnly libs.micronaut.inject.java
-    compileOnly libs.grails.datastore.gorm.hibernate5
 
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
@@ -21,8 +20,6 @@ dependencies {
     testImplementation libs.micronaut.http.client
     testImplementation libs.micronaut.http.server.netty
     testImplementation libs.micronaut.jdbc.hikari
-    testImplementation libs.micronaut.hibernate.gorm
     testImplementation libs.groovy.sql
-    testImplementation libs.grails.datastore.gorm.hibernate5
     testImplementation libs.h2
 }

@@ -36,7 +36,7 @@ jpa:
 liquibase:
     datasources: # <2>
         default: # <3>
-            change-log: 'classpath:db/liquibase-changelog.xml' # <4> 
+            change-log: 'classpath:db/liquibase-changelog.xml' # <4>
 '''//end::yamlconfig[]
 
     @Shared
@@ -46,21 +46,21 @@ liquibase:
                             'packages-to-scan' : ['example.micronaut'],
                             properties: [
                                     hibernate: [
-                                        hbm2ddl: [
-                                                auto: 'none'
-                                        ],
-                                        'show_sql' : true,
+                                            hbm2ddl: [
+                                                    auto: 'none'
+                                            ],
+                                            'show_sql' : true,
                                     ]
                             ]
 
                     ]
             ],
             liquibase: [
-                datasources: [
-                    default: [
-                        'change-log': 'classpath:db/liquibase-changelog.xml'
+                    datasources: [
+                            default: [
+                                    'change-log': 'classpath:db/liquibase-changelog.xml'
+                            ]
                     ]
-                ]
             ],
             datasources: [
                     default: [

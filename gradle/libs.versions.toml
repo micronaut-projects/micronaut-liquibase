@@ -1,21 +1,17 @@
 [versions]
 managed-liquibase = "4.16.0"
 
-gorm-hibernate = "7.3.0"
 persistence-api = '2.2'
 
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
 
-micronaut-hibernate-gorm = { module = "io.micronaut.groovy:micronaut-hibernate-gorm" }
 micronaut-http-client = { module = "io.micronaut:micronaut-http-client" }
 micronaut-http-server-netty = { module = "io.micronaut:micronaut-http-server-netty" }
 micronaut-inject-java = { module = 'io.micronaut:micronaut-inject-java' }
 micronaut-jdbc = { module = "io.micronaut.sql:micronaut-jdbc" }
 micronaut-jdbc-hikari = { module = "io.micronaut.sql:micronaut-jdbc-hikari" }
 micronaut-management = { module = "io.micronaut:micronaut-management" }
-
-grails-datastore-gorm-hibernate5 = { module = "org.grails:grails-datastore-gorm-hibernate5", version.ref = "gorm-hibernate" }
 
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
