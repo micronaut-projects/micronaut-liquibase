@@ -17,7 +17,7 @@ micronaut-management = { module = "io.micronaut:micronaut-management" }
 
 grails-datastore-gorm-hibernate5 = { module = "org.grails:grails-datastore-gorm-hibernate5", version.ref = "gorm-hibernate" }
 
-groovy-sql = { module = "org.codehaus.groovy:groovy-sql" }
+groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
 h2 = { module = "com.h2database:h2" }
 
