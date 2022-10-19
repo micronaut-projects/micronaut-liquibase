@@ -46,7 +46,7 @@
         <div class="docs-content">
             <div class="project">
                 <h1>Configuration Reference</h1>
-                <p><strong>Version:</strong>5.5.0-SNAPSHOT</p>
+                <p><strong>Version:</strong>6.0.0-SNAPSHOT</p>
                 <p></p>
             </div>
 <div class="sect2">
@@ -68,84 +68,86 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.async</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.test-rollback-on-update</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether liquibase operations should be run asynchronously.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets whether this liquibase configuration is enabled. Default value (true).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.change-log</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Change log configuration path.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.default-schema</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default database schema.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-schema</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Schema to use for Liquibase objects.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.drop-first</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to first drop the database schema. Default value (false).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-tablespace</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tablespace to use for Liquibase objects.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.database-change-log-table</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking change history.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns whether a rollback should be tested at update time or not.</p>
+<p class="tableblock"> @return Whether a rollback should be tested at update time or not.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.database-change-log-lock-table</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking concurrent Liquibase usage.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking concurrent Liquibase usage.</p>
+<p class="tableblock"> @return the name of table to use for tracking concurrent Liquibase usage.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.database-change-log-table</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a tag.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking change history.</p>
+<p class="tableblock"> @return the name of table to use for tracking change history.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.contexts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-tablespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime contexts to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tablespace to use for Liquibase objects.</p>
+<p class="tableblock"> @return the tablespace to use for Liquibase objects.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.labels</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-schema</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime labels to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schema to use for Liquibase objects.</p>
+<p class="tableblock"> @return Schema to use for Liquibase objects.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.test-rollback-on-update</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether rollback should be tested before update is performed. Default value (false).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.change-log</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return the liquibase changelog</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.rollback-file-path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to file to which rollback SQL is written when an update is performed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return the path to file to which rollback SQL is written when an update is performed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.drop-first</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return true if database schema should be drop before running liquibase operations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.default-schema</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return the default database schema.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.parameters</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">java.util.Map</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Change log parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return the change log parameters.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.ignore-classpath-prefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return the liquibase tag.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.contexts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime contexts to use.</p>
+<p class="tableblock"> @return a comma-separated list of runtime contexts to use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.labels</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime labels to use.</p>
+<p class="tableblock"> @return A Comma-separated list of runtime labels to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ignores classpath prefix during changeset comparison.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.async</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@return true if liquibase operations should be run asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
