@@ -10,6 +10,11 @@
     "reason": "Removed deprecated constructor for Micronaut 4.0.x"
   },
   {
+    "type": "io.micronaut.liquibase.endpoint.RanChangeSetSerializer",
+    "member": "Implemented interface com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable",
+    "reason": "Micronaut Framework 4 does not leak Jackson by default"
+  },
+  {
     "type": "io.micronaut.liquibase.$GormMigrationRunner$Definition$Intercepted$Definition$Reference",
     "member": "Field $ANNOTATION_METADATA",
     "reason": "GORM 7 does not support Apache Groovy 4"
