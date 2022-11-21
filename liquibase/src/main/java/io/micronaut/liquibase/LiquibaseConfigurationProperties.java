@@ -139,6 +139,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     }
 
     /**
+     * @deprecated This configuration option is not available anymore in Liquibase Opensource edition
      * @return true if classpath prefix should be ignored during changeset comparison
      */
     @Deprecated
@@ -152,6 +153,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * Ignores classpath prefix during changeset comparison.
      *
+     * @deprecated This configuration option is not available anymore in Liquibase Opensource edition
      * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
      */
     @Deprecated
