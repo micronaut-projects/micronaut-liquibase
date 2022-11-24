@@ -2,6 +2,7 @@ package io.micronaut.liquibase
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
+import io.micronaut.context.exceptions.BeanInstantiationException
 import io.micronaut.context.exceptions.NoSuchBeanException
 import io.micronaut.inject.qualifiers.Qualifiers
 import spock.lang.Specification
@@ -53,6 +54,49 @@ class LiquibaseConfigurationPropertiesEnabledSpec extends Specification {
 
         when:
         applicationContext.getBean(LiquibaseConfigurationProperties, Qualifiers.byName('books'))
+
+        then:
+        noExceptionThrown()
+
+        cleanup:
+        applicationContext.close()
+    }
+
+    void 'if default configuration has datasources.default.schema-generate then ConfigurationException thrown'() {
+        when:
+        ApplicationContext.run(
+            ['spec.name'                              : LiquibaseConfigurationPropertiesEnabledSpec.simpleName,
+             'liquibase.datasources.movies.enabled'   : true,
+             'liquibase.datasources.movies.change-log': 'classpath:db/liquibase-changelog.xml',
+             'datasources.movies.url'                 : 'jdbc:h2:mem:liquibaseMoviesDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE',
+             'datasources.movies.schema-generate'     : 'CREATE_DROP',
+             'datasources.movies.username'            : 'sa',
+             'datasources.movies.password'            : '',
+             'datasources.movies.driverClassName'     : 'org.h2.Driver'
+            ] as Map
+            , Environment.TEST
+        )
+
+        then:
+        def ex = thrown BeanInstantiationException
+        ex.message.contains(
+                "Message: Cannot have configuration property 'datasources.movies.schema-generate' if liquibase migration is enabled")
+    }
+
+    void 'if default configuration has datasources.default.schema-generate=NONE then ConfigurationException is not thrown'() {
+        when:
+        ApplicationContext applicationContext = ApplicationContext.run(
+            ['spec.name'                              : LiquibaseConfigurationPropertiesEnabledSpec.simpleName,
+             'liquibase.datasources.movies.enabled'   : true,
+             'liquibase.datasources.movies.change-log': 'classpath:db/liquibase-changelog.xml',
+             'datasources.movies.url'                 : 'jdbc:h2:mem:liquibaseMoviesDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE',
+             'datasources.movies.schema-generate'     : 'NONE',
+             'datasources.movies.username'            : 'sa',
+             'datasources.movies.password'            : '',
+             'datasources.movies.driverClassName'     : 'org.h2.Driver'
+            ] as Map
+            , Environment.TEST
+        )
 
         then:
         noExceptionThrown()

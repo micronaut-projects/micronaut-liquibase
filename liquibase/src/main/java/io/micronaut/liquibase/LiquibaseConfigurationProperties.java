@@ -17,7 +17,10 @@ package io.micronaut.liquibase;
 
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
+import io.micronaut.context.env.Environment;
+import io.micronaut.context.exceptions.ConfigurationException;
 import io.micronaut.core.util.Toggleable;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,6 +102,25 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     }
 
     /**
+     * Datasource configuration cannot include datasources.[nameQualifier].schema-generate=CREATE_DROP
+     * if this configuration is enabled.
+     *
+     * @param environment Micronaut environment
+     * @throws ConfigurationException if schema-generate=CREATE_DROP is present for datasource
+     * configuration and this configuration is enabled.
+     */
+    @PostConstruct
+    void validate(Environment environment) {
+        String badProp = "datasources." + nameQualifier + ".schema-generate";
+        environment.getProperty(badProp, String.class).ifPresent(value -> {
+            if (isEnabled() && !value.equalsIgnoreCase("NONE")) {
+                throw new ConfigurationException(
+                    String.format("Cannot have configuration property '%s' if liquibase migration is enabled", badProp));
+            }
+        });
+    }
+
+    /**
      * Whether rollback should be tested before update is performed. Default value ({@value #DEFAULT_TESTROLLBACKONUPDATE}).
      *
      * @param testRollbackOnUpdate Whether rollback should be tested before update is performed.
@@ -117,6 +139,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     }
 
     /**
+     * @deprecated This configuration option is not available anymore in Liquibase Opensource edition
      * @return true if classpath prefix should be ignored during changeset comparison
      */
     @Deprecated
@@ -130,6 +153,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * Ignores classpath prefix during changeset comparison.
      *
+     * @deprecated This configuration option is not available anymore in Liquibase Opensource edition
      * @param ignoreClasspathPrefix Sets whether to ignore the classpath prefix during changeset comparison.
      */
     @Deprecated
