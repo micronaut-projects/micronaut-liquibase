@@ -1,5 +1,5 @@
 [versions]
-managed-liquibase = "4.16.0"
+managed-liquibase = "4.17.2"
 
 persistence-api = '2.2'
 
