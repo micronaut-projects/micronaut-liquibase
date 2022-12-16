@@ -16,13 +16,14 @@
 package io.micronaut.liquibase.endpoint;
 
 import io.micronaut.context.ApplicationContext;
-import io.micronaut.core.annotation.Creator;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
+import io.micronaut.serde.annotation.SerdeImport;
+import liquibase.changelog.RanChangeSet;
 import liquibase.changelog.StandardChangeLogHistoryService;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
@@ -44,6 +45,7 @@ import java.util.Collection;
  * @author Iván López
  * @since 1.0.0
  */
+@SerdeImport(RanChangeSet.class)
 @Endpoint(id = LiquibaseEndpoint.NAME)
 public class LiquibaseEndpoint {
 

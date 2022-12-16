@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    annotationProcessor(mnSerde.micronaut.serde.processor)
     compileOnly mn.micronaut.inject.java
 
     api (libs.managed.liquibase) {
