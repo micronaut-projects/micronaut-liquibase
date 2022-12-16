@@ -3,23 +3,24 @@ plugins {
 }
 
 dependencies {
-    compileOnly libs.micronaut.inject.java
+    compileOnly mn.micronaut.inject.java
 
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
     }
-    api libs.micronaut.management
-    api libs.micronaut.jdbc
+    api mn.micronaut.management
+    api mnSql.micronaut.jdbc
 
-    implementation libs.projectreactor
+    implementation mn.reactor
+    implementation mnSerde.micronaut.serde.jackson
 
     testAnnotationProcessor libs.groovy.sql
     testAnnotationProcessor libs.persistence.api
 
-    testImplementation libs.micronaut.inject.java
-    testImplementation libs.micronaut.http.client
-    testImplementation libs.micronaut.http.server.netty
-    testImplementation libs.micronaut.jdbc.hikari
+    testImplementation mn.micronaut.inject.java
+    testImplementation mn.micronaut.http.client
+    testImplementation mn.micronaut.http.server.netty
+    testImplementation mnSql.micronaut.jdbc.hikari
     testImplementation libs.groovy.sql
-    testImplementation libs.h2
+    testImplementation mnSql.h2
 }

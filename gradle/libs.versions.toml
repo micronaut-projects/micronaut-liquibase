@@ -1,21 +1,25 @@
 [versions]
 managed-liquibase = "4.18.0"
 
+micronaut = "4.0.0-SNAPSHOT"
+micronaut-test = "4.0.0-SNAPSHOT"
+micronaut-docs = "2.0.0"
+groovy = "4.0.6"
+spock = "2.3-groovy-4.0"
+
+micronaut-serde = "2.0.0-SNAPSHOT"
+micronaut-sql = "5.0.0-SNAPSHOT"
+
 persistence-api = '2.2'
 
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
 
-micronaut-http-client = { module = "io.micronaut:micronaut-http-client" }
-micronaut-http-server-netty = { module = "io.micronaut:micronaut-http-server-netty" }
-micronaut-inject-java = { module = 'io.micronaut:micronaut-inject-java' }
-micronaut-jdbc = { module = "io.micronaut.sql:micronaut-jdbc" }
-micronaut-jdbc-hikari = { module = "io.micronaut.sql:micronaut-jdbc-hikari" }
-micronaut-management = { module = "io.micronaut:micronaut-management" }
+micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.ref = "micronaut-serde" }
+micronaut-sql = { module = "io.micronaut.sql:micronaut-sql-bom", version.ref = "micronaut-sql" }
 
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
 h2 = { module = "com.h2database:h2" }
 
 persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
-projectreactor = { module = 'io.projectreactor:reactor-core' }

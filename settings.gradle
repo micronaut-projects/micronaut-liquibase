@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 plugins {
     id 'io.micronaut.build.shared.settings' version '6.1.1'
 }
@@ -12,3 +13,12 @@ rootProject.name = 'liquibase-parent'
 
 include 'liquibase'
 include 'liquibase-bom'
+
+enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
+
+micronautBuild {
+    addSnapshotRepository()
+    importMicronautCatalog()
+    importMicronautCatalog("micronaut-serde")
+    importMicronautCatalog("micronaut-sql")
+}
