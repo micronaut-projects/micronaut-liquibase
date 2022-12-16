@@ -58,8 +58,8 @@ final class RanChangeSetWrapper {
         return delegate.getContextExpression().getContexts();
     }
 
-    public Instant getDateExecuted() {
-        return delegate.getDateExecuted().toInstant();
+    public String getDateExecuted() {
+        return delegate.getDateExecuted().toInstant().toString();
     }
 
     public String getDeploymentId() {
