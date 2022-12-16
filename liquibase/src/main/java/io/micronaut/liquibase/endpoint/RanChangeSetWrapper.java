@@ -15,7 +15,6 @@
  */
 package io.micronaut.liquibase.endpoint;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.serde.annotation.Serdeable;
@@ -23,7 +22,6 @@ import liquibase.change.CheckSum;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.RanChangeSet;
 
-import java.time.Instant;
 import java.util.Set;
 
 /**
