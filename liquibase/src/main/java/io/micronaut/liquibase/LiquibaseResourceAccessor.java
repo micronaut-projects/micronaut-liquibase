@@ -20,6 +20,7 @@ import jakarta.inject.Singleton;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.CompositeResourceAccessor;
 import liquibase.resource.FileSystemResourceAccessor;
+import liquibase.resource.Resource;
 import liquibase.resource.ResourceAccessor;
 
 import java.io.IOException;
@@ -46,6 +47,11 @@ public class LiquibaseResourceAccessor extends CompositeResourceAccessor {
     @Override
     public SortedSet<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
         return super.list(normalize(relativeTo), path, includeFiles, includeDirectories, recursive);
+    }
+
+    @Override
+    public List<Resource> getAll(String path) throws IOException {
+        return super.getAll(normalize(path));
     }
 
     private String normalize(String path) {
