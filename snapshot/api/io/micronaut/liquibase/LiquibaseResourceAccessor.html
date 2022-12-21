@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10};
+var methods = {"i0":9,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,7 +122,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>java.lang.Cloneable, liquibase.ExtensibleObject, liquibase.resource.ResourceAccessor</dd>
+<dd>java.lang.AutoCloseable, java.lang.Cloneable, liquibase.ExtensibleObject, liquibase.resource.ResourceAccessor</dd>
 </dl>
 <hr>
 <br>
@@ -142,6 +142,21 @@ extends liquibase.resource.CompositeResourceAccessor</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.liquibase.resource.ResourceAccessor">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;liquibase.resource.ResourceAccessor</h3>
+<code>liquibase.resource.ResourceAccessor.NotFoundResource</code></li>
+</ul>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -176,6 +191,10 @@ extends liquibase.resource.CompositeResourceAccessor</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/micronaut/liquibase/LiquibaseResourceAccessor.html#buildResourceAccessors-io.micronaut.context.env.Environment-">buildResourceAccessors</a></span>(io.micronaut.context.env.Environment&nbsp;environment)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;liquibase.resource.Resource&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/micronaut/liquibase/LiquibaseResourceAccessor.html#getAll-java.lang.String-">getAll</a></span>(java.lang.String&nbsp;path)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.SortedSet&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/micronaut/liquibase/LiquibaseResourceAccessor.html#list-java.lang.String-java.lang.String-boolean-boolean-boolean-">list</a></span>(java.lang.String&nbsp;relativeTo,
     java.lang.String&nbsp;path,
@@ -189,14 +208,7 @@ extends liquibase.resource.CompositeResourceAccessor</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;liquibase.resource.CompositeResourceAccessor</h3>
-<code>addResourceAccessor, describeLocations, openStreams, removeResourceAccessor</code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.liquibase.resource.AbstractResourceAccessor">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;liquibase.resource.AbstractResourceAccessor</h3>
-<code>openStream</code></li>
+<code>addResourceAccessor, close, describeLocations, removeResourceAccessor, search</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.liquibase.AbstractExtensibleObject">
@@ -211,6 +223,13 @@ extends liquibase.resource.CompositeResourceAccessor</pre>
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.liquibase.resource.ResourceAccessor">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;liquibase.resource.ResourceAccessor</h3>
+<code>get, getExisting, openStream, openStreams</code></li>
 </ul>
 </li>
 </ul>
@@ -260,10 +279,24 @@ extends liquibase.resource.CompositeResourceAccessor</pre>
                                                   boolean&nbsp;recursive)
                                            throws java.io.IOException</pre>
 <dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
+</li>
+</ul>
+<a name="getAll-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAll</h4>
+<pre>public&nbsp;java.util.List&lt;liquibase.resource.Resource&gt;&nbsp;getAll(java.lang.String&nbsp;path)
+                                                   throws java.io.IOException</pre>
+<dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>list</code>&nbsp;in interface&nbsp;<code>liquibase.resource.ResourceAccessor</code></dd>
+<dd><code>getAll</code>&nbsp;in interface&nbsp;<code>liquibase.resource.ResourceAccessor</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>list</code>&nbsp;in class&nbsp;<code>liquibase.resource.CompositeResourceAccessor</code></dd>
+<dd><code>getAll</code>&nbsp;in class&nbsp;<code>liquibase.resource.CompositeResourceAccessor</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
 </dl>
