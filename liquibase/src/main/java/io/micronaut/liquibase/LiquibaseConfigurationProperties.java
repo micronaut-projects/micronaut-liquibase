@@ -17,7 +17,10 @@ package io.micronaut.liquibase;
 
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
+import io.micronaut.context.env.Environment;
+import io.micronaut.context.exceptions.ConfigurationException;
 import io.micronaut.core.util.Toggleable;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,6 +99,25 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     public LiquibaseConfigurationProperties(@Parameter String name) {
         this.nameQualifier = name;
+    }
+
+    /**
+     * Datasource configuration cannot include datasources.[nameQualifier].schema-generate=CREATE_DROP
+     * if this configuration is enabled.
+     *
+     * @param environment Micronaut environment
+     * @throws ConfigurationException if schema-generate=CREATE_DROP is present for datasource
+     * configuration and this configuration is enabled.
+     */
+    @PostConstruct
+    void validate(Environment environment) {
+        String badProp = "datasources." + nameQualifier + ".schema-generate";
+        environment.getProperty(badProp, String.class).ifPresent(value -> {
+            if (isEnabled() && !value.equalsIgnoreCase("NONE")) {
+                throw new ConfigurationException(
+                    String.format("Cannot have configuration property '%s' if liquibase migration is enabled", badProp));
+            }
+        });
     }
 
     /**
