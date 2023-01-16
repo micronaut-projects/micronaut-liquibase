@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    annotationProcessor(libs.micronaut.serde.processor)
     compileOnly libs.micronaut.inject.java
     compileOnly libs.grails.datastore.gorm.hibernate5
 
@@ -11,6 +12,9 @@ dependencies {
     }
     api libs.micronaut.management
     api libs.micronaut.jdbc
+
+    implementation libs.micronaut.serde.api
+    implementation libs.micronaut.serde.jackson
 
     implementation libs.projectreactor
 
