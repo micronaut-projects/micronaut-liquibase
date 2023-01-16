@@ -14,6 +14,9 @@ micronaut-inject-java = { module = 'io.micronaut:micronaut-inject-java' }
 micronaut-jdbc = { module = "io.micronaut.sql:micronaut-jdbc" }
 micronaut-jdbc-hikari = { module = "io.micronaut.sql:micronaut-jdbc-hikari" }
 micronaut-management = { module = "io.micronaut:micronaut-management" }
+micronaut-serde-api = { module = "io.micronaut.serde:micronaut-serde-api" }
+micronaut-serde-processor = { module = "io.micronaut.serde:micronaut-serde-processor" }
+micronaut-serde-jackson = { module = "io.micronaut.serde:micronaut-serde-jackson" }
 
 grails-datastore-gorm-hibernate5 = { module = "org.grails:grails-datastore-gorm-hibernate5", version.ref = "gorm-hibernate" }
 

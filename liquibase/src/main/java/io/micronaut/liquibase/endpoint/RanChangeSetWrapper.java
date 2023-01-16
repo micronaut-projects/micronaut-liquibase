@@ -15,15 +15,13 @@
  */
 package io.micronaut.liquibase.endpoint;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Internal;
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.serde.annotation.Serdeable;
 import liquibase.change.CheckSum;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.RanChangeSet;
 
-import java.time.Instant;
 import java.util.Set;
 
 /**
@@ -33,7 +31,7 @@ import java.util.Set;
  * @since 5.1.0
  */
 @Internal
-@Introspected
+@Serdeable
 @JsonInclude(JsonInclude.Include.ALWAYS)
 final class RanChangeSetWrapper {
     private final RanChangeSet delegate;
@@ -58,9 +56,8 @@ final class RanChangeSetWrapper {
         return delegate.getContextExpression().getContexts();
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    public Instant getDateExecuted() {
-        return delegate.getDateExecuted().toInstant();
+    public String getDateExecuted() {
+        return delegate.getDateExecuted().toInstant().toString();
     }
 
     public String getDeploymentId() {
@@ -71,7 +68,6 @@ final class RanChangeSetWrapper {
         return delegate.getDescription();
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
     public ChangeSet.ExecType getExecType() {
         return delegate.getExecType();
     }

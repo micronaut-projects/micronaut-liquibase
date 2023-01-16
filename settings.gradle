@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 plugins {
     id 'io.micronaut.build.shared.settings' version '5.3.16'
 }
@@ -12,3 +13,5 @@ rootProject.name = 'liquibase-parent'
 
 include 'liquibase'
 include 'liquibase-bom'
+
+include 'test-suite-serde'
