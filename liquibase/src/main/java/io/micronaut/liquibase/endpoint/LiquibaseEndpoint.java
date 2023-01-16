@@ -63,6 +63,8 @@ public class LiquibaseEndpoint {
     /**
      * @param liquibaseConfigurationProperties Collection of Liquibase Configurations
      * @param applicationContext               The application context
+     *
+     * @deprecated Use {@link #LiquibaseEndpoint(Collection, ApplicationContext, DataSourceResolver)} instead
      */
     @Deprecated
     public LiquibaseEndpoint(Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties,
