@@ -16,34 +16,30 @@ include::{liquibasetests}/groovy/io/micronaut/liquibase/docs/Book.groovy[tag=cla
 
 3.- Then it is necessary to configure GORM datasource:
 
-[source, yaml]
-.src/main/resources/application.yml
+[configuration]
 ----
 include::{liquibasetests}/groovy/io/micronaut/liquibase/docs/GormSpec.groovy[tag=yamlconfig,indent=0]
 ----
 
-<1> Definition of the first data source in GORM. The name it's `default` and it can't be changed.
-<2> Disable schema DDL creation.
-<3> Define liquibase configuration under `liquibase.datasources` key.
-<4> Define liquibase configuration for the `default` datasource.
-<5> The migration file path is `src/main/resources/db/liquibase-changelog.xml`.
+- `dataSource` defines the first data source in GORM. The name is `default` and can't be changed.
+- `dbCreate` set to `none` disables schema DDL creation.
+- Define liquibase configuration under `liquibase.datasources`.
+- Define liquibase configuration for the `default` datasource.
+- The migration file path is set `src/main/resources/db/liquibase-changelog.xml`.
 
 
 === Multiple Data sources
 
 It is also possible to configure Liquibase migrations with multiple data sources when using GORM:
 
-[source, yaml]
-.src/main/resources/application.yml
+[configuration]
 ----
 include::{liquibasetests}/groovy/io/micronaut/liquibase/docs/GormMultipleDataSourcesSpec.groovy[tag=yamlconfig,indent=0]
 ----
 
-<1> Definition of the first data source in GORM. The name it's `default` and it can't be changed.
-<2> Name of the additional data source.
-<3> Define liquibase configuration for the `default` datasource.
-<4> Define liquibase configuration for the `books` datasource.
-
+- `dataSource` defines the first data source in GORM. The name is `default` and can't be changed.
+- `dataSources.books` names an additional data source
+- `liquibase.dataSources` defines the configurations for the datasources (i.e. default and books)
 
 NOTE: For more information about how to configure GORM, take a look at the http://gorm.grails.org/latest/hibernate/manual/index.html[documentation].
 
