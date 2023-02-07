@@ -13,19 +13,19 @@ class GormSpec extends Specification implements YamlAsciidocTagCleaner {
     String gormConfig = '''\
 spec.name: GormDocSpec
 //tag::yamlconfig[]
-dataSource: # <1>
+dataSource:
   pooled: true
   jmxExport: true
-  dbCreate: none # <2>
+  dbCreate: none
   url: 'jdbc:h2:mem:GORMDb'
   driverClassName: org.h2.Driver
   username: sa
   password: ''
-        
+
 liquibase:
-  datasources: # <3>
-    default: # <4>
-      change-log: classpath:db/liquibase-changelog.xml # <5>
+  datasources:
+    default:
+      change-log: classpath:db/liquibase-changelog.xml
 '''//end::yamlconfig[]
 
     @Shared

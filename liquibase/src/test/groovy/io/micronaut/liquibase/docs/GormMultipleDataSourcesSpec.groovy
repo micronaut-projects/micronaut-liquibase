@@ -13,7 +13,7 @@ class GormMultipleDataSourcesSpec extends Specification implements YamlAsciidocT
     String gormConfig = '''\
 spec.name: GormDocSpec
 //tag::yamlconfig[]
-dataSource: # <1>
+dataSource:
   pooled: true
   jmxExport: true
   dbCreate: none
@@ -21,9 +21,9 @@ dataSource: # <1>
   driverClassName: org.h2.Driver
   username: sa
   password: ''
-  
+
 dataSources:
-  books: # <2>
+  books:
     pooled: true
     jmxExport: true
     dbCreate: none
@@ -31,12 +31,12 @@ dataSources:
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-        
+
 liquibase:
   datasources:
-    default: # <3>
+    default:
       change-log: classpath:db/liquibase-changelog.xml
-    books: # <4>
+    books:
       change-log: classpath:db/liquibase-changelog.xml
 '''//end::yamlconfig[]
 

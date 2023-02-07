@@ -2,16 +2,15 @@ This configuration provides a built-in endpoint to expose all the applied migrat
 
 To enable the endpoint add the following to the configuration:
 
-[source,yaml]
-.resources/application.yml
+[configuration]
 ----
 endpoints:
     liquibase:
-        enabled: true # <1>
-        sensitive: false # <2>
+        enabled: true
+        sensitive: false
 ----
-<1> `/liquibase` endpoint is enabled.
-<2> `/liquibase` endpoint is open for unauthenticated access.
+
+- `/liquibase` endpoint is enabled (this is the default), and open for unauthenticated access.
 
 [source,json]
 ----
