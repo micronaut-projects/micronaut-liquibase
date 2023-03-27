@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Micronaut Liquibase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <link rel="stylesheet" href="../css/highlight/agate.css">
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/guide.js"></script>
+    <script src="../js/multi-language-sample.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="../css/multi-language-sample.css"/>
+    <script src="../js/docs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+    <script type="text/javascript">
+        function addJsClass(el) {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+
+</head>
+
+<body class="body" id="docs" onload="addJsClass();" onhashchange="highlightMenu()">
+
+<div id="table-of-content-nav-link" class="desktop">
+    <a id="theme-switcher" title="Switch to dark theme" href="javascript:switchTheme(true)"><i class="fa fa-moon-o"></i></a>
+    <a title="Collapse/Open Table of contents" title="Hide Table of Contents" href="javascript:hideTableOfContents();" class="button">[ + ]</a>
+</div>
+
+<div id="main">
+    <div id="navigation" class="no-print">
+        <div class="navTitle">
+            <span id="logo"><a href="http://micronaut.io" title="Go to Micronaut Website"><img src="../img/micronaut-logo-white.svg" alt="Micronaut"/></a></span>
+        </div>
+        <div class="navLinks">
+            <ul>
+                    <li><div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)" class="desktop">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#releaseHistory"><strong>2</strong><span>Release History</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#breaks"><strong>3</strong><span>Breaking Changes</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>4</strong><span>Configuration</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                <li id="table-of-content-nav-link-mobile" class="mobile">
+                    <a title="Scroll to Table of contents" href="javascript:scrollToTop();" class="button">Toc</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Configuration Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Conf</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    
+    <div id="table-of-content">
+        <div class="toc-content">
+
+        <h2>Table of Contents</h2>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-introduction"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-releaseHistory"><a href="#releaseHistory"><strong>2</strong><span>Release History</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-breaks"><a href="#breaks"><strong>3</strong><span>Breaking Changes</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-configuration"><a href="#configuration"><strong>4</strong><span>Configuration</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>7</strong><span>Repository</span></a></div>
+        
+        </div>
+    </div>
+    
+    <div class="docs-content">
+    <div class="project">
+        <h1>Micronaut Liquibase</h1>
+        <p></p>
+        <p>Integration between Micronaut and Liquibase</p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://micronaut-projects.github.io/micronaut-liquibase/snapshot/guide/index.html'>SNAPSHOT</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/latest/guide/index.html'>LATEST</option><option selected='selected' value='https://micronaut-projects.github.io/micronaut-liquibase/6.0.0-M1/guide/index.html'>6.0.0-M1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.7.0/guide/index.html'>5.7.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.6.0/guide/index.html'>5.6.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.5.0/guide/index.html'>5.5.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.4.1/guide/index.html'>5.4.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.4.0/guide/index.html'>5.4.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.3.0/guide/index.html'>5.3.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.2.0/guide/index.html'>5.2.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.1.1/guide/index.html'>5.1.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.1.0/guide/index.html'>5.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.0.1/guide/index.html'>5.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/5.0.0/guide/index.html'>5.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/4.0.3/guide/index.html'>4.0.3</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/4.0.2/guide/index.html'>4.0.2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/4.0.1/guide/index.html'>4.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/4.0.0/guide/index.html'>4.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.4.1/guide/index.html'>3.4.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.4.0/guide/index.html'>3.4.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.3.1/guide/index.html'>3.3.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.3.0/guide/index.html'>3.3.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.2.0/guide/index.html'>3.2.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.1.0/guide/index.html'>3.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.2/guide/index.html'>3.0.2</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.1/guide/index.html'>3.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/3.0.0/guide/index.html'>3.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.1/guide/index.html'>2.1.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.1.0/guide/index.html'>2.1.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.1/guide/index.html'>2.0.1</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0/guide/index.html'>2.0.0</option><option value='https://micronaut-projects.github.io/micronaut-liquibase/2.0.0.RC1/guide/index.html'>2.0.0.RC1</option></select> </p>
+    </div>
+    
+<h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/introduction.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>The Micronaut Liquibase integration runs Liquibase changelogs. It does not create changelogs.</p>
+</div>
+<div class="paragraph">
+<p>To use the Micronaut&#8217;s integration with <a href="http://www.liquibase.org">Liquibase</a> you must have the <code>micronaut-liquibase</code>
+dependency on your classpath:</p>
+</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.liquibase:micronaut-liquibase")</span></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.liquibase&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-liquibase&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div></p>
+</div>
+
+<h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/releaseHistory.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>For this project, you can find a list of releases (with release notes) here:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-liquibase/releases">https://github.com/micronaut-projects/micronaut-liquibase/releases</a></p>
+</div>
+
+<h1 id="breaks"><a class="anchor" href="#breaks"></a>3 Breaking Changes</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/breaks.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Micronaut Framework 4 uses Groovy 4 and <strong>it does not support GORM 7</strong>. Micronaut Liquibase will support GORM once there is a GORM version built with Groovy 4.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="configuration"><a class="anchor" href="#configuration"></a>4 Configuration</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/configuration.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can define liquibase configuration for each datasource. The following example demonstrates using it:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/main/resources/application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">datasources:
+    default: <i class="conum" data-value="3"></i><b>(3)</b>
+        url: 'jdbc:h2:mem:liquibaseDisabledDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE'
+        username: 'sa'
+        password: ''
+        driverClassName: 'org.h2.Driver'
+jpa:
+    default: <i class="conum" data-value="3"></i><b>(3)</b>
+        packages-to-scan:
+            - 'example.micronaut'
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: none <i class="conum" data-value="1"></i><b>(1)</b>
+                show_sql: true
+liquibase:
+    datasources: <i class="conum" data-value="2"></i><b>(2)</b>
+        default: <i class="conum" data-value="3"></i><b>(3)</b>
+            change-log: 'classpath:db/liquibase-changelog.xml' <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Disable schema DDL creation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define all liquibase configuration under key <code>liquibase.datasources</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Configure liquibase configuration for <code>default</code> data source.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Root changelog under <code>src/main/resources/db/liquibase-changelog.xml</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Often, you will have a root changelog:</p>
+</div>
+<div class="listingblock">
+<div class="title">resources/db/liquibase-changelog.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"&gt;
+  &lt;include file="changelog/01-create-books-schema.xml" relativeToChangelogFile="true"/&gt;
+  &lt;include file="changelog/02-insert-data-books.xml" relativeToChangelogFile="true"/&gt;
+&lt;/databaseChangeLog&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which imports changelogs which you keep generating as your app evolves:</p>
+</div>
+<div class="listingblock">
+<div class="title">resources/db/changelog/01-create-books-schema.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"&gt;
+  &lt;changeSet id="01" author="sdelamo"&gt;
+    &lt;createTable tableName="books"
+      remarks="A table to contain all books"&gt;
+      &lt;column name="id" type="int"&gt;
+        &lt;constraints nullable="false" unique="true" primaryKey="true"/&gt;
+      &lt;/column&gt;
+      &lt;column name="name" type="varchar(255)"&gt;
+        &lt;constraints nullable="false" unique="true"/&gt;
+      &lt;/column&gt;
+    &lt;/createTable&gt;
+  &lt;/changeSet&gt;
+&lt;/databaseChangeLog&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Liquibase migrations are executed when datasources are created. Because Micronaut beans are, by default, created
+lazily, if you do not inject a <code>Datasource</code> somewhere, then migrations are not executed.
+This may be the case when you create a command in a separate module just to run migrations, e.g. using Micronaut support
+for <a href="https://docs.micronaut.io/latest/guide/index.html#commandLineApps">picocli</a>.
+In this case it is enough to inject a <code>Datasource</code> in anyone of your singletons and migrations will be executed.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_run_migrations_manually">Run migrations manually</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need more control to decide when the migrations are executed it is possible to configure the application like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">liquibase:
+  enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+  datasources:
+    default:
+      enabled: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Liquibase needs to be enabled</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Disable liquibase migrations for your specific datasource</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can inject the <code>LiquibaseMigrator</code> bean and call manually the method <code>run</code> to execute the migrations when you want.</p>
+</div>
+<div class="paragraph">
+<p>There are several options available for configuration:</p>
+</div>
+<a id="io.micronaut.liquibase.LiquibaseConfigurationProperties" href="#io.micronaut.liquibase.LiquibaseConfigurationProperties">&#128279;</a>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Configuration Properties for <a href="../api/io/micronaut/liquibase/LiquibaseConfigurationProperties.html">LiquibaseConfigurationProperties</a></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.test-rollback-on-update</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns whether a rollback should be tested at update time or not.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.database-change-log-lock-table</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking concurrent Liquibase usage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.database-change-log-table</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of table to use for tracking change history.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-tablespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tablespace to use for Liquibase objects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.liquibase-schema</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schema to use for Liquibase objects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.change-log</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.rollback-file-path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.drop-first</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.default-schema</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.parameters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.util.Map</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.contexts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime contexts to use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.labels</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of runtime labels to use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets whether this liquibase configuration is enabled. Default value ().</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase.datasources.*.async</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging">Logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Liquibase 4.0 has changed how logging is done and now it is based on Java Util Logging (JUL). This means that without doing
+anything the log format won&#8217;t be the usual in Micronaut:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">16:39:58.744 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:39:58.945 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+Nov 10, 2020 4:39:59 PM liquibase.lockservice
+INFO: Successfully acquired change log lock
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Creating database history table with name: PUBLIC.DATABASECHANGELOG
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Reading from PUBLIC.DATABASECHANGELOG
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: Table users created
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 10ms
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: New row inserted into users
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: New row inserted into users
+Nov 10, 2020 4:39:59 PM liquibase.changelog
+INFO: ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 4ms
+Nov 10, 2020 4:39:59 PM liquibase.lockservice
+INFO: Successfully released change log lock
+16:40:00.277 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2392ms. Server Running: http://localhost:8080</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to integrate JUL and Logback you need to do the following in your application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the dependency:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.slf4j:jul-to-slf4j:1.7.30")</span></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
+    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+    &lt;artifactId&gt;jul-to-slf4j&lt;/artifactId&gt;
+    &lt;version&gt;1.7.30&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the following <code>contextListener</code> to your <code>logback.xml</code>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">src/main/resources/logback.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;configuration&gt;
+
+    &lt;contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"&gt;
+        &lt;resetJUL&gt;true&lt;/resetJUL&gt;
+    &lt;/contextListener&gt;
+
+    &lt;appender ...&gt;
+        ...
+    &lt;/appender&gt;
+
+    ...
+
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Initialize the JUL to Slf4j bridge. You can add the following to your <code>Application</code> class:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">src/main/java/my/package/Application.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static void main(String[] args) {
+    // Bridge JUL to Slf4j
+    SLF4JBridgeHandler.removeHandlersForRootLogger();
+    SLF4JBridgeHandler.install();
+
+    Micronaut.run(Application.class, args);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the previous configuration, starting your application again will show the logs properly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">16:47:10.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:47:11.042 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+16:47:11.344 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+16:47:11.744 [main] INFO  liquibase.changelog - Creating database history table with name: PUBLIC.DATABASECHANGELOG
+16:47:11.747 [main] INFO  liquibase.changelog - Reading from PUBLIC.DATABASECHANGELOG
+16:47:11.844 [main] INFO  liquibase.changelog - Table users created
+16:47:11.844 [main] INFO  liquibase.changelog - ChangeSet db/changelog/01-create-users-table.xml::01::ilopmar ran successfully in 20ms
+16:47:11.857 [main] INFO  liquibase.changelog - New row inserted into users
+16:47:11.858 [main] INFO  liquibase.changelog - New row inserted into users
+16:47:11.859 [main] INFO  liquibase.changelog - ChangeSet db/changelog/02-insert-users-data.xml::02::ilopmar ran successfully in 3ms
+16:47:11.861 [main] INFO  liquibase.lockservice - Successfully released change log lock
+16:47:12.288 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2213ms. Server Running: http://localhost:8080</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM support</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/graalvm.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>Micronaut Liquibase is compatible with <a href="https://www.graalvm.org/">GraalVM</a> so it is possible
+to create native images and run the migrations during application startup.</p>
+</div>
+<div class="paragraph">
+<p>Everything is handled automatically by the library so users don&#8217;t need any special configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#graal">GraalVM</a> in the user guide for more
+information.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>6 Endpoint</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/endpoint.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>This configuration provides a built-in endpoint to expose all the applied migrations in <code>/liquibase</code>.</p>
+</div>
+<div class="paragraph">
+<p>To enable the endpoint add the following to the configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">resources/application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
+    liquibase:
+        enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+        sensitive: false <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>/liquibase</code> endpoint is enabled.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>/liquibase</code> endpoint is open for unauthenticated access.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">$ curl http://localhost:8080/liquibase
+
+[{
+    "name": "default",
+    "changeSets": [{
+        "author": "sdelamo",
+        "changeLog": "classpath:db/changelog/01-create-books-and-author-schema.xml",
+        "comments": "",
+        "contexts": [],
+        "dateExecuted": "2018-10-29T16:33:05Z",
+        "deploymentId": "0830784929",
+        "description": "createTable tableName=books; createTable tableName=authors; addForeignKeyConstraint baseTableName=books, constraintName=author_fk, referencedTableName=authors",
+        "execType": "EXECUTED",
+        "id": "01",
+        "labels": [],
+        "checksum": "8:140eb966bb6a14bccade2c2d9133b7d3",
+        "orderExecuted": 1,
+        "tag": "tag1"
+    }, {
+        "author": "sdelamo",
+        "changeLog": "classpath:db/changelog/02-insert-data-authors.xml",
+        "comments": "Inserting Authors",
+        "contexts": [],
+        "dateExecuted": "2018-10-29T16:33:05Z",
+        "deploymentId": "0830784929",
+        "description": "insert tableName=authors; insert tableName=authors; insert tableName=authors; insert tableName=authors; insert tableName=authors",
+        "execType": "EXECUTED",
+        "id": "02",
+        "labels": [],
+        "checksum": "8:6204c525ce5c1c55f064888d078b8f05",
+        "orderExecuted": 2,
+        "tag": null
+    }]
+}]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#providedEndpoints">Built-in endpoints</a> in the user guide for more information.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="repository"><a class="anchor" href="#repository"></a>7 Repository</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/master/src/main/docs/guide/repository.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can find the source code of this project in this repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-liquibase">https://github.com/micronaut-projects/micronaut-liquibase</a></p>
+</div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
