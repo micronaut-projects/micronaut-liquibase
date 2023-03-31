@@ -4,8 +4,6 @@ managed-liquibase = "4.18.0"
 gorm-hibernate = "7.3.0"
 persistence-api = '2.2'
 
-micronaut-gradle-plugin = "3.7.4"
-
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
 
@@ -28,5 +26,3 @@ h2 = { module = "com.h2database:h2" }
 
 persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
 projectreactor = { module = 'io.projectreactor:reactor-core' }
-
-gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }

@@ -1,6 +1,5 @@
 plugins {
     id("groovy")
-    id("io.micronaut.library")
 }
 
 repositories {
@@ -8,25 +7,23 @@ repositories {
 }
 
 dependencies {
-    testImplementation(project(":liquibase"))
-
-    testImplementation("io.micronaut:micronaut-http-validation")
-    testImplementation("io.micronaut:micronaut-http-client")
-
-    testImplementation("io.micronaut.sql:micronaut-jdbc-hikari")
-    testImplementation("io.micronaut:micronaut-http-server-netty")
+    testImplementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     testImplementation("io.micronaut.groovy:micronaut-runtime-groovy")
+    testImplementation("io.micronaut.groovy:micronaut-runtime-groovy")
+    testImplementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    testImplementation("io.micronaut.test:micronaut-test-spock")
+    testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("io.micronaut:micronaut-http-server-netty")
+    testImplementation("io.micronaut:micronaut-http-validation")
+    testImplementation("io.micronaut:micronaut-inject-groovy")
     testImplementation("io.micronaut:micronaut-validation")
+
+    testImplementation(project(":liquibase"))
 
     testRuntimeOnly("ch.qos.logback:logback-classic")
     testRuntimeOnly("com.h2database:h2")
 }
 
-micronaut {
-    runtime("netty")
-    testRuntime("spock2")
-    processing {
-        incremental(true)
-        annotations("com.example.*")
-    }
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
