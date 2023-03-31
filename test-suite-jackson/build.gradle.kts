@@ -5,6 +5,5 @@ plugins {
 description = "Test suite for Liquibase + Jackson"
 
 dependencies {
-    testImplementation("io.micronaut.serde:micronaut-serde-api")
-    testImplementation("io.micronaut.serde:micronaut-serde-jackson")
+    testImplementation("io.micronaut:micronaut-jackson-databind")
 }
