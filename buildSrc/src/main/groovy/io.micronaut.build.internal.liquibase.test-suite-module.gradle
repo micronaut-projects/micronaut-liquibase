@@ -9,7 +9,6 @@ repositories {
 dependencies {
     testImplementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     testImplementation("io.micronaut.groovy:micronaut-runtime-groovy")
-    testImplementation("io.micronaut.groovy:micronaut-runtime-groovy")
     testImplementation("io.micronaut.sql:micronaut-jdbc-hikari")
     testImplementation("io.micronaut.test:micronaut-test-spock")
     testImplementation("io.micronaut:micronaut-http-client")
