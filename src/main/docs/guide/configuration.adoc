@@ -1,16 +1,13 @@
 You can define liquibase configuration for each datasource. The following example demonstrates using it:
 
-[source, yaml]
-.src/main/resources/application.yml
+[configuration]
 ----
 include::{liquibasetests}/groovy/io/micronaut/liquibase/docs/LiquibaseSpec.groovy[tag=yamlconfig,indent=0]
 ----
 
-<1> Disable schema DDL creation.
-<2> Define all liquibase configuration under key `liquibase.datasources`.
-<3> Configure liquibase configuration for `default` data source.
-<4> Root changelog under `src/main/resources/db/liquibase-changelog.xml`.
-
+- `properties.hibernate.hbm2ddl.auto` set to `none` disables schema DDL creation.
+- `liquibase.datasources` defines all liquibase configurations, for example `defauilt` in the example.]
+- The root changelog is `src/main/resources/db/liquibase-changelog.xml`.
 
 Often, you will have a root changelog:
 
@@ -38,16 +35,17 @@ In this case it is enough to inject a `Datasource` in anyone of your singletons 
 
 If you need more control to decide when the migrations are executed it is possible to configure the application like this:
 
-[source,yaml]
+[configuration]
 ----
 liquibase:
-  enabled: true # <1>
+  enabled: true
   datasources:
     default:
-      enabled: false # <2>
+      enabled: false
 ----
-<1> Liquibase needs to be enabled
-<2> Disable liquibase migrations for your specific datasource
+
+- Liquibase needs to be enabled
+- Liquibase migrations can be disabled for a specific datasource
 
 Now you can inject the `LiquibaseMigrator` bean and call manually the method `run` to execute the migrations when you want.
 

@@ -1,0 +1,23 @@
+plugins {
+    id("io.micronaut.build.internal.liquibase-base")
+    id("groovy")
+}
+
+dependencies {
+    testImplementation(mnGroovy.micronaut.runtime.groovy)
+    testImplementation(mnSql.micronaut.jdbc.hikari)
+    testImplementation(mnTest.micronaut.test.spock)
+    testImplementation(mn.micronaut.http.client)
+    testImplementation(mn.micronaut.http.server.netty)
+    testImplementation(mn.micronaut.inject.groovy)
+    testImplementation(mnValidation.micronaut.validation)
+
+    testImplementation(projects.liquibase)
+
+    testRuntimeOnly("ch.qos.logback:logback-classic")
+    testRuntimeOnly(mnSql.h2)
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}

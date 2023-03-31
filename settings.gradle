@@ -14,11 +14,16 @@ rootProject.name = 'liquibase-parent'
 include 'liquibase'
 include 'liquibase-bom'
 
+include 'test-suite-jackson'
+include 'test-suite-serde'
+
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
 
 micronautBuild {
     addSnapshotRepository()
     importMicronautCatalog()
+    importMicronautCatalog("micronaut-groovy")
     importMicronautCatalog("micronaut-serde")
     importMicronautCatalog("micronaut-sql")
+    importMicronautCatalog("micronaut-validation")
 }
