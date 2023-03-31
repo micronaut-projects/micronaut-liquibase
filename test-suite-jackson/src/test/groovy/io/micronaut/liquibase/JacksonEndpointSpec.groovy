@@ -11,7 +11,7 @@ import jakarta.inject.Inject
 import spock.lang.Specification
 
 @MicronautTest
-class SerdeEndpointSpec extends Specification {
+class JacksonEndpointSpec extends Specification {
 
     @Inject
     @Client("/")
