@@ -6,15 +6,14 @@ dependencies {
     annotationProcessor(libs.micronaut.serde.processor)
     compileOnly libs.micronaut.inject.java
     compileOnly libs.grails.datastore.gorm.hibernate5
+    compileOnly(libs.micronaut.serde.api)
+    compileOnly(libs.micronaut.serde.jackson)
 
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
     }
     api libs.micronaut.management
     api libs.micronaut.jdbc
-
-    implementation libs.micronaut.serde.api
-    implementation libs.micronaut.serde.jackson
 
     implementation libs.projectreactor
 
@@ -29,4 +28,5 @@ dependencies {
     testImplementation libs.groovy.sql
     testImplementation libs.grails.datastore.gorm.hibernate5
     testImplementation libs.h2
+    testImplementation(libs.micronaut.serde.jackson)
 }
