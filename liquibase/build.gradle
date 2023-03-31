@@ -5,6 +5,8 @@ plugins {
 dependencies {
     annotationProcessor(mnSerde.micronaut.serde.processor)
     compileOnly mn.micronaut.inject.java
+    compileOnly(mnSerde.micronaut.serde.api)
+    compileOnly(mnSerde.micronaut.serde.jackson)
 
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
@@ -13,7 +15,6 @@ dependencies {
     api mnSql.micronaut.jdbc
 
     implementation mn.reactor
-    implementation mnSerde.micronaut.serde.jackson
 
     testAnnotationProcessor libs.groovy.sql
     testAnnotationProcessor libs.persistence.api
@@ -23,5 +24,7 @@ dependencies {
     testImplementation mn.micronaut.http.server.netty
     testImplementation mnSql.micronaut.jdbc.hikari
     testImplementation libs.groovy.sql
+
     testImplementation mnSql.h2
+    testImplementation(mnSerde.micronaut.serde.jackson)
 }

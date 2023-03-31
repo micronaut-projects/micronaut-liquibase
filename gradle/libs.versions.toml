@@ -7,16 +7,20 @@ micronaut-docs = "2.0.0"
 groovy = "4.0.10"
 spock = "2.3-groovy-4.0"
 
+micronaut-groovy = "4.0.0-M1"
 micronaut-serde = "2.0.0-M1"
 micronaut-sql = "5.0.0-M1"
+micronaut-validation = "4.0.0-M2"
 
 persistence-api = '2.2'
 
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
 
+micronaut-groovy = { module = "io.micronaut.groovy:micronaut-groovy-bom", version.ref = "micronaut-groovy" }
 micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.ref = "micronaut-serde" }
 micronaut-sql = { module = "io.micronaut.sql:micronaut-sql-bom", version.ref = "micronaut-sql" }
+micronaut-validation = { module = "io.micronaut.validation:micronaut-validation-bom", version.ref = "micronaut-validation" }
 
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
