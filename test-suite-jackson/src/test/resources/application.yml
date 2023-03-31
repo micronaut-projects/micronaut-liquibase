@@ -1,0 +1,13 @@
+endpoints:
+  liquibase:
+    sensitive: false
+datasources:
+  default:
+    url: jdbc:h2:mem:liquibaseEndpointDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE
+    username: 'sa'
+    password: ''
+    driver-class-name: 'org.h2.Driver'
+liquibase:
+  datasources:
+    default:
+      change-log: classpath:db/liquibase-changelog.xml
