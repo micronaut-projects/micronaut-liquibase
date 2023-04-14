@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: micronaut-liquibase-graal
+datasources:
+  default:
+    url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+    schema-generate: none
+    dialect: H2
+liquibase:
+  enabled: true
+  datasources:
+    default:
+      change-log: 'classpath:db/liquibase-changelog.xml'
+---
+endpoints:
+  liquibase:
+    enabled: true
+    sensitive: false
