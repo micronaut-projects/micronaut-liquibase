@@ -3,7 +3,7 @@ micronaut:
     name: micronaut-liquibase-graal
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5462/postgres
     username: dbuser
     password: 'theSecretPassword'
     driver-class-name: org.postgresql.Driver

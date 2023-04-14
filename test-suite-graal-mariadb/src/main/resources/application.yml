@@ -3,6 +3,9 @@ micronaut:
     name: micronaut-liquibase-graal
 datasources:
   default:
+    url: jdbc:mariadb://localhost:3366/test
+    username: user
+    password: 'password'
     driver-class-name: org.mariadb.jdbc.Driver
     db-type: mariadb
     schema-generate: NONE

@@ -22,6 +22,16 @@ jobs:
         java: ['17']
         graalvm: ['latest']
     services:
+      mariadb:
+        image: mariadb:latest
+        ports:
+          - 3366:3306
+        env:
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
       postgres:
         image: postgres:11
         env:
@@ -29,7 +39,7 @@ jobs:
           POSTGRES_PASSWORD: theSecretPassword
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432
+          - 5462:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
        # https://github.com/actions/virtual-environments/issues/709
@@ -46,6 +56,13 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Verify MariaDB connection
+        env:
+          PORT: ${{ job.services.mariadb.ports[3306] }}
+        run: |
+          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+            sleep 1
+          done
       - name: Setup GraalVM CE
         uses: graalvm/setup-graalvm@v1
         with:
