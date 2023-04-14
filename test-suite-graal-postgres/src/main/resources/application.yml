@@ -3,7 +3,10 @@ micronaut:
     name: micronaut-liquibase-graal
 datasources:
   default:
-    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: dbuser
+    password: 'theSecretPassword'
+    driver-class-name: org.postgresql.Driver
     db-type: postgres
     schema-generate: NONE
     dialect: POSTGRES

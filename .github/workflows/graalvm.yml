@@ -21,6 +21,16 @@ jobs:
       matrix:
         java: ['17']
         graalvm: ['latest']
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: dbuser
+          POSTGRES_PASSWORD: theSecretPassword
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
        # https://github.com/actions/virtual-environments/issues/709
       - name: Free disk space

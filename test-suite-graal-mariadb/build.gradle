@@ -1,6 +1,6 @@
 plugins {
     id("io.micronaut.application")
-    id("io.micronaut.test-resources")
+//    id("io.micronaut.test-resources")
     id("io.micronaut.build.internal.liquibase-native-tests")
     id("io.micronaut.build.internal.liquibase.test-suite-graal")
 }
