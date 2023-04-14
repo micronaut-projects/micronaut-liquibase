@@ -3,19 +3,14 @@ plugins {
     id 'org.graalvm.buildtools.native'
 }
 
-boolean graal = ["jvmci.Compiler", "java.vendor.version", "java.vendor"].any {
-    System.getProperty(it)?.toLowerCase(Locale.ENGLISH)?.contains("graal")
-}
-if (graal) {
 tasks.named("check") { task ->
-    task.dependsOn("nativeTest")
+    def graal = ["jvmci.Compiler", "java.vendor.version", "java.vendor"].any {
+        System.getProperty(it)?.toLowerCase(Locale.ENGLISH)?.contains("graal")
+    }
+    if (graal) {
+        task.dependsOn("nativeTest")
+    }
 }
-} else {
-tasks.named("test") { task ->
-    task.enabled = false // disable it since there is no database service configured
-}
-}
-
 
 graalvmNative {
     toolchainDetection = false
