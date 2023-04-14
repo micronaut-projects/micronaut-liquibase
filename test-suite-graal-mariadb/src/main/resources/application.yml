@@ -1,0 +1,19 @@
+micronaut:
+  application:
+    name: micronaut-liquibase-graal
+datasources:
+  default:
+    driver-class-name: org.mariadb.jdbc.Driver
+    db-type: mariadb
+    schema-generate: NONE
+    dialect: MYSQL
+liquibase:
+  enabled: true
+  datasources:
+    default:
+      change-log: 'classpath:db/liquibase-changelog.xml'
+---
+endpoints:
+  liquibase:
+    enabled: true
+    sensitive: false
