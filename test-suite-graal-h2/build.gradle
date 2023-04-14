@@ -19,6 +19,3 @@ micronaut {
         annotations("micronaut.example.*")
     }
 }
-
-
-
