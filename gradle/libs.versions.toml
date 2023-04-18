@@ -1,7 +1,7 @@
 [versions]
 managed-liquibase = "4.20.0"
 
-micronaut = "4.0.0-M1"
+micronaut = "4.0.0-M2"
 micronaut-test = "4.0.0-SNAPSHOT"
 micronaut-docs = "2.0.0"
 groovy = "4.0.10"
@@ -9,10 +9,12 @@ spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.0.0-M1"
 micronaut-serde = "2.0.0-M1"
-micronaut-sql = "5.0.0-M1"
+micronaut-sql = "5.0.0-M3"
+micronaut-data = "4.0.0-M2"
 micronaut-validation = "4.0.0-M2"
 
 persistence-api = '2.2'
+micronaut-gradle-plugin = "4.0.0-SNAPSHOT"
 
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
@@ -20,6 +22,7 @@ managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "ma
 micronaut-groovy = { module = "io.micronaut.groovy:micronaut-groovy-bom", version.ref = "micronaut-groovy" }
 micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.ref = "micronaut-serde" }
 micronaut-sql = { module = "io.micronaut.sql:micronaut-sql-bom", version.ref = "micronaut-sql" }
+micronaut-data = { module = "io.micronaut.data:micronaut-data-bom", version.ref = "micronaut-data" }
 micronaut-validation = { module = "io.micronaut.validation:micronaut-validation-bom", version.ref = "micronaut-validation" }
 
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
@@ -27,3 +30,4 @@ groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 h2 = { module = "com.h2database:h2" }
 
 persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
+gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }

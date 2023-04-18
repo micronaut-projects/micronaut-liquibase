@@ -16,13 +16,19 @@ include 'liquibase-bom'
 
 include 'test-suite-jackson'
 include 'test-suite-serde'
+include 'test-suite-graal-h2'
+include 'test-suite-graal'
+include 'test-suite-graal-mariadb'
+include 'test-suite-graal-postgres'
 
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
 
 micronautBuild {
+    useStandardizedProjectNames=true
     addSnapshotRepository()
     importMicronautCatalog()
     importMicronautCatalog("micronaut-groovy")
+    importMicronautCatalog("micronaut-data")
     importMicronautCatalog("micronaut-serde")
     importMicronautCatalog("micronaut-sql")
     importMicronautCatalog("micronaut-validation")

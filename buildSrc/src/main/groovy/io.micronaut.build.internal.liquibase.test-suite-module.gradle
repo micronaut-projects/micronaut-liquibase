@@ -12,9 +12,9 @@ dependencies {
     testImplementation(mn.micronaut.inject.groovy)
     testImplementation(mnValidation.micronaut.validation)
 
-    testImplementation(projects.liquibase)
+    testImplementation(projects.micronautLiquibase)
 
-    testRuntimeOnly("ch.qos.logback:logback-classic")
+    testRuntimeOnly(mn.logback.classic)
     testRuntimeOnly(mnSql.h2)
 }
 

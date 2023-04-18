@@ -1,0 +1,16 @@
+dependencies {
+    runtimeOnly(mn.logback.classic)
+    implementation(projects.micronautLiquibase)
+    implementation(project(":test-suite-graal"))
+    annotationProcessor(mnData.micronaut.data.processor)
+    implementation(mnData.micronaut.data.jdbc)
+    testImplementation(mn.micronaut.http.server.netty)
+    testImplementation(mn.micronaut.http.client)
+    testImplementation(mn.micronaut.jackson.databind)
+    testImplementation("org.skyscreamer:jsonassert:1.5.1")
+}
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        substitute module('io.micronaut.liquibase:micronaut-liquibase') using project(':micronaut-liquibase')
+    }
+}
