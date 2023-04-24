@@ -88,8 +88,6 @@ jobs:
       - name: "📦 Publish to Sonatype Snapshots"
         if: success() && github.event_name == 'push' && matrix.java == '17'
         env:
-          GH_TOKEN_PUBLIC_REPOS_READONLY: ${{ secrets.GH_TOKEN_PUBLIC_REPOS_READONLY }}
-          GH_USERNAME: ${{ secrets.GH_USERNAME }}        
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         run: ./gradlew publishToSonatype docs --no-daemon
