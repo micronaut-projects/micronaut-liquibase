@@ -11,8 +11,9 @@ dependencies {
 application {
     mainClass.set("micronaut.example.Application")
 }
+
 micronaut {
-    version "4.0.0-SNAPSHOT"
+    version libs.versions.micronaut.asProvider().get()
     runtime("netty")
     testRuntime("junit5")
     processing {

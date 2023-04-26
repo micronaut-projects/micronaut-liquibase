@@ -14,7 +14,8 @@ micronaut-data = "4.0.0-M2"
 micronaut-validation = "4.0.0-M4"
 
 persistence-api = '2.2'
-micronaut-gradle-plugin = "4.0.0-SNAPSHOT"
+
+micronaut-gradle-plugin = "4.0.0-M1"
 
 [libraries]
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
