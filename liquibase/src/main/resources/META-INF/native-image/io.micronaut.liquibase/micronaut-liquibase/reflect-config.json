@@ -472,5 +472,9 @@
   {
     "name":"liquibase.sql.visitor.ReplaceSqlVisitor",
     "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name": "liquibase.command.CommandFactory",
+    "allDeclaredConstructors":true
   }
 ]

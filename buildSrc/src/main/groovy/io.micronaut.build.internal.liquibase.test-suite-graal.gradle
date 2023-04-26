@@ -9,8 +9,16 @@ dependencies {
     testImplementation(mn.micronaut.jackson.databind)
     testImplementation("org.skyscreamer:jsonassert:1.5.1")
 }
+
 configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        substitute module('io.micronaut.liquibase:micronaut-liquibase') using project(':micronaut-liquibase')
+    resolutionStrategy {
+        preferProjectModules()
+        // TODO: Remove this once aligned
+        eachDependency {
+            if (requested.group == "io.micronaut.platform" && requested.name == "micronaut-platform") {
+                useVersion("4.0.0-M1")
+                because("There's no M2 platform yet")
+            }
+        }
     }
 }
