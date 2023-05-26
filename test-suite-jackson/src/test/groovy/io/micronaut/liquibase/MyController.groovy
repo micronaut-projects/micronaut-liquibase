@@ -1,5 +1,6 @@
 package io.micronaut.liquibase
 
+import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
 
@@ -7,7 +8,7 @@ import io.micronaut.http.annotation.Post
 class MyController {
 
     @Post
-    String index(Dto dto) {
+    String index(@Body Dto dto) {
         "Hello $dto.name"
     }
 }
