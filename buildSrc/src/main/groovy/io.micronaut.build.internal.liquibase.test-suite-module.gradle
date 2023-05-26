@@ -14,7 +14,7 @@ dependencies {
 
     testImplementation(projects.micronautLiquibase)
 
-    testRuntimeOnly(mn.logback.classic)
+    testRuntimeOnly(mnLogging.logback.classic)
     testRuntimeOnly(mnSql.h2)
 }
 

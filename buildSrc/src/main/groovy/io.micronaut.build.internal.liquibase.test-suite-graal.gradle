@@ -1,5 +1,5 @@
 dependencies {
-    runtimeOnly(mn.logback.classic)
+    runtimeOnly(mnLogging.logback.classic)
     implementation(projects.micronautLiquibase)
     implementation(project(":test-suite-graal"))
     annotationProcessor(mnData.micronaut.data.processor)
