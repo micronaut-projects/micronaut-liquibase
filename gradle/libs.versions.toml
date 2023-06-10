@@ -10,7 +10,7 @@ spock = "2.3-groovy-4.0"
 micronaut-groovy = "4.0.0-M2"
 micronaut-serde = "2.0.0-M9"
 micronaut-sql = "5.0.0-M8"
-micronaut-data = "4.0.0-M6"
+micronaut-data = "4.0.0-M8"
 micronaut-validation = "4.0.0-M9"
 
 persistence-api = '2.2'
