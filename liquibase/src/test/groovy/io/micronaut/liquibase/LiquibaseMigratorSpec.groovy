@@ -44,12 +44,13 @@ class LiquibaseMigratorSpec extends Specification {
                 config.get('datasources.default.username'),
                 config.get('datasources.default.password'),
                 config.get('datasources.default.driverClassName'))
+        String countBooks = 'select count(*) from books'
 
         then:
         noExceptionThrown()
 
         when:
-        sql.rows('select count(*) from books')
+        sql.rows(countBooks)
 
         then: 'the migration was not already run'
         thrown(SQLException)
@@ -60,8 +61,11 @@ class LiquibaseMigratorSpec extends Specification {
         then:
         noExceptionThrown()
         conditions.eventually {
-            sql.rows('select count(*) from books').get(0)[0] == 2
+            sql.rows(countBooks).get(0)[0] == 2
         }
+
+        cleanup:
+        sql.close()
     }
 
 }

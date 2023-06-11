@@ -30,7 +30,7 @@ class StopApplicationWhenMigrationErrorSpec extends Specification {
         ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
 
         then:
-        def e = thrown(BeanInstantiationException)
+        BeanInstantiationException e = thrown()
         e.cause instanceof ApplicationStartupException
         e.cause.message == 'Migration failed! Liquibase encountered an exception.'
     }
