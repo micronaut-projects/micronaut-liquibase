@@ -8,6 +8,8 @@ dependencies {
     implementation mn.micronaut.inject
     annotationProcessor(mn.micronaut.inject.java)
     annotationProcessor(mnData.micronaut.data.processor)
+    annotationProcessor(mnValidation.micronaut.validation.processor)
+    implementation(mnValidation.micronaut.validation)
     implementation(mnData.micronaut.data.jdbc)
     implementation(mnSql.micronaut.jdbc.hikari)
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
