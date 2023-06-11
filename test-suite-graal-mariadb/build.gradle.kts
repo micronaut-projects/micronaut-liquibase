@@ -6,14 +6,15 @@ plugins {
 }
 
 dependencies {
-    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 }
 
 application {
     mainClass.set("micronaut.example.Application")
 }
+
 micronaut {
-    version libs.versions.micronaut.asProvider().get()
+    version(libs.versions.micronaut.platform.get())
     runtime("netty")
     testRuntime("junit5")
     processing {
