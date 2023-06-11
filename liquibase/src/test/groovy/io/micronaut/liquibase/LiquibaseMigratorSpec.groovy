@@ -5,7 +5,6 @@ import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
 import io.micronaut.inject.qualifiers.Qualifiers
 import spock.lang.AutoCleanup
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
@@ -35,7 +34,6 @@ class LiquibaseMigratorSpec extends Specification {
     @AutoCleanup
     ApplicationContext applicationContext = ApplicationContext.run(config as Map<String, Object>, Environment.TEST)
 
-    @PendingFeature
     void 'when migrations are disabled it is possible to run the using the LiquibaseMigrator'() {
         when:
         LiquibaseMigrator liquibaseMigrator = applicationContext.getBean(LiquibaseMigrator)
