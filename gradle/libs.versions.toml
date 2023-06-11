@@ -4,7 +4,7 @@ managed-liquibase = "4.22.0"
 micronaut = "4.0.0-M7"
 micronaut-test = "4.0.0-M7"
 micronaut-docs = "2.0.0"
-groovy = "4.0.11"
+groovy = "4.0.12"
 spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.0.0-M3"
