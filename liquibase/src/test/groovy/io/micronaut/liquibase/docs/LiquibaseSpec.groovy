@@ -108,5 +108,8 @@ liquibase:
 
         then:
         sql.rows(countBooks).get(0)[0] == 2
+
+        cleanup:
+        sql.close()
     }
 }

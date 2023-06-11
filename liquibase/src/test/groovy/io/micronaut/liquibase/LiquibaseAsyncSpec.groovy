@@ -58,5 +58,8 @@ class LiquibaseAsyncSpec extends Specification {
         conditions.eventually {
             sql.rows('select count(*) from books').get(0)[0] == 2
         }
+
+        cleanup:
+        sql.close()
     }
 }
