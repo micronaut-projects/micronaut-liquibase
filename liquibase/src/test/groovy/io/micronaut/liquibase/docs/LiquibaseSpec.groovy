@@ -80,6 +80,8 @@ liquibase:
     EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer, config as Map<String, Object>, Environment.TEST)
 
     void "test liquibase changelog are run"() {
+        given:
+        String countBooks = 'select count(*) from books'
 
         when:
         embeddedServer.applicationContext.getBean(DataSource)
@@ -105,6 +107,6 @@ liquibase:
         Sql sql = Sql.newInstance(db.url, db.user, db.password, db.driver)
 
         then:
-        sql.rows('select count(*) from books').get(0)[0] == 2
+        sql.rows(countBooks).get(0)[0] == 2
     }
 }
