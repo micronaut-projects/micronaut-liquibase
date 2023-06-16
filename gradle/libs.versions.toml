@@ -4,6 +4,7 @@ managed-liquibase = "4.22.0"
 micronaut = "4.0.0-M7"
 micronaut-platform = "4.0.0-M3"
 micronaut-test = "4.0.0-M7"
+micronaut-testresources = "2.0.0-M10"
 micronaut-docs = "2.0.0"
 groovy = "4.0.12"
 spock = "2.3-groovy-4.0"
@@ -31,6 +32,7 @@ micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.r
 micronaut-sql = { module = "io.micronaut.sql:micronaut-sql-bom", version.ref = "micronaut-sql" }
 micronaut-data = { module = "io.micronaut.data:micronaut-data-bom", version.ref = "micronaut-data" }
 micronaut-validation = { module = "io.micronaut.validation:micronaut-validation-bom", version.ref = "micronaut-validation" }
+micronaut-testresources = { module = 'io.micronaut.testresources:micronaut-test-resources-bom', version.ref = "micronaut-testresources" }
 
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
