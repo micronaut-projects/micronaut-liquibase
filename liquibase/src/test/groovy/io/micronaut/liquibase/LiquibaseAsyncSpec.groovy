@@ -11,6 +11,7 @@ import spock.util.concurrent.PollingConditions
 
 import javax.sql.DataSource
 
+@Ignore("https://github.com/micronaut-projects/micronaut-liquibase/issues/155")
 class LiquibaseAsyncSpec extends Specification {
 
     @Shared
@@ -33,7 +34,6 @@ class LiquibaseAsyncSpec extends Specification {
     @AutoCleanup
     ApplicationContext applicationContext = ApplicationContext.run(config as Map<String, Object>, Environment.TEST)
 
-    @Ignore("https://github.com/micronaut-projects/micronaut-liquibase/issues/155")
     void "test liquibase changelog can be run asynchronously"() {
         when:
         applicationContext.getBean(DataSource)
