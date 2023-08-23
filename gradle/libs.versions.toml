@@ -19,7 +19,7 @@ persistence-api = '2.2'
 
 micronaut-gradle-plugin = "4.0.0"
 
-micronaut-logging = "1.0.0-M6"
+micronaut-logging = "1.0.0"
 [libraries]
 micronaut-logging = { module = "io.micronaut.logging:micronaut-logging-bom", version.ref = "micronaut-logging" }
 # Core
