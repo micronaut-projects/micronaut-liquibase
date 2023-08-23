@@ -9,7 +9,7 @@ micronaut-docs = "2.0.0"
 groovy = "4.0.13"
 spock = "2.3-groovy-4.0"
 
-micronaut-groovy = "4.0.0"
+micronaut-groovy = "4.0.1"
 micronaut-serde = "2.0.0"
 micronaut-sql = "5.0.1"
 micronaut-data = "4.0.4"
