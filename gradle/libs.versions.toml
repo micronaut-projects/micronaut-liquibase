@@ -17,7 +17,7 @@ micronaut-validation = "4.0.1"
 
 persistence-api = '2.2'
 
-micronaut-gradle-plugin = "4.0.0"
+micronaut-gradle-plugin = "4.0.2"
 
 micronaut-logging = "1.0.0"
 [libraries]
