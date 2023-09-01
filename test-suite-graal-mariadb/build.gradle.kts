@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     runtimeOnly(mnSql.mariadb.java.client)
+    implementation(mnTestResources.micronaut.test.resources.extensions.junit.platform)
 }

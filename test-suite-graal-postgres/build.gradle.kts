@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     runtimeOnly(mnSql.postgresql)
+    implementation(mnTestResources.micronaut.test.resources.extensions.junit.platform)
 }
