@@ -1,0 +1,226 @@
+[
+  {
+    "name": "liquibase.changelog.ChangeLogHistoryServiceFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "liquibase.Scope"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.BinaryTypeSnowflake",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.BlobType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.change.core.CreateTableChange",
+    "methods": [
+      {
+        "name": "getTableType",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setTableType",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.change.core.DropViewChange",
+    "methods": [
+      {
+        "name": "isIfExists",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "setIfExists",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.DropAllCommandStep",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.UpdateCommandStep",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.helpers.ChangeExecListenerCommandStep",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.helpers.DatabaseChangelogCommandStep",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.helpers.DbUrlConnectionCommandStep",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.command.core.helpers.ShowSummaryArgument",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.BinaryTypeSnowflake",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.BlobType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.DoubleDataTypeSnowflake",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.datatype.core.DoubleType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.logging.mdc.MdcManagerFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "liquibase.Scope"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "liquibase.precondition.core.PreconditionContainer",
+    "allDeclaredFields": true,
+    "queryAllPublicMethods": true,
+    "methods": [
+      {
+        "name": "setOnError",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setOnFail",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setOnSqlOutput",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  }
+]
