@@ -5,6 +5,7 @@ import io.micronaut.http.client.BlockingHttpClient;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import io.micronaut.test.extensions.junit5.annotation.TestResourcesScope;
 import jakarta.inject.Inject;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 @MicronautTest
+@TestResourcesScope("mariadb-scope")
 class UserControllerTest {
 
     @Inject
