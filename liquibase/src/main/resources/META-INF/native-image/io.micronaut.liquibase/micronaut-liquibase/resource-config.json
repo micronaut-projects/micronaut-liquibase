@@ -1,9 +1,0 @@
-{
-  "resources": {
-    "includes": [
-      {
-        "pattern": "\\QMETA-INF/services/liquibase.logging.mdc.MdcManager\\E"
-      }
-    ]
-  }
-}
