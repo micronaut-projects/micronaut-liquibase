@@ -24,7 +24,6 @@ include 'test-suite-graal-postgres'
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
 
 micronautBuild {
-    importMicronautCatalog("micronaut-logging")
     useStandardizedProjectNames=true
     importMicronautCatalog()
     importMicronautCatalog("micronaut-groovy")
