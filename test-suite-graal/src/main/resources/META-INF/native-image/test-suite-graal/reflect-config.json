@@ -1,0 +1,19 @@
+[
+  {
+    "name": "ch.qos.logback.classic.jul.LevelChangePropagator",
+    "queryAllPublicMethods": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setResetJUL",
+        "parameterTypes": [
+          "boolean"
+        ]
+      }
+    ]
+  }
+]
