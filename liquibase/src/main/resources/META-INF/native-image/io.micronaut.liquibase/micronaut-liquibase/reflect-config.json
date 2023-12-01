@@ -222,5 +222,22 @@
         ]
       }
     ]
+  },
+  {
+    "name": "liquibase.report.ShowSummaryGeneratorFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "liquibase.Scope"
+        ]
+      }
+    ]
   }
 ]
