@@ -4,4 +4,5 @@ breaks: Breaking Changes
 configuration: Configuration
 graalvm: GraalVM support
 endpoint: Endpoint
+liquibaseGuides: Guides
 repository: Repository
