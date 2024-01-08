@@ -15,5 +15,5 @@ dependencies {
     implementation(mnSql.micronaut.jdbc.hikari)
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     // JUL to Slf4j bridge so Liquibase log works with Logback
-    implementation("org.slf4j:jul-to-slf4j:2.0.9")
+    implementation("org.slf4j:jul-to-slf4j:2.0.11")
 }
