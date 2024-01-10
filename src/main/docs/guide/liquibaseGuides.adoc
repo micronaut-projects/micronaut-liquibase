@@ -1,0 +1,1 @@
+See the guide for https://guides.micronaut.io/latest/micronaut-liquibase.html[Schema Migration With Liquibase] to learn more.
