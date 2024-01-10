@@ -1,7 +1,7 @@
 [versions]
 managed-liquibase = "4.25.1"
 
-micronaut = "4.1.11"
+micronaut = "4.2.3"
 micronaut-platform = "4.1.5"
 micronaut-test = "4.0.0"
 micronaut-testresources = "2.1.0"
