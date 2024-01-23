@@ -4,5 +4,7 @@ plugins {
 
 dependencies {
     runtimeOnly(mnSql.mariadb.java.client)
-    implementation(mnTestResources.micronaut.test.resources.extensions.junit.platform)
+    testImplementation(mnTestResources.micronaut.test.resources.extensions.junit.platform) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
 }
