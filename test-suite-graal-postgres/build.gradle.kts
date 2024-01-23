@@ -4,5 +4,7 @@ plugins {
 
 dependencies {
     runtimeOnly(mnSql.postgresql)
-    implementation(mnTestResources.micronaut.test.resources.extensions.junit.platform)
+    implementation(mnTestResources.micronaut.test.resources.extensions.junit.platform) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
 }
