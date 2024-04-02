@@ -23,12 +23,15 @@ import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
 import io.micronaut.serde.annotation.SerdeImport;
-import liquibase.changelog.RanChangeSet;
-import liquibase.changelog.StandardChangeLogHistoryService;
+import liquibase.*;
+import liquibase.change.CheckSum;
+import liquibase.changelog.*;
 import liquibase.database.Database;
+import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
+import liquibase.precondition.core.PreconditionContainer;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +48,19 @@ import java.util.Collection;
  * @author Iván López
  * @since 1.0.0
  */
+@SerdeImport(Database.class)
+@SerdeImport(DatabaseConnection.class)
+@SerdeImport(RuntimeEnvironment.class)
+@SerdeImport(DatabaseChangeLog.class)
+@SerdeImport(CheckSum.class)
+@SerdeImport(Labels.class)
+@SerdeImport(LabelExpression.class)
+@SerdeImport(ContextExpression.class)
 @SerdeImport(RanChangeSet.class)
+@SerdeImport(ChangeSet.class)
+@SerdeImport(PreconditionContainer.class)
+@SerdeImport(ChangeLogParameters.class)
+@SerdeImport(Contexts.class)
 @Endpoint(id = LiquibaseEndpoint.NAME)
 public class LiquibaseEndpoint {
 
