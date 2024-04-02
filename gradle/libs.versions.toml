@@ -1,9 +1,9 @@
 [versions]
 managed-liquibase = "4.27.0"
 
-micronaut = "4.3.9"
+micronaut = "4.4.0"
 micronaut-test = "4.1.1"
-micronaut-testresources = "2.3.3"
+micronaut-testresources = "2.4.0"
 micronaut-docs = "2.0.0"
 groovy = "4.0.17"
 spock = "2.3-groovy-4.0"
@@ -12,11 +12,11 @@ micronaut-groovy = "4.2.0"
 micronaut-serde = "2.8.2"
 micronaut-sql = "5.5.2"
 micronaut-data = "4.6.2"
-micronaut-validation = "4.4.0"
+micronaut-validation = "4.4.4"
 
 persistence-api = '2.2'
 
-micronaut-gradle-plugin = "4.3.3"
+micronaut-gradle-plugin = "4.3.5"
 
 micronaut-logging = "1.1.2"
 [libraries]
