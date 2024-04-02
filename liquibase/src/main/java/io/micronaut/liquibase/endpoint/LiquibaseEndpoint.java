@@ -23,9 +23,9 @@ import io.micronaut.liquibase.LiquibaseConfigurationProperties;
 import io.micronaut.management.endpoint.annotation.Endpoint;
 import io.micronaut.management.endpoint.annotation.Read;
 import io.micronaut.serde.annotation.SerdeImport;
-import liquibase.changelog.RanChangeSet;
 import liquibase.changelog.StandardChangeLogHistoryService;
 import liquibase.database.Database;
+import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
@@ -45,7 +45,12 @@ import java.util.Collection;
  * @author Iván López
  * @since 1.0.0
  */
-@SerdeImport(RanChangeSet.class)
+@SerdeImport(packageName = "liquibase")
+@SerdeImport(packageName = "liquibase.change")
+@SerdeImport(packageName = "liquibase.changelog")
+@SerdeImport(packageName = "liquibase.precondition.core")
+@SerdeImport(Database.class)
+@SerdeImport(DatabaseConnection.class)
 @Endpoint(id = LiquibaseEndpoint.NAME)
 public class LiquibaseEndpoint {
 
