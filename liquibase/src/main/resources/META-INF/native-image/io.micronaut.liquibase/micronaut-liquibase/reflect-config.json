@@ -239,5 +239,16 @@
         ]
       }
     ]
+  },
+  {
+    "name": "liquibase.database.LiquibaseTableNamesFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      }
+    ]
   }
 ]
