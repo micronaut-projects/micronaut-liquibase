@@ -250,5 +250,22 @@
         ]
       }
     ]
+  },
+  {
+    "name": "liquibase.changelog.visitor.ValidatingVisitorGeneratorFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "liquibase.Scope"
+        ]
+      }
+    ]
   }
 ]
