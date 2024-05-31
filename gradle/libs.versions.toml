@@ -12,7 +12,7 @@ micronaut-groovy = "4.3.0"
 micronaut-serde = "2.10.0"
 micronaut-sql = "5.6.0"
 micronaut-data = "4.8.0"
-micronaut-validation = "4.4.4"
+micronaut-validation = "4.5.0"
 
 persistence-api = '2.2'
 
