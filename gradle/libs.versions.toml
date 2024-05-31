@@ -1,5 +1,5 @@
 [versions]
-managed-liquibase = "4.27.0"
+managed-liquibase = "4.28.0"
 
 micronaut = "4.4.1"
 micronaut-test = "4.1.1"
