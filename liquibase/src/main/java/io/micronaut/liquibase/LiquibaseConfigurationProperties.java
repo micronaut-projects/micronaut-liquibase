@@ -72,6 +72,10 @@ public class LiquibaseConfigurationProperties implements Toggleable {
 
     private String liquibaseSchema;
 
+    private String username;
+
+    private String password;
+
     private boolean dropFirst = DEFAULT_DROPFIRST;
 
     private String liquibaseTablespace;
@@ -107,7 +111,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @param environment Micronaut environment
      * @throws ConfigurationException if schema-generate=CREATE_DROP is present for datasource
-     * configuration and this configuration is enabled.
+     *                                configuration and this configuration is enabled.
      */
     @PostConstruct
     void validate(Environment environment) {
@@ -282,6 +286,38 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      */
     public void setDefaultSchema(String defaultSchema) {
         this.defaultSchema = defaultSchema;
+    }
+
+    /**
+     * @return the database username.
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * The database username.
+     *
+     * @param username Sets the database username.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the database password.
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * The database password.
+     *
+     * @param password Sets the database password.
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
