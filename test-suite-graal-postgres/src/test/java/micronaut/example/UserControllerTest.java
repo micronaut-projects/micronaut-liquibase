@@ -11,9 +11,11 @@ import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 @MicronautTest
 @TestResourcesScope("postgres-scope")
+@Testcontainers(disabledWithoutDocker = true)
 class UserControllerTest {
 
     @Inject
