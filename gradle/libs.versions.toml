@@ -35,6 +35,6 @@ micronaut-testresources = { module = 'io.micronaut.testresources:micronaut-test-
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
 h2 = { module = "com.h2database:h2" }
-
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter"}
 persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
