@@ -1,5 +1,22 @@
 [
   {
+    "name": "liquibase.changelog.FastCheckService",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+
+        ]
+      },
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "liquibase.Scope"
+        ]
+      }
+    ]
+  },
+  {
     "name": "liquibase.changelog.ChangeLogHistoryServiceFactory",
     "methods": [
       {
