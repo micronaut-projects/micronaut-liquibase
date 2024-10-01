@@ -2,6 +2,7 @@ introduction: Introduction
 releaseHistory: Release History
 breaks: Breaking Changes
 configuration: Configuration
+logging: Logging
 graalvm: GraalVM support
 endpoint: Endpoint
 liquibaseGuides: Guides
