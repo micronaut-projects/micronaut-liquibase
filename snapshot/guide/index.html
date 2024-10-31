@@ -52,15 +52,13 @@
                                 
                                 <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>4</strong><span>Configuration</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#logging"><strong>5</strong><span>Logging</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>6</strong><span>GraalVM support</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#endpoint"><strong>7</strong><span>Endpoint</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#liquibaseGuides"><strong>7</strong><span>Guides</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#liquibaseGuides"><strong>8</strong><span>Guides</span></a></div>
-                                
-                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>9</strong><span>Repository</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>8</strong><span>Repository</span></a></div>
                                 
                             </div>
                         </div>
@@ -99,15 +97,13 @@
         
         <div class="toc-item" style="margin-left:0px" id="toc-item-configuration"><a href="#configuration"><strong>4</strong><span>Configuration</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-logging"><a href="#logging"><strong>5</strong><span>Logging</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>5</strong><span>GraalVM support</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>6</strong><span>GraalVM support</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>6</strong><span>Endpoint</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-endpoint"><a href="#endpoint"><strong>7</strong><span>Endpoint</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-liquibaseGuides"><a href="#liquibaseGuides"><strong>7</strong><span>Guides</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-liquibaseGuides"><a href="#liquibaseGuides"><strong>8</strong><span>Guides</span></a></div>
-        
-        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>9</strong><span>Repository</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>8</strong><span>Repository</span></a></div>
         
         </div>
     </div>
@@ -624,16 +620,9 @@ liquibase.datasources.default.enabled=false</code></pre>
 </table>
 </div>
 </div>
-
-<h1 id="logging"><a class="anchor" href="#logging"></a>5 Logging</h1>
-
-<div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/6.5.x/src/main/docs/guide/logging.adoc"'>
-        <i class='fa fa-pencil-square-o'></i> Improve this doc
-    </button>
-</div>
-
-
+<div class="sect1">
+<h2 id="_logging">Logging</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Liquibase 4.0 has changed how logging is done and now it is based on Java Util Logging (JUL). This means that without doing
 anything the log format won&#8217;t be the usual in Micronaut:</p>
@@ -677,7 +666,7 @@ INFO: Successfully released change log lock
 <p>        <div class="listingblock multi-language-sample">
 <div class="title"></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.slf4j:jul-to-slf4j")</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.slf4j:jul-to-slf4j:1.7.30")</span></code></pre>
 </div>
 </div>
 <div class="listingblock multi-language-sample">
@@ -685,6 +674,7 @@ INFO: Successfully released change log lock
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
     &lt;artifactId&gt;jul-to-slf4j&lt;/artifactId&gt;
+    &lt;version&gt;1.7.30&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div></p>
@@ -752,8 +742,10 @@ INFO: Successfully released change log lock
 16:47:12.288 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 2213ms. Server Running: http://localhost:8080</code></pre>
 </div>
 </div>
+</div>
+</div>
 
-<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>6 GraalVM support</h1>
+<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM support</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/6.5.x/src/main/docs/guide/graalvm.adoc"'>
@@ -783,7 +775,7 @@ information.
 </table>
 </div>
 
-<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>7 Endpoint</h1>
+<h1 id="endpoint"><a class="anchor" href="#endpoint"></a>6 Endpoint</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/6.5.x/src/main/docs/guide/endpoint.adoc"'>
@@ -916,7 +908,7 @@ See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#pr
 </table>
 </div>
 
-<h1 id="liquibaseGuides"><a class="anchor" href="#liquibaseGuides"></a>8 Guides</h1>
+<h1 id="liquibaseGuides"><a class="anchor" href="#liquibaseGuides"></a>7 Guides</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/6.5.x/src/main/docs/guide/liquibaseGuides.adoc"'>
@@ -929,7 +921,7 @@ See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#pr
 <p>See the guide for <a href="https://guides.micronaut.io/latest/micronaut-liquibase.html">Schema Migration With Liquibase</a> to learn more.</p>
 </div>
 
-<h1 id="repository"><a class="anchor" href="#repository"></a>9 Repository</h1>
+<h1 id="repository"><a class="anchor" href="#repository"></a>8 Repository</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-liquibase/edit/6.5.x/src/main/docs/guide/repository.adoc"'>
