@@ -3,7 +3,7 @@ managed-liquibase = "4.30.0"
 
 micronaut = "4.7.9"
 micronaut-test = "4.5.0"
-micronaut-testresources = "2.6.2"
+micronaut-testresources = "2.7.0"
 micronaut-docs = "2.0.0"
 groovy = "4.0.17"
 spock = "2.3-groovy-4.0"
