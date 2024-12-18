@@ -16,6 +16,7 @@ include 'liquibase-bom'
 
 include 'test-suite-jackson'
 include 'test-suite-serde'
+include 'test-suite-manual-datasource'
 include 'test-suite-graal-h2'
 include 'test-suite-graal'
 include 'test-suite-graal-mariadb'

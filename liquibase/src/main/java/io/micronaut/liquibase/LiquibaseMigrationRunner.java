@@ -19,7 +19,6 @@ import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.context.event.BeanCreatedEventListener;
 import io.micronaut.core.annotation.Nullable;
-import io.micronaut.core.naming.NameResolver;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.scheduling.TaskExecutors;
@@ -56,15 +55,17 @@ class LiquibaseMigrationRunner extends AbstractLiquibaseMigration implements Bea
     @Override
     public DataSource onCreated(BeanCreatedEvent<DataSource> event) {
         DataSource dataSource = event.getBean();
-        if (event.getBeanDefinition() instanceof NameResolver) {
-            ((NameResolver) event.getBeanDefinition())
-                    .resolveName().flatMap(name -> applicationContext
-                            .findBean(LiquibaseConfigurationProperties.class, Qualifiers.byName(name))).ifPresent(cfg -> {
-                        DataSource unwrappedDataSource = dataSourceResolver.resolve(dataSource);
-                        run(cfg, unwrappedDataSource);
-                    });
-        }
+        event.getBeanDefinition().getBeanName()
+                .ifPresent(name -> runMigration(name, dataSource));
         return dataSource;
+    }
+
+    private void runMigration(String name, DataSource dataSource) {
+        applicationContext.findBean(LiquibaseConfigurationProperties.class, Qualifiers.byName(name))
+                .ifPresent(cfg -> {
+                    DataSource unwrappedDataSource = dataSourceResolver.resolve(dataSource);
+                    run(cfg, unwrappedDataSource);
+                });
     }
 
     /**
