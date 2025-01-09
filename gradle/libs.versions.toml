@@ -16,8 +16,9 @@ micronaut-validation = "4.8.0"
 persistence-api = '2.2'
 
 micronaut-gradle-plugin = "4.4.4"
-
 micronaut-logging = "1.4.0"
+sonatype-scan = "3.0.0"
+
 [libraries]
 # Core
 micronaut-core = { module = 'io.micronaut:micronaut-core-bom', version.ref = 'micronaut' }
@@ -30,10 +31,10 @@ micronaut-sql = { module = "io.micronaut.sql:micronaut-sql-bom", version.ref = "
 micronaut-data = { module = "io.micronaut.data:micronaut-data-bom", version.ref = "micronaut-data" }
 micronaut-validation = { module = "io.micronaut.validation:micronaut-validation-bom", version.ref = "micronaut-validation" }
 micronaut-testresources = { module = 'io.micronaut.testresources:micronaut-test-resources-bom', version.ref = "micronaut-testresources" }
-
 groovy-sql = { module = "org.apache.groovy:groovy-sql" }
 
 h2 = { module = "com.h2database:h2" }
 testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter"}
 persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
+sonatype-scan = { module = "org.sonatype.gradle.plugins:scan-gradle-plugin", version.ref = "sonatype-scan" }
