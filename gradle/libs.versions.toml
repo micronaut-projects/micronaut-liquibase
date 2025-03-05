@@ -5,7 +5,7 @@ micronaut = "4.8.5"
 micronaut-test = "4.5.0"
 micronaut-testresources = "2.7.3"
 micronaut-docs = "2.0.0"
-groovy = "4.0.17"
+groovy = "4.0.24"
 spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.6.0"
