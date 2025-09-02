@@ -10,7 +10,10 @@ dependencies {
 
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
+        exclude group: 'org.apache.commons', module: "commons-lang3"
     }
+    implementation(libs.managed.commons.lang3)
+
     api mn.micronaut.management
     api mnSql.micronaut.jdbc
 
