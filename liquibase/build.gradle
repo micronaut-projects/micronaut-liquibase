@@ -14,7 +14,7 @@ dependencies {
         exclude group: 'org.springframework'
         exclude group: 'org.apache.commons', module: 'commons-lang3'
     }
-    api(libs.managed.commons.lang3)
+    api(libs.commons.lang3)
 
     api mn.micronaut.management
     api mnSql.micronaut.jdbc
