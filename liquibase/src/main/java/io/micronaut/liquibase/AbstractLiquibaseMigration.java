@@ -126,7 +126,6 @@ public class AbstractLiquibaseMigration {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Could not connect to the datasource.", e);
             }
-            applicationContext.close();
             throw new ApplicationStartupException("Migration failed! Could not connect to the datasource.", e);
         }
 
@@ -142,7 +141,6 @@ public class AbstractLiquibaseMigration {
             if (LOG.isErrorEnabled()) {
                 LOG.error("Migration failed! Liquibase encountered an exception.", e);
             }
-            applicationContext.close();
             throw new ApplicationStartupException("Migration failed! Liquibase encountered an exception.", e);
         } finally {
             closeDatabase(liquibase);
