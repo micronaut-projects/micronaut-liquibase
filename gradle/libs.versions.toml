@@ -2,8 +2,8 @@
 managed-liquibase = "4.33.0"
 commons-lang3 = "3.18.0"
 
-micronaut = "4.9.10"
 micronaut-test = "4.7.0"
+micronaut = "4.10.4"
 micronaut-testresources = "2.10.1"
 micronaut-docs = "3.0.0"
 groovy = "4.0.24"
