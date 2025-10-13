@@ -10,10 +10,10 @@ groovy = "4.0.24"
 spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.7.0"
-micronaut-data = "4.13.4"
 micronaut-validation = "4.10.0"
 micronaut-serde = "2.15.5"
 micronaut-sql = "6.2.2"
+micronaut-data = "4.13.7"
 persistence-api = '2.2'
 
 micronaut-gradle-plugin = "4.5.4"
