@@ -6,5 +6,4 @@ description = "Test suite for Liquibase + Jackson"
 
 dependencies {
     testImplementation(mn.micronaut.jackson.databind)
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
