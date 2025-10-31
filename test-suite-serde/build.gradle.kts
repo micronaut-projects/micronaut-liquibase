@@ -7,5 +7,4 @@ description = "Test suite for Liquibase + Jackson"
 dependencies {
     testImplementation(mnSerde.micronaut.serde.api)
     testImplementation(mnSerde.micronaut.serde.jackson)
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
