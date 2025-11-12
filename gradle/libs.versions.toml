@@ -10,7 +10,7 @@ groovy = "4.0.24"
 spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.7.0"
-micronaut-serde = "2.15.5"
+micronaut-serde = "2.16.2"
 micronaut-sql = "6.3.2"
 micronaut-data = "4.13.7"
 micronaut-validation = "4.12.0"
