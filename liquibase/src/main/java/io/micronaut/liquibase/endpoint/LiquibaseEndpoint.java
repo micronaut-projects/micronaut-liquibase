@@ -16,7 +16,7 @@
 package io.micronaut.liquibase.endpoint;
 
 import io.micronaut.context.ApplicationContext;
-import io.micronaut.core.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.jdbc.DataSourceResolver;
 import io.micronaut.liquibase.LiquibaseConfigurationProperties;

@@ -17,7 +17,7 @@ package io.micronaut.liquibase;
 
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.event.BeanCreatedEvent;
-import io.micronaut.core.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import io.micronaut.jdbc.DataSourceResolver;
 import jakarta.inject.Singleton;
 import liquibase.resource.ResourceAccessor;
