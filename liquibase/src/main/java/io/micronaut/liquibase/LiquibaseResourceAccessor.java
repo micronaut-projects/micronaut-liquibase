@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Micronaut bean implementing {@link liquibase.resource.ResourceAccessor}.
@@ -71,8 +73,24 @@ public class LiquibaseResourceAccessor extends CompositeResourceAccessor {
      * @return A list of {@link ResourceAccessor} to look for migrations
      */
     protected static List<ResourceAccessor> buildResourceAccessors(Environment environment) {
-        List<ResourceAccessor> resourceAccessors = new ArrayList<>(2);
-        resourceAccessors.add(new ClassLoaderResourceAccessor(environment.getClassLoader()));
+        List<ResourceAccessor> resourceAccessors = new ArrayList<>(4);
+        // Prefer TCCL if available, then Micronaut Environment classloader, then system classloader
+        ClassLoader tccl = Thread.currentThread().getContextClassLoader();
+        ClassLoader envCl = environment.getClassLoader();
+        ClassLoader sysCl = ClassLoader.getSystemClassLoader();
+        Set<ClassLoader> ordered = new LinkedHashSet<>();
+        if (tccl != null) {
+            ordered.add(tccl);
+        }
+        if (envCl != null) {
+            ordered.add(envCl);
+        }
+        if (sysCl != null) {
+            ordered.add(sysCl);
+        }
+        for (ClassLoader cl : ordered) {
+            resourceAccessors.add(new ClassLoaderResourceAccessor(cl));
+        }
         resourceAccessors.add(new FileSystemResourceAccessor());
         return resourceAccessors;
     }
