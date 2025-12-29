@@ -1,15 +1,11 @@
 plugins {
     id("io.micronaut.application")
-    id("io.micronaut.test-resources")
 }
 
 micronaut {
     importMicronautPlatform = false
     runtime("netty")
     testRuntime("junit5")
-    testResources {
-        version = libs.versions.micronaut.testresources.get()
-    }
     processing {
         incremental(false)
         annotations("micronaut.example.*")

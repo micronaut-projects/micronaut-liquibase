@@ -16,6 +16,7 @@ dependencies {
 
     testRuntimeOnly(mnLogging.logback.classic)
     testRuntimeOnly(mnSql.h2)
+    testImplementation(mnTest.junit.platform.launcher)
 }
 
 tasks.withType(Test) {
