@@ -1,5 +1,5 @@
 [versions]
-managed-liquibase = "4.33.0"
+managed-liquibase = "5.0.1"
 commons-lang3 = "3.18.0"
 
 micronaut = "5.0.0-M6"
