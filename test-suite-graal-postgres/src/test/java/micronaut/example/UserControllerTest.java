@@ -11,12 +11,14 @@ import jakarta.inject.Inject;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Map;
 
+@DisabledInNativeImage
 @MicronautTest
 @Testcontainers(disabledWithoutDocker = true)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
