@@ -31,5 +31,4 @@ micronautBuild {
     importMicronautCatalog("micronaut-serde")
     importMicronautCatalog("micronaut-sql")
     importMicronautCatalog("micronaut-validation")
-    importMicronautCatalog("micronaut-testresources")
 }
