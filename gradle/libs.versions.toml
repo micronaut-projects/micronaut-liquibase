@@ -6,7 +6,6 @@ micronaut = "5.0.0-M6"
 micronaut-test = "5.0.0-M3"
 micronaut-testresources = "2.10.1"
 micronaut-docs = "3.0.0"
-groovy = "4.0.24"
 spock = "2.3-groovy-4.0"
 
 micronaut-groovy = "4.7.0"
