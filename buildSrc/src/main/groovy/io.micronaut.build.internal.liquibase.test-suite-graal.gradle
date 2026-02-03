@@ -46,5 +46,8 @@ graalvmNative {
         all {
             resources.autodetect()
         }
+        configureEach {
+            buildArgs("--initialize-at-build-time=org.junit.platform.commons.logging.LoggerFactory\$DelegatingLogger")
+        }
     }
 }
