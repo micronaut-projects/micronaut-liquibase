@@ -1,6 +1,5 @@
 package io.micronaut.liquibase
 
-import io.micronaut.context.annotation.Primary
 import io.micronaut.context.annotation.Requires
 import io.micronaut.jdbc.DataSourceResolver
 import jakarta.inject.Singleton
@@ -27,7 +26,6 @@ class LiquibaseMigrationRunnerSpec extends ApplicationContextSpecification {
         !(dataSource instanceof ReturnedByDataSourceResolver)
     }
 
-    @Primary
     @Requires(property = 'spec.name', value = 'LiquibaseMigrationRunnerSpec')
     @Singleton
     static class MockDataSourceResolver implements DataSourceResolver {
