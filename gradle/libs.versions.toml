@@ -2,12 +2,12 @@
 managed-liquibase = "5.0.1"
 commons-lang3 = "3.18.0"
 
-micronaut = "5.0.0-M10"
+micronaut = "5.0.0-M12"
 micronaut-test = "5.0.0-M3"
 micronaut-groovy = "4.7.0"
 micronaut-serde = "3.0.0-M2"
 micronaut-sql = "7.0.0-M7"
-micronaut-data = "5.0.0-M1"
+micronaut-data = "5.0.0-M2"
 micronaut-validation = "5.0.0-M1"
 persistence-api = '2.2'
 
