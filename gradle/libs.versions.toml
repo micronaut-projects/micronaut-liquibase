@@ -2,7 +2,7 @@
 managed-liquibase = "5.0.1"
 commons-lang3 = "3.18.0"
 
-micronaut = "5.0.0-M15"
+micronaut = "5.0.0-M16"
 micronaut-test = "5.0.0-M3"
 micronaut-groovy = "4.7.0"
 micronaut-serde = "3.0.0-M2"
