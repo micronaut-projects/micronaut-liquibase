@@ -8,7 +8,7 @@ micronaut-groovy = "5.0.0-M1"
 micronaut-serde = "3.0.0-M6"
 micronaut-sql = "7.0.1-M1"
 micronaut-data = "5.0.0-M5"
-micronaut-validation = "5.0.0-M1"
+micronaut-validation = "5.0.0-M2"
 persistence-api = '2.2'
 
 micronaut-gradle-plugin = "4.6.2"
