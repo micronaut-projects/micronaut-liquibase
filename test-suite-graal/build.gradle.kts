@@ -7,6 +7,7 @@ dependencies {
     implementation(mn.micronaut.http.server)
     implementation(mn.micronaut.context)
     implementation(mn.micronaut.inject)
+    annotationProcessor(mn.micronaut.graal)
     annotationProcessor(mn.micronaut.inject.java)
     annotationProcessor(mnData.micronaut.data.processor)
     annotationProcessor(mnValidation.micronaut.validation.processor)
