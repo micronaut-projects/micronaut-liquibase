@@ -9,8 +9,6 @@ micronaut-serde = "3.0.0-M7"
 micronaut-sql = "7.0.1-M2"
 micronaut-data = "5.0.0-M6"
 micronaut-validation = "5.0.0-M2"
-persistence-api = '2.2'
-
 micronaut-gradle-plugin = "4.6.2"
 micronaut-logging = "1.7.1"
 
@@ -32,5 +30,4 @@ h2 = { module = "com.h2database:h2" }
 testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter"}
 testcontainers-mariadb = { module = "org.testcontainers:testcontainers-mariadb" }
 testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
-persistence-api = { module = 'javax.persistence:javax.persistence-api', version.ref = 'persistence-api'}
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
