@@ -8,13 +8,9 @@ dependencies {
     compileOnly(mnSerde.micronaut.serde.api)
     compileOnly(mnSerde.micronaut.serde.jackson)
 
-    // TODO: There is vulnerability in commons-lang3 3.17.0 coming via liquibase-core https://github.com/advisories/GHSA-j288-q9x7-2f5v
-    // So the org.apache.commons:commons-lang3 exclusion is temporary workaround until fixed in liquibase when it should be removed
     api (libs.managed.liquibase) {
         exclude group: 'org.springframework'
-        exclude group: 'org.apache.commons', module: 'commons-lang3'
     }
-    api(libs.commons.lang3)
 
     api mn.micronaut.management
     api mnSql.micronaut.jdbc

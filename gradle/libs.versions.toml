@@ -1,6 +1,5 @@
 [versions]
 managed-liquibase = "5.0.2"
-commons-lang3 = "3.18.0"
 
 micronaut = "5.0.0-M24"
 micronaut-test = "5.0.0-M3"
@@ -17,7 +16,6 @@ micronaut-logging = "2.0.0-M2"
 micronaut-core = { module = 'io.micronaut:micronaut-core-bom', version.ref = 'micronaut' }
 
 managed-liquibase = { module = "org.liquibase:liquibase-core", version.ref = "managed-liquibase" }
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 
 micronaut-groovy = { module = "io.micronaut.groovy:micronaut-groovy-bom", version.ref = "micronaut-groovy" }
 micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.ref = "micronaut-serde" }
