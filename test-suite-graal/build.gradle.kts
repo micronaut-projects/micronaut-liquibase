@@ -7,13 +7,14 @@ dependencies {
     implementation(mn.micronaut.http.server)
     implementation(mn.micronaut.context)
     implementation(mn.micronaut.inject)
+    annotationProcessor(mn.micronaut.graal)
     annotationProcessor(mn.micronaut.inject.java)
     annotationProcessor(mnData.micronaut.data.processor)
     annotationProcessor(mnValidation.micronaut.validation.processor)
     implementation(mnValidation.micronaut.validation)
     implementation(mnData.micronaut.data.jdbc)
     implementation(mnSql.micronaut.jdbc.hikari)
-    implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
+    implementation(mnSql.jakarta.persistence.api)
     // JUL to Slf4j bridge so Liquibase log works with Logback
     implementation(mnLogging.slf4j.jul.to.slf4j)
 }

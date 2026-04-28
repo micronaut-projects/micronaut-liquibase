@@ -8,8 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import io.micronaut.core.annotation.ReflectiveAccess;
 
-
+@ReflectiveAccess
 @Entity
 @Table(name = "users")
 public class User {
