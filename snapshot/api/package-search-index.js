@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"io.micronaut.liquibase"},{"l":"io.micronaut.liquibase.endpoint"},{"l":"io.micronaut.liquibase.info"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"io.micronaut.liquibase"},{"l":"io.micronaut.liquibase.endpoint"}];updateSearchResults();
