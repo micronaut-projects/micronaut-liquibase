@@ -7,7 +7,7 @@ micronaut-groovy = "5.0.0-M2"
 micronaut-serde = "3.0.0-RC1"
 micronaut-sql = "7.0.1-M3"
 micronaut-data = "5.0.0-M7"
-micronaut-validation = "5.0.0-M2"
+micronaut-validation = "5.0.0-RC1"
 micronaut-gradle-plugin = "5.0.0-M1"
 micronaut-logging = "2.0.0-M2"
 
