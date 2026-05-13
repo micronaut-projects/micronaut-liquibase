@@ -106,6 +106,40 @@
         "parameterTypes": [
           "java.lang.String"
         ]
+      },
+      {
+        "name": "getColumns",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setColumns",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      },
+      {
+        "name": "addColumn",
+        "parameterTypes": [
+          "liquibase.change.ColumnConfig"
+        ]
+      },
+      {
+        "name": "removeColumn",
+        "parameterTypes": [
+          "liquibase.change.ColumnConfig"
+        ]
+      },
+      {
+        "name": "getDbms",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setDbms",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
       }
     ]
   },
