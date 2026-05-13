@@ -72,6 +72,44 @@
     ]
   },
   {
+    "name": "liquibase.change.core.InsertDataChange",
+    "methods": [
+      {
+        "name": "getCatalogName",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setCatalogName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "getSchemaName",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setSchemaName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "getTableName",
+        "parameterTypes": [
+        ]
+      },
+      {
+        "name": "setTableName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
     "name": "liquibase.change.core.DropViewChange",
     "methods": [
       {
