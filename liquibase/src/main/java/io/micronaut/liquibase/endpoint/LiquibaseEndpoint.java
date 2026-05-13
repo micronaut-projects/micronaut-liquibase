@@ -80,6 +80,7 @@ public class LiquibaseEndpoint {
     private static final Logger LOG = LoggerFactory.getLogger(LiquibaseEndpoint.class);
     private final Collection<LiquibaseConfigurationProperties> liquibaseConfigurationProperties;
     private final ApplicationContext applicationContext;
+    @Nullable
     private final DataSourceResolver dataSourceResolver;
 
     /**
