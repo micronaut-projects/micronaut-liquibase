@@ -16,6 +16,7 @@
 package io.micronaut.liquibase;
 
 import io.micronaut.context.ApplicationContext;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.inject.qualifiers.Qualifiers;
 import io.micronaut.runtime.exceptions.ApplicationStartupException;
@@ -152,7 +153,7 @@ public class AbstractLiquibaseMigration {
      *
      * @param liquibase Primary facade class for interacting with Liquibase.
      */
-    void closeDatabase(Liquibase liquibase) {
+    void closeDatabase(@Nullable Liquibase liquibase) {
         Database database = null;
         if (liquibase != null) {
             database = liquibase.getDatabase();

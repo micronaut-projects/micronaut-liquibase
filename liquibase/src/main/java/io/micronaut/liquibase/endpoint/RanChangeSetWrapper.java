@@ -17,6 +17,7 @@ package io.micronaut.liquibase.endpoint;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.serde.annotation.Serdeable;
 import liquibase.change.CheckSum;
 import liquibase.changelog.ChangeSet;
@@ -84,6 +85,7 @@ final class RanChangeSetWrapper {
         return delegate.getStoredChangeLog();
     }
 
+    @Nullable
     public String getChecksum() {
         CheckSum cs = delegate.getLastCheckSum();
         return cs == null ? null : cs.toString();

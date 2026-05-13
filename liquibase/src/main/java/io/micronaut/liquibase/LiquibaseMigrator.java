@@ -64,6 +64,7 @@ public class LiquibaseMigrator extends LiquibaseMigrationRunner {
      * @param config     The {@link LiquibaseConfigurationProperties}
      * @param dataSource The {@link DataSource}
      */
+    @Override
     public void run(LiquibaseConfigurationProperties config,
                     DataSource dataSource) {
         super.forceRun(config, dataSource);

@@ -19,10 +19,9 @@ import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.context.env.Environment;
 import io.micronaut.context.exceptions.ConfigurationException;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.core.util.Toggleable;
 import jakarta.annotation.PostConstruct;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -60,36 +59,45 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     @SuppressWarnings("WeakerAccess")
     public static final boolean DEFAULT_ASYNC = false;
 
-    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfigurationProperties.class);
-
     private boolean async = DEFAULT_ASYNC;
 
     private boolean enabled = DEFAULT_ENABLED;
 
+    @Nullable
     private String changeLog;
 
+    @Nullable
     private String defaultSchema;
 
+    @Nullable
     private String liquibaseSchema;
 
     private boolean dropFirst = DEFAULT_DROPFIRST;
 
+    @Nullable
     private String liquibaseTablespace;
 
+    @Nullable
     private String databaseChangeLogTable;
 
+    @Nullable
     private String databaseChangeLogLockTable;
 
+    @Nullable
     private String tag;
 
+    @Nullable
     private String contexts;
 
+    @Nullable
     private String labels;
 
     private boolean testRollbackOnUpdate = DEFAULT_TESTROLLBACKONUPDATE;
 
+    @Nullable
     private String rollbackFilePath;
 
+    @Nullable
     private Map<String, String> parameters;
 
     private final String nameQualifier;
@@ -143,6 +151,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return the name of table to use for tracking concurrent Liquibase usage.
      */
+    @Nullable
     public String getDatabaseChangeLogLockTable() {
         return databaseChangeLogLockTable;
     }
@@ -161,6 +170,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return the name of table to use for tracking change history.
      */
+    @Nullable
     public String getDatabaseChangeLogTable() {
         return databaseChangeLogTable;
     }
@@ -179,6 +189,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return the tablespace to use for Liquibase objects.
      */
+    @Nullable
     public String getLiquibaseTablespace() {
         return liquibaseTablespace;
     }
@@ -197,6 +208,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return Schema to use for Liquibase objects.
      */
+    @Nullable
     public String getLiquibaseSchema() {
         return liquibaseSchema;
     }
@@ -213,6 +225,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the liquibase changelog
      */
+    @Nullable
     public String getChangeLog() {
         return this.changeLog;
     }
@@ -238,6 +251,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the path to file to which rollback SQL is written when an update is performed.
      */
+    @Nullable
     public String getRollbackFilePath() {
         return this.rollbackFilePath;
     }
@@ -245,6 +259,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the file to which rollback SQL is written when an update is performed.
      */
+    @Nullable
     public File getRollbackFile() {
         if (this.rollbackFilePath == null) {
             return null;
@@ -271,6 +286,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the default database schema.
      */
+    @Nullable
     public String getDefaultSchema() {
         return defaultSchema;
     }
@@ -287,6 +303,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the change log parameters.
      */
+    @Nullable
     public Map<String, String> getParameters() {
         return parameters;
     }
@@ -303,6 +320,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
     /**
      * @return the liquibase tag.
      */
+    @Nullable
     public String getTag() {
         return tag;
     }
@@ -319,6 +337,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return a comma-separated list of runtime contexts to use.
      */
+    @Nullable
     public String getContexts() {
         return contexts;
     }
@@ -337,6 +356,7 @@ public class LiquibaseConfigurationProperties implements Toggleable {
      *
      * @return A Comma-separated list of runtime labels to use
      */
+    @Nullable
     public String getLabels() {
         return labels;
     }
