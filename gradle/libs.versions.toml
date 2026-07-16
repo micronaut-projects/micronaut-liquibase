@@ -1,14 +1,14 @@
 [versions]
 managed-liquibase = "5.0.3"
 
-micronaut = "5.0.0"
+micronaut = "5.1.6"
 micronaut-test = "5.0.0"
-micronaut-groovy = "5.0.0"
-micronaut-serde = "3.0.0"
-micronaut-sql = "7.0.1"
-micronaut-data = "5.0.0"
-micronaut-validation = "5.0.0"
-micronaut-gradle-plugin = "5.0.0-M1"
+micronaut-groovy = "5.1.0"
+micronaut-serde = "3.1.0"
+micronaut-sql = "7.1.0"
+micronaut-data = "5.1.0"
+micronaut-validation = "5.1.0"
+micronaut-gradle-plugin = "5.0.2"
 micronaut-logging = "2.0.0"
 
 [libraries]
