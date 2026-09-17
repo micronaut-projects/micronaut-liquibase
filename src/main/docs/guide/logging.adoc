@@ -55,17 +55,7 @@ dependency:jul-to-slf4j[groupId="org.slf4j"]
 
 - Initialize the JUL to Slf4j bridge. You can add the following to your `Application` class:
 
-[source,java]
-.src/main/java/my/package/Application.java
-----
-public static void main(String[] args) {
-    // Bridge JUL to Slf4j
-    SLF4JBridgeHandler.removeHandlersForRootLogger();
-    SLF4JBridgeHandler.install();
-
-    Micronaut.run(Application.class, args);
-}
-----
+snippet::io.micronaut.liquibase.docs.Application[tags="imports,clazz"]
 
 With the previous configuration, starting your application again will show the logs properly:
 
