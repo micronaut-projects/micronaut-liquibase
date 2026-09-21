@@ -6,7 +6,7 @@ pluginManagement {
 }
 
 plugins {
-    id 'io.micronaut.build.shared.settings' version '8.0.2'
+    id 'io.micronaut.build.shared.settings' version '8.1.2'
 }
 
 rootProject.name = 'liquibase-parent'
@@ -14,6 +14,10 @@ rootProject.name = 'liquibase-parent'
 include 'liquibase'
 include 'liquibase-bom'
 
+include 'test-suite'
+include 'test-suite-kotlin'
+include 'test-suite-groovy'
+include 'test-suite-python'
 include 'test-suite-jackson'
 include 'test-suite-serde'
 include 'test-suite-graal-h2'
