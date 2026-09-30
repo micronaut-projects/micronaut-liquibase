@@ -153,6 +153,15 @@ dependency on your classpath:</p>
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="pyronaut">[tool.pyronaut.dependencies]
+runtime = [
+    <span class="hljs-string">"io.micronaut.liquibase:micronaut-liquibase"</span>,
+]</code></pre>
+</div>
+</div>
 </p>
 </div>
 
@@ -687,6 +696,15 @@ INFO: Successfully released change log lock
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="pyronaut">[tool.pyronaut.dependencies]
+runtime = [
+    <span class="hljs-string">"org.slf4j:jul-to-slf4j"</span>,
+]</code></pre>
+</div>
+</div>
 </p>
 </div>
 <div class="ulist">
@@ -721,15 +739,71 @@ INFO: Successfully released change log lock
 </li>
 </ul>
 </div>
-<div class="listingblock">
-<div class="title">src/main/java/my/package/Application.java</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static void main(String[] args) {
-    // Bridge JUL to Slf4j
-    SLF4JBridgeHandler.removeHandlersForRootLogger();
-    SLF4JBridgeHandler.install();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.micronaut.runtime.Micronaut;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
-    Micronaut.run(Application.class, args);
+public class Application {
+
+    public static void main(String[] args) {
+        // Bridge JUL to Slf4j
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
+
+        Micronaut.run(Application.class, args);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from micronaut.runtime import Micronaut
+from org.slf4j.bridge import SLF4JBridgeHandler
+
+class Application:
+
+    @staticmethod
+    def main(args: list[str]) -&gt; None:
+        # Bridge JUL to Slf4j
+        SLF4JBridgeHandler.removeHandlersForRootLogger()
+        SLF4JBridgeHandler.install()
+
+        Micronaut.run(Application, args)</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import io.micronaut.runtime.Micronaut
+import org.slf4j.bridge.SLF4JBridgeHandler
+
+object Application {
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+        // Bridge JUL to Slf4j
+        SLF4JBridgeHandler.removeHandlersForRootLogger()
+        SLF4JBridgeHandler.install()
+
+        Micronaut.run(Application::class.java, *args)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.runtime.Micronaut
+import org.slf4j.bridge.SLF4JBridgeHandler
+
+class Application {
+
+    static void main(String[] args) {
+        // Bridge JUL to Slf4j
+        SLF4JBridgeHandler.removeHandlersForRootLogger()
+        SLF4JBridgeHandler.install()
+
+        Micronaut.run(Application, args)
+    }
 }</code></pre>
 </div>
 </div>
