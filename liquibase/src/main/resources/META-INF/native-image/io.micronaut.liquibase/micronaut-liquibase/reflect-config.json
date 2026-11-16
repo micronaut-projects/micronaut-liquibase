@@ -356,5 +356,20 @@
         ]
       }
     ]
+  },
+  {
+    "name": "liquibase.change.core.SQLFileChange",
+    "methods": [
+      {
+        "name": "setRelativeToChangelogFile",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "getPath",
+        "parameterTypes": []
+      }
+    ]
   }
 ]
