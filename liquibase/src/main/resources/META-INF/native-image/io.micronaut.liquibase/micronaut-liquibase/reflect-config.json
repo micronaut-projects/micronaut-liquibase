@@ -361,6 +361,12 @@
     "name": "liquibase.change.core.SQLFileChange",
     "methods": [
       {
+        "name": "setEncoding",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
         "name": "setRelativeToChangelogFile",
         "parameterTypes": [
           "java.lang.Boolean"
